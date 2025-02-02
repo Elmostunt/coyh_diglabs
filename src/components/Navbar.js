@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useUsuario } from '../context/UsuarioContext';
 import personal from './personal.png'; // Importa la imagen
+import './Navbar.css';
 
 const Navbar = ({ onBuscar }) => {
   const location = useLocation();
@@ -29,11 +30,11 @@ const Navbar = ({ onBuscar }) => {
   };
 
   return (
-    <nav className="bg-azulOscuro p-6 flex items-center justify-between h-24">
+  <nav className="bg-azulOscuro p-4 flex items-center justify-between h-20 w-full fixed top-0 left-0 z-50">
       {/* Logo y nombre */}
       <div className="flex items-center space-x-4">
         <Link to="/">
-          <img src={personal} className="h-20 w-auto" alt="logo" />
+          <img src={personal} className="h-16 w-auto" alt="logo" />
         </Link>
         <span className="text-blancoHueso text-2xl font-bold">Sur Digital Labs</span>
       </div>
@@ -56,13 +57,9 @@ const Navbar = ({ onBuscar }) => {
         <Link to="/" className="text-blancoHueso hover:text-turquesaVibrante">
           Inicio
         </Link>
-        <Link to="/productos" className="text-blancoHueso hover:text-turquesaVibrante">
-          Productos
+        <Link to="/servicios" className="text-blancoHueso hover:text-turquesaVibrante">
+          Nuestros Servicios
         </Link>
-        <Link to="/carrito" className="text-blancoHueso hover:text-turquesaVibrante">
-          Carrito
-        </Link>
-
         {/* Si el usuario está autenticado */}
         {usuario ? (
           <>

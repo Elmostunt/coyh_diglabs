@@ -68,3 +68,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+? Want to modify these settings? no
+🔗  Linked to guillermos-projects-b16d48be/sur_digital_labs (created .vercel and added it to .gitignore)
+🔍  Inspect: https://vercel.com/guillermos-projects-b16d48be/sur_digital_labs/4tFVrT1mNbKjFPpKanMPreZJM3WV [7s]
+✅  Production: https://surdigitallabs-et2ofbafh-guillermos-projects-b16d48be.vercel.app [7s]
+📝  Deployed to production. Run `vercel --prod` to overwrite later (https://vercel.link/2F).
+💡  To change the domain or build command, go to https://vercel.com/guillermos-projects-b16d48be/sur_digital_labs/settings
+imagemaker@MacBook-Pro-de-Imagemaker coyh_diglabs % 

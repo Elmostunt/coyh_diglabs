@@ -2,7 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Footer from './pages/Footer';
 import Productos from './pages/Productos';
+import Servicios from './pages/Servicios';
 import Carrito from './pages/Carrito';
 import Usuarios from './pages/Usuarios';
 import ConfirmacionCompra from './pages/ConfirmacionCompra';
@@ -80,8 +82,18 @@ const App = () => {
               </>
             }
           />
+          <Route
+            path="/servicios"
+            element={
+              <>
+                <Navbar />
+                <Servicios />
+              </>
+            }
+          />
         </Routes>
       </div>
+      <Footer />
     </Router>
   );
 };
