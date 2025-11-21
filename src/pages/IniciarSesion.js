@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUsuario } from '../context/UsuarioContext';
+import './styles/Forms.css';
 
 const IniciarSesion = () => {
   const { iniciarSesion } = useUsuario();
@@ -27,6 +28,7 @@ const IniciarSesion = () => {
   };
 
   return (
+    <div className="contenedor">
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Iniciar Sesión</h1>
       <form onSubmit={handleSubmit}>
@@ -58,6 +60,7 @@ const IniciarSesion = () => {
           Iniciar Sesión
         </button>
       </form>
+    </div>
     </div>
   );
 };

@@ -3,43 +3,43 @@ import React, { useState } from 'react';
 const Servicios = () => {
   // Lista de servicios
   const servicios = [
-    { id: 1, nombre: 'Desarrollo Web Fullstack', descripcion: 'Creación de aplicaciones web personalizadas con tecnologías modernas como React, Node.js y bases de datos SQL/NoSQL.', precio: 1500, imagen_url: 'webdev.webp' },
-    { id: 2, nombre: 'Desarrollo de Aplicaciones Móviles', descripcion: 'Creación de apps en React Native o Flutter para Android y iOS.', precio: 2000, imagen_url: 'movil.webp' },
-    { id: 3, nombre: 'Desarrollo de E-commerce', descripcion: 'Implementación de tiendas online con Shopify, WooCommerce o desarrollo personalizado.', precio: 1800, imagen_url: 'ecommerce.webp' },
-    { id: 4, nombre: 'Desarrollo de APIs REST y GraphQL', descripcion: 'Implementación de servicios backend escalables y seguros para integración con aplicaciones móviles y web.', precio: 1300, imagen_url: 'apis.webp' },
-    { id: 5, nombre: 'Optimización de Sitios Web', descripcion: 'Mejora de velocidad y rendimiento de sitios web mediante optimización de código, imágenes y caché.', precio: 1000, imagen_url: 'web_optimization.webp' },
-    { id: 6, nombre: 'Migración de Sitios Web', descripcion: 'Traslado de sitios web entre servidores o plataformas sin pérdida de datos.', precio: 900, imagen_url: 'web_migration.webp' },
+    { id: 1, nombre: 'Desarrollo Web Fullstack', descripcion: 'Creación de aplicaciones web personalizadas con tecnologías modernas como React, Node.js y bases de datos SQL/NoSQL.', precio: 1500, imagen_url: 'webdev.jpg' },
+    { id: 2, nombre: 'Desarrollo de Aplicaciones Móviles', descripcion: 'Creación de apps en React Native o Flutter para Android y iOS.', precio: 2000, imagen_url: 'movil.jpg' },
+    { id: 3, nombre: 'Desarrollo de E-commerce', descripcion: 'Implementación de tiendas online con Shopify, WooCommerce o desarrollo personalizado.', precio: 1800, imagen_url: 'ecommerce.jpg' },
+    { id: 4, nombre: 'Desarrollo de APIs REST y GraphQL', descripcion: 'Implementación de servicios backend escalables y seguros para integración con aplicaciones móviles y web.', precio: 1300, imagen_url: 'apis.jpg' },
+    { id: 5, nombre: 'Optimización de Sitios Web', descripcion: 'Mejora de velocidad y rendimiento de sitios web mediante optimización de código, imágenes y caché.', precio: 1000, imagen_url: 'web_optimization.jpg' },
+    { id: 6, nombre: 'Migración de Sitios Web', descripcion: 'Traslado de sitios web entre servidores o plataformas sin pérdida de datos.', precio: 900, imagen_url: 'web_migration.jpg' },
 
     // Bases de Datos y Ciencia de Datos
-    { id: 7, nombre: 'Optimización de Bases de Datos', descripcion: 'Mejora del rendimiento y estructuración de bases de datos relacionales y no relacionales.', precio: 1200, imagen_url: 'db_optimization.webp' },
-    { id: 8, nombre: 'Análisis y Visualización de Datos', descripcion: 'Generación de dashboards interactivos y reportes en Power BI, Tableau y Python.', precio: 1800, imagen_url: 'data_viz.webp' },
-    { id: 9, nombre: 'Consultoría en Ciencia de Datos', descripcion: 'Asesoramiento para la implementación de soluciones basadas en datos.', precio: 2200, imagen_url: 'cienciadatos_consultoria.webp' },
-    { id: 10, nombre: 'Big Data e Ingesta de Datos', descripcion: 'Procesamiento de grandes volúmenes de datos en plataformas como BigQuery, Dataflow y Apache Beam.', precio: 2500, imagen_url: 'bigdata.webp' },
-    { id: 11, nombre: 'Machine Learning y AI', descripcion: 'Entrenamiento y despliegue de modelos de inteligencia artificial para predicciones y automatización.', precio: 3000, imagen_url: 'ml_ai.webp' },
+    { id: 7, nombre: 'Optimización de Bases de Datos', descripcion: 'Mejora del rendimiento y estructuración de bases de datos relacionales y no relacionales.', precio: 1200, imagen_url: 'db_optimization.jpg' },
+    { id: 8, nombre: 'Análisis y Visualización de Datos', descripcion: 'Generación de dashboards interactivos y reportes en Power BI, Tableau y Python.', precio: 1800, imagen_url: 'data_viz.jpg' },
+    { id: 9, nombre: 'Consultoría en Ciencia de Datos', descripcion: 'Asesoramiento para la implementación de soluciones basadas en datos.', precio: 2200, imagen_url: 'cienciadatos_consultoria.jpg' },
+    { id: 10, nombre: 'Big Data e Ingesta de Datos', descripcion: 'Procesamiento de grandes volúmenes de datos en plataformas como BigQuery, Dataflow y Apache Beam.', precio: 2500, imagen_url: 'bigdata.jpg' },
+    { id: 11, nombre: 'Machine Learning y AI', descripcion: 'Entrenamiento y despliegue de modelos de inteligencia artificial para predicciones y automatización.', precio: 3000, imagen_url: 'ml_ai.jpg' },
 
     // Infraestructura y Cloud
-    { id: 12, nombre: 'Despliegue en la Nube', descripcion: 'Configuración y administración de servidores en AWS, GCP y Azure.', precio: 1600, imagen_url: 'cloud_native.webp' },
-    { id: 13, nombre: 'DevOps e Infraestructura como Código', descripcion: 'Automatización de despliegues con Terraform, Kubernetes y CI/CD.', precio: 2500, imagen_url: 'devops.webp' },
-    { id: 14, nombre: 'Monitorización y Alertas en Cloud', descripcion: 'Configuración de alertas y monitoreo en Cloud Monitoring, Prometheus y Grafana.', precio: 1400, imagen_url: 'alerts.webp' },
-    { id: 15, nombre: 'Administración y Mantenimiento de Servidores', descripcion: 'Manejo de servidores Linux y Windows para garantizar estabilidad y seguridad.', precio: 1800, imagen_url: 'server_adm.webp' },
+    { id: 12, nombre: 'Despliegue en la Nube', descripcion: 'Configuración y administración de servidores en AWS, GCP y Azure.', precio: 1600, imagen_url: 'cloud_native.jpg' },
+    { id: 13, nombre: 'DevOps e Infraestructura como Código', descripcion: 'Automatización de despliegues con Terraform, Kubernetes y CI/CD.', precio: 2500, imagen_url: 'devops.jpg' },
+    { id: 14, nombre: 'Monitorización y Alertas en Cloud', descripcion: 'Configuración de alertas y monitoreo en Cloud Monitoring, Prometheus y Grafana.', precio: 1400, imagen_url: 'alerts.jpg' },
+    { id: 15, nombre: 'Administración y Mantenimiento de Servidores', descripcion: 'Manejo de servidores Linux y Windows para garantizar estabilidad y seguridad.', precio: 1800, imagen_url: 'server_adm.jpg' },
 
     // Seguridad y Auditoría
-    { id: 16, nombre: 'Auditoría y Seguridad Informática', descripcion: 'Evaluación de vulnerabilidades en sistemas y recomendaciones de seguridad.', precio: 2000, imagen_url: 'audit_security.webp' },
-    { id: 17, nombre: 'Cifrado y Seguridad de Datos', descripcion: 'Implementación de protocolos de seguridad y cifarado de información sensible.', precio: 1700, imagen_url: 'cif_seg.webp' },
+    { id: 16, nombre: 'Auditoría y Seguridad Informática', descripcion: 'Evaluación de vulnerabilidades en sistemas y recomendaciones de seguridad.', precio: 2000, imagen_url: 'audit_security.jpg' },
+    { id: 17, nombre: 'Cifrado y Seguridad de Datos', descripcion: 'Implementación de protocolos de seguridad y cifarado de información sensible.', precio: 1700, imagen_url: 'cif_seg.jpg' },
 
     // Automatización y Soporte IT
-    { id: 18, nombre: 'Automatización de Procesos con Python', descripcion: 'Creación de scripts para optimizar flujos de trabajo en empresas.', precio: 1400, imagen_url: 'python_automation.webp' },
-    { id: 19, nombre: 'Automatización con RPA', descripcion: 'Implementación de bots para reducir tareas manuales en procesos empresariales.', precio: 2300, imagen_url: 'auto_rpa.webp' },
-    { id: 20, nombre: 'Soporte Técnico y Formateo de PC', descripcion: 'Instalación y configuración de software, eliminación de virus y optimización de sistemas.', precio: 500, imagen_url: 'soporte_tecnico.webp' },
+    { id: 18, nombre: 'Automatización de Procesos con Python', descripcion: 'Creación de scripts para optimizar flujos de trabajo en empresas.', precio: 1400, imagen_url: 'python_automation.jpg' },
+    { id: 19, nombre: 'Automatización con RPA', descripcion: 'Implementación de bots para reducir tareas manuales en procesos empresariales.', precio: 2300, imagen_url: 'auto_rpa.jpg' },
+    { id: 20, nombre: 'Soporte Técnico y Formateo de PC', descripcion: 'Instalación y configuración de software, eliminación de virus y optimización de sistemas.', precio: 500, imagen_url: 'soporte_tecnico.jpg' },
 
     // Consultoría y Educación
-    { id: 21, nombre: 'Consultoría en Transformación Digital', descripcion: 'Asesoría para modernizar procesos empresariales con tecnología.', precio: 2500, imagen_url: 'consultoria.webp' },
-    { id: 22, nombre: 'Capacitaciones en Desarrollo y Ciencia de Datos', descripcion: 'Cursos personalizados en programación, bases de datos, IA y más.', precio: 2000, imagen_url: 'capacitaciones.webp' },
+    { id: 21, nombre: 'Consultoría en Transformación Digital', descripcion: 'Asesoría para modernizar procesos empresariales con tecnología.', precio: 2500, imagen_url: 'consultoria.jpg' },
+    { id: 22, nombre: 'Capacitaciones en Desarrollo y Ciencia de Datos', descripcion: 'Cursos personalizados en programación, bases de datos, IA y más.', precio: 2000, imagen_url: 'capacitaciones.jpg' },
 
     // Proyectos y Desarrollo a Medida
-    { id: 23, nombre: 'Desarrollo de Software a Medida', descripcion: 'Soluciones tecnológicas personalizadas según requerimientos empresariales.', precio: 3000, imagen_url: 'custom_software.webp' },
-    { id: 24, nombre: 'Automatización de Reportes Empresariales', descripcion: 'Generación de reportes automáticos en Google Sheets, Excel y otras plataformas.', precio: 1600, imagen_url: 'reportes.webp' },
-    { id: 25, nombre: 'Integración de Sistemas', descripcion: 'Conexión entre diferentes aplicaciones empresariales con APIs y middleware.', precio: 2200, imagen_url: 'integracion.webp' }
+    { id: 23, nombre: 'Desarrollo de Software a Medida', descripcion: 'Soluciones tecnológicas personalizadas según requerimientos empresariales.', precio: 3000, imagen_url: 'custom_software.jpg' },
+    { id: 24, nombre: 'Automatización de Reportes Empresariales', descripcion: 'Generación de reportes automáticos en Google Sheets, Excel y otras plataformas.', precio: 1600, imagen_url: 'reportes.jpg' },
+    { id: 25, nombre: 'Integración de Sistemas', descripcion: 'Conexión entre diferentes aplicaciones empresariales con APIs y middleware.', precio: 2200, imagen_url: 'integracion.jpg' }
 
     // Agrega más servicios aquí
   ];
