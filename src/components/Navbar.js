@@ -18,7 +18,7 @@ const Navbar = () => {
     <nav className="bg-azulOscuro p-4 flex items-center justify-between h-20 w-full sticky top-0 z-50 shadow-lg">
       <div className="flex items-center space-x-4">
         <Link to="/">
-          <img src="serio.webp" className="h-16 w-auto" alt="logo" />
+          <img src="logo_chico.jpg" className="h-16 w-auto" alt="logo" />
         </Link>
         <span className="text-blancoHueso text-xl font-bold">Sur Digital Labs</span>
       </div>

@@ -130,12 +130,12 @@ const Home = () => {
         aria-roledescription="carousel"
         aria-label="Galería principal"
       >
-        {/* Overlay para contraste del hero (si pones texto encima) */}
+        {/* Overlay para contraste del hero (si pones texto encima) 
         <div
           className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent z-[1]"
           aria-hidden="true"
         />
-
+*/}
         {slides.length > 0 ? (
           slides.map((slide, index) => (
             <img
