@@ -1,0 +1,11 @@
+steps:
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - app
+      - deploy
+      - app.yaml
+      - --project=memos-tablet
+      - --quiet
+
+# Opcional: tiempo máximo de build (10 minutos, por ejemplo)
+timeout: "600s"
