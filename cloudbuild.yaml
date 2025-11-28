@@ -1,5 +1,23 @@
 steps:
+  - name: gcr.io/cloud-builders/bash
+    args:
+      - -c
+      - |
+        echo "PWD:"
+        pwd
+        echo "Contenido:"
+        ls -R
+
+  - name: gcr.io/cloud-builders/npm
+    dir: coyh_diglabs
+    args: ["install"]
+
+  - name: gcr.io/cloud-builders/npm
+    dir: coyh_diglabs
+    args: ["run", "build"]
+
   - name: gcr.io/cloud-builders/gcloud
+    dir: coyh_diglabs
     args:
       - app
       - deploy
@@ -7,8 +25,7 @@ steps:
       - --project=memos-tablet
       - --quiet
 
-# Agrega esta línea con la ruta a tu bucket
-# Asegúrate de reemplazar 'NOMBRE_TU_BUCKET' por el nombre real
+# Bucket de logs (si lo necesitas por el tema del service_account)
 logsBucket: 'gs://logs-sdlabs'
 
 # Opcional: tiempo máximo de build
