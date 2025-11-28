@@ -7,5 +7,9 @@ steps:
       - --project=memos-tablet
       - --quiet
 
-# Opcional: tiempo máximo de build (10 minutos, por ejemplo)
+# Agrega esta línea con la ruta a tu bucket
+# Asegúrate de reemplazar 'NOMBRE_TU_BUCKET' por el nombre real
+logsBucket: 'gs://logs-sdlabs'
+
+# Opcional: tiempo máximo de build
 timeout: "600s"
