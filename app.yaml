@@ -2,6 +2,11 @@ runtime: nodejs20
 service: default  # opcional
 
 handlers:
+  # ✅ Redirección global HTTP -> HTTPS (301)
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+
   # Estáticos con caché largo (traen hash en el nombre)
   - url: /(.*\.(?:css|js|png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|map))
     static_files: build/\1
