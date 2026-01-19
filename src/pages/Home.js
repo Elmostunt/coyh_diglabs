@@ -130,12 +130,6 @@ const Home = () => {
         aria-roledescription="carousel"
         aria-label="Galería principal"
       >
-        {/* Overlay para contraste del hero (si pones texto encima) 
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent z-[1]"
-          aria-hidden="true"
-        />
-*/}
         {slides.length > 0 ? (
           slides.map((slide, index) => (
             <img
@@ -195,7 +189,7 @@ const Home = () => {
             Agenda una reunión
           </a>
 
-        <a
+          <a
             href={QUOTE_URL}
             className="bg-blancoCremoso text-azulOscuro border border-azulOscuro py-3 px-6 rounded font-semibold shadow-md hover:bg-azulOscuro hover:text-blancoHueso transition focus:outline-none focus-visible:ring-2 focus-visible:ring-azulOscuro/40"
             aria-label="Pide una cotización"
@@ -229,7 +223,9 @@ const Home = () => {
 
               <ul className="mt-4 space-y-1 text-sm text-azulOscuro">
                 {s.items.map((it) => (
-                  <li key={it} className="flex items-center gap-2">• {it}</li>
+                  <li key={it} className="flex items-center gap-2">
+                    • {it}
+                  </li>
                 ))}
               </ul>
 
@@ -273,8 +269,6 @@ const Home = () => {
           ))}
         </div>
       </section>
-
-      {/* (Si usas un <Footer /> global, asegúrate de: className="bg-azulOscuro text-blancoHueso") */}
     </main>
   );
 };
