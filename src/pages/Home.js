@@ -1,8 +1,8 @@
-// src/pages/Home.jsx
-import React, { useState, useEffect } from "react";
+// src/pages/Home.js
+import React, { useEffect, useMemo, useState } from "react";
 
 /* =========================
-   CONFIG & DATA
+   CONFIG & DATA (se mantiene tu contenido)
 ========================= */
 const bucketName = "surdigilabs_images";
 const folderName = "carrusel";
@@ -27,7 +27,7 @@ const ROUTES = [
   {
     title: "Casos reales",
     desc: "Implementaciones concretas y resultados.",
-    href: "/galeria",
+    href: "/servicios",
     cta: "Ver casos",
   },
   {
@@ -48,9 +48,9 @@ const apiUrl =
 const encodeGcsPath = (name) => name.split("/").map(encodeURIComponent).join("/");
 
 /* =========================
-   COMPONENT
+   PAGE
 ========================= */
-const Home = () => {
+export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slides, setSlides] = useState([]);
 
@@ -112,127 +112,258 @@ const Home = () => {
     setCurrentSlide(0);
   };
 
+  const servicesLikeMock = useMemo(() => {
+    // 4 tarjetas como el mockup, manteniendo tu contenido
+    return [
+      ...ROUTES,
+      {
+        title: "Agendar 30 min",
+        desc: "Cuéntame tu idea y te propongo un plan en 30 minutos.",
+        href: CALENDLY_URL,
+        cta: "Agendar",
+        external: true,
+      },
+    ];
+  }, []);
+
+  const projects = useMemo(() => {
+    const top = slides.slice(0, 3);
+    if (top.length === 0) {
+      return [
+        { title: "Proyecto 1", desc: "Web/landing optimizada para conversión.", src: null },
+        { title: "Proyecto 2", desc: "Dashboard/BI para decisiones rápidas.", src: null },
+        { title: "Proyecto 3", desc: "Automatización e integraciones.", src: null },
+      ];
+    }
+    return top.map((s, i) => ({
+      title: `Proyecto ${i + 1}`,
+      desc: "Lorem ipsum dolor sit amet, consectetur.",
+      src: s.src,
+      alt: s.alt,
+    }));
+  }, [slides]);
+
   return (
-    <main className="flex flex-col items-center w-full bg-blancoCremoso">
-      {/* ===== HERO / Carrusel ===== */}
-      <section
-        className="relative w-full h-[60vh] md:h-[70vh] lg:h-[75vh] min-h-[480px] max-h-[60vh] overflow-hidden mb-10 md:mb-12"
-        aria-roledescription="carousel"
-        aria-label="Galería principal"
-      >
-        {slides.length > 0 ? (
-          slides.map((slide, index) => (
-            <img
-              key={index}
-              src={slide.src}
-              alt={slide.alt}
-              onError={() => handleImgError(index)}
-              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              } pointer-events-none`}
-              loading={index === 0 ? "eager" : "lazy"}
-              fetchPriority={index === currentSlide ? "high" : "auto"}
-              width={1920}
-              height={1080}
-            />
-          ))
-        ) : (
-          <div className="absolute inset-0 grid place-items-center bg-azulOscuro/5">
-            <p className="text-center text-azulGrisaceo">Cargando imágenes...</p>
+    <div className="w-full">
+      {/* HERO (estilo mockup) */}
+      <section className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600">
+        {/* decoraciones */}
+        <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-white/10 blur-2xl" />
+        <div className="pointer-events-none absolute -bottom-28 -right-24 h-72 w-72 rounded-full bg-white/10 blur-2xl" />
+
+        <div className="mx-auto w-full max-w-6xl px-4 py-14 md:py-16">
+          <div className="grid items-center gap-10 md:grid-cols-2">
+            {/* Texto */}
+            <div>
+              <h1 className="text-4xl font-extrabold leading-tight text-white md:text-5xl">
+                Software y datos
+                <span className="block">desde la Patagonia</span>
+              </h1>
+              <p className="mt-4 max-w-xl text-white/85">
+                Web, datos, nube y soporte. Claro, seguro y con resultados.
+              </p>
+              <p className="mt-2 text-sm text-white/75">
+                Agenda desde la barra superior o revisa servicios y casos abajo.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href="/servicios"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-extrabold text-indigo-700 shadow-sm hover:bg-white/90"
+                >
+                  Nuestros Servicios
+                </a>
+                <a
+                  href="/servicios"
+                  className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm font-bold text-white hover:bg-white/15"
+                >
+                  Ver Portafolio
+                </a>
+              </div>
+
+              {/* mini métricas */}
+              <div className="mt-7 grid gap-3 sm:grid-cols-3">
+                {TRUST.slice(0, 3).map((t) => (
+                  <div
+                    key={t.title}
+                    className="rounded-2xl border border-white/15 bg-white/10 p-4"
+                  >
+                    <div className="text-lg font-extrabold text-white">{t.kpi}</div>
+                    <div className="mt-0.5 text-xs font-semibold text-white/85">{t.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Visual */}
+            <div className="relative">
+              <div className="rounded-3xl border border-white/15 bg-white/10 p-3 shadow-[0_30px_80px_rgba(0,0,0,0.25)]">
+                <div className="flex items-center gap-2 border-b border-white/10 px-3 py-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/90" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-amber-300/90" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-300/90" />
+                  <span className="ml-2 text-xs font-semibold text-white/75">surdigitallabs.cl</span>
+                </div>
+
+                <div
+                  className="relative mt-3 aspect-[16/10] overflow-hidden rounded-2xl bg-white/10"
+                  aria-roledescription="carousel"
+                  aria-label="Galería principal"
+                >
+                  {slides.length > 0 ? (
+                    slides.map((slide, index) => (
+                      <img
+                        key={index}
+                        src={slide.src}
+                        alt={slide.alt}
+                        onError={() => handleImgError(index)}
+                        className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-700 ${
+                          index === currentSlide ? "opacity-100" : "opacity-0"
+                        }`}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        fetchPriority={index === currentSlide ? "high" : "auto"}
+                        width={1600}
+                        height={1000}
+                      />
+                    ))
+                  ) : (
+                    <div className="absolute inset-0 grid place-items-center">
+                      <p className="text-white/80">Cargando imágenes…</p>
+                    </div>
+                  )}
+
+                  <button
+                    onClick={() => changeSlide(-1)}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/35 px-3 py-2 text-white hover:bg-black/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    aria-label="Anterior"
+                  >
+                    &#10094;
+                  </button>
+                  <button
+                    onClick={() => changeSlide(1)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/35 px-3 py-2 text-white hover:bg-black/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    aria-label="Siguiente"
+                  >
+                    &#10095;
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-        )}
-
-        <button
-          onClick={() => changeSlide(-1)}
-          className="absolute z-10 left-3 top-1/2 -translate-y-1/2 px-3 py-2 text-white font-bold text-lg rounded bg-black/45 hover:bg-black/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          aria-label="Anterior"
-        >
-          &#10094;
-        </button>
-        <button
-          onClick={() => changeSlide(1)}
-          className="absolute z-10 right-3 top-1/2 -translate-y-1/2 px-3 py-2 text-white font-bold text-lg rounded bg-black/45 hover:bg-black/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          aria-label="Siguiente"
-        >
-          &#10095;
-        </button>
+        </div>
       </section>
 
-      {/* ===== Mensaje ultra corto ===== */}
-      <section className="w-full max-w-6xl px-4 text-center pb-6">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-azulOscuro leading-tight">
-          Software y datos <span className="text-azulProfundo">desde la Patagonia</span>
-        </h1>
-        <p className="mt-2 text-azulGrisaceo">
-          Web, datos, nube y soporte. Claro, seguro y con resultados.
-        </p>
-        <p className="mt-3 text-sm text-azulGrisaceo">
-          Agenda desde la barra superior o revisa servicios y casos abajo.
-        </p>
+      {/* SERVICIOS (4 cards como el mockup) */}
+      <section className="bg-blancoCremoso/40 py-14">
+        <div className="mx-auto w-full max-w-6xl px-4">
+          <header className="text-center">
+            <h2 className="text-3xl font-extrabold text-azulOscuro">Nuestros Servicios</h2>
+            <p className="mt-2 text-azulGrisaceo">Soluciones creativas para tu empresa.</p>
+          </header>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {servicesLikeMock.map((s) => {
+              const common =
+                "group rounded-2xl border border-azulOscuro/10 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md";
+              const innerIcon =
+                "grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 text-white shadow-sm";
+              const linkCls =
+                "mt-5 inline-flex items-center gap-2 text-sm font-bold text-azulOscuro group-hover:text-azulProfundo";
+
+              const content = (
+                <>
+                  <div className={innerIcon} aria-hidden="true">
+                    <span className="text-lg">✦</span>
+                  </div>
+                  <h3 className="mt-4 text-lg font-extrabold text-azulOscuro">{s.title}</h3>
+                  <p className="mt-2 text-sm text-azulGrisaceo">{s.desc}</p>
+                  <span className={linkCls}>{s.cta} →</span>
+                </>
+              );
+
+              if (s.external) {
+                return (
+                  <a
+                    key={s.title}
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={common}
+                  >
+                    {content}
+                  </a>
+                );
+              }
+
+              return (
+                <a key={s.title} href={s.href} className={common}>
+                  {content}
+                </a>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
-      {/* ===== Confianza (compacto, sin CTA) ===== */}
-      <section className="w-full max-w-6xl px-4 pb-10">
-        <div className="rounded-3xl border border-azulOscuro/10 bg-white p-6 md:p-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {TRUST.map((t) => (
+      {/* PROYECTOS (3 cards como el mockup) */}
+      <section className="bg-white py-14">
+        <div className="mx-auto w-full max-w-6xl px-4">
+          <header className="text-center">
+            <h2 className="text-3xl font-extrabold text-azulOscuro">Nuestros Proyectos</h2>
+            <p className="mt-2 text-azulGrisaceo">Algunos de nuestros trabajos recientes.</p>
+          </header>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {projects.map((p) => (
               <article
-                key={t.title}
-                className="rounded-2xl border border-azulOscuro/10 bg-blancoCremoso p-4"
+                key={p.title}
+                className="overflow-hidden rounded-2xl border border-azulOscuro/10 bg-white shadow-sm"
               >
-                <div className="text-xl font-extrabold text-azulOscuro">{t.kpi}</div>
-                <div className="mt-1 font-semibold text-azulOscuro">{t.title}</div>
-                <p className="mt-1 text-sm text-azulGrisaceo">{t.desc}</p>
+                <div className="aspect-[16/9] bg-azulOscuro/5">
+                  {p.src ? (
+                    <img src={p.src} alt={p.alt || p.title} className="h-full w-full object-cover" />
+                  ) : (
+                    <div className="h-full w-full" />
+                  )}
+                </div>
+                <div className="p-5">
+                  <h3 className="font-extrabold text-azulOscuro">{p.title}</h3>
+                  <p className="mt-1 text-sm text-azulGrisaceo">{p.desc}</p>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ===== Rutas (3 tiles) ===== */}
-      <section className="w-full max-w-6xl px-4 pb-14">
-        <header className="text-center mb-6">
-          <h2 className="text-3xl font-extrabold text-azulOscuro">Explora</h2>
-          <p className="text-azulGrisaceo mt-1">
-            Elige el camino: servicios, casos reales o soporte.
-          </p>
-        </header>
+      {/* TESTIMONIOS (reusamos TRUST como “prueba social” para no inventar contenido nuevo) */}
+      <section className="bg-blancoCremoso/40 py-14">
+        <div className="mx-auto w-full max-w-6xl px-4">
+          <header className="text-center">
+            <h2 className="text-3xl font-extrabold text-azulOscuro">Testimonios</h2>
+            <p className="mt-2 text-azulGrisaceo">¿Qué puedes esperar al trabajar con nosotros?</p>
+          </header>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {ROUTES.map((r) => (
-            <article
-              key={r.title}
-              className="rounded-2xl border border-azulOscuro/15 p-6 bg-white shadow-sm flex flex-col"
-            >
-              <h3 className="text-xl font-semibold text-azulOscuro">{r.title}</h3>
-              <p className="mt-2 text-azulGrisaceo flex-1">{r.desc}</p>
-
-              <div className="mt-5">
-                <a
-                  href={r.href}
-                  className="inline-flex px-4 py-2 rounded bg-azulOscuro text-blancoHueso hover:bg-azulProfundo transition font-semibold"
-                >
-                  {r.cta}
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {/* CTA suave extra (opcional) */}
-        <div className="mt-8 flex justify-center">
-          <a
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-5 py-2.5 rounded-full border border-azulOscuro/20 text-azulOscuro hover:bg-blancoCremoso transition font-semibold"
-          >
-            Agendar 30 min
-          </a>
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {TRUST.slice(0, 4).map((t) => (
+              <article
+                key={t.title}
+                className="rounded-2xl border border-azulOscuro/10 bg-white p-6 shadow-sm"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="h-12 w-12 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600" />
+                  <div>
+                    <div className="font-extrabold text-azulOscuro">{t.title}</div>
+                    <div className="text-xs text-azulGrisaceo">{t.kpi}</div>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm text-azulGrisaceo">{t.desc}</p>
+                <div className="mt-4 text-amber-400">★★★★★</div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
-    </main>
+    </div>
   );
-};
-
-export default Home;
+}

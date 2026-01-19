@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUsuario } from '../context/UsuarioContext';
-import './Navbar.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -15,38 +14,60 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-azulOscuro p-4 flex items-center justify-between h-20 w-full sticky top-0 z-50 shadow-lg">
-      <div className="flex items-center space-x-4">
-        <Link to="/">
-          <img src="logo_chico.jpg" className="h-16 w-auto" alt="logo" />
-        </Link>
-        <span className="text-blancoHueso text-xl font-bold">Sur Digital Labs</span>
-      </div>
+    <nav className="sticky top-[44px] z-40 w-full border-b border-white/10 bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600">
+      <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between gap-4 px-4">
+        {/* Marca */}
+        <div className="flex items-center gap-3 min-w-0">
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src="logo_chico.jpg"
+              className="h-12 w-12 rounded-xl object-cover ring-1 ring-white/20"
+              alt="logo"
+            />
+            <div className="leading-tight">
+              <div className="text-white font-extrabold tracking-tight">Sur Digital Labs</div>
+              <div className="text-xs text-white/80">Software · Datos · Cloud</div>
+            </div>
+          </Link>
+        </div>
 
-      <div className="flex space-x-4 items-center">
-        <Link to="/" className="text-blancoHueso hover:text-turquesaVibrante">Inicio</Link>
-        <Link to="/servicios" className="text-blancoHueso hover:text-turquesaVibrante">Nuestros Servicios</Link>
-        {/*<Link to="/galeria" className="text-blancoHueso hover:text-turquesaVibrante">Galeria</Link>*/}
-        <Link to="/nosotros" className="text-blancoHueso hover:text-turquesaVibrante">Nosotros</Link>
-        <Link to="/empleos" className="text-blancoHueso hover:text-turquesaVibrante">Empleos</Link>
+        {/* Links */}
+        <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white/90">
+          <Link className="hover:text-white" to="/">Inicio</Link>
+          <Link className="hover:text-white" to="/servicios">Servicios</Link>
+          <Link className="hover:text-white" to="/nosotros">Nosotros</Link>
+          <Link className="hover:text-white" to="/empleos">Empleos</Link>
+        </div>
 
-        {usuario ? (
-          <>
-            <span className="text-blancoHueso">Bienvenido, <strong>{usuario.nombre}</strong></span>
-            <Link to="/mi-perfil" className="text-blancoHueso hover:text-turquesaVibrante">Mi Perfil</Link>
-            <button
-              onClick={handleCerrarSesion}
-              className="bg-verdeTurquesa text-blancoHueso px-4 py-2 rounded-lg hover:bg-turquesaVibrante"
+        {/* Acciones */}
+        <div className="flex items-center gap-3">
+          {usuario ? (
+            <>
+              <span className="hidden lg:inline text-white/90 text-sm">
+                Bienvenido, <strong className="text-white">{usuario.nombre}</strong>
+              </span>
+              <Link
+                to="/mi-perfil"
+                className="hidden sm:inline-flex items-center rounded-full border border-white/25 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
+              >
+                Mi Perfil
+              </Link>
+              <button
+                onClick={handleCerrarSesion}
+                className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-extrabold text-indigo-700 shadow-sm hover:bg-white/90"
+              >
+                Cerrar sesión
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/contacto"
+              className="inline-flex items-center rounded-full border border-white/25 px-5 py-2 text-sm font-extrabold text-white hover:bg-white/10"
             >
-              Cerrar Sesión
-            </button>
-          </>
-        ) : (
-          <>
-           {/* <Link to="/iniciar-sesion" className="text-blancoHueso hover:text-turquesaVibrante">Iniciar Sesión</Link>
-            <Link to="/registrarse" className="text-blancoHueso hover:text-turquesaVibrante">Registrarse</Link>*/}
-          </>
-        )}
+              Contáctanos
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
   );

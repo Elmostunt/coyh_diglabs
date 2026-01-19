@@ -23,17 +23,22 @@ const TOPBAR_HEIGHT = 44;
 function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
   return (
     <div
-      className="fixed top-0 left-0 right-0 z-50 border-b border-azulOscuro/10 bg-blancoHueso/95 backdrop-blur"
+      className="
+        fixed top-0 left-0 right-0 z-50
+        bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600
+        text-white shadow-lg
+        border-b border-white/10
+      "
       style={{ height: TOPBAR_HEIGHT }}
     >
       <div className="mx-auto h-full w-full max-w-6xl px-4 flex items-center justify-between gap-3">
-        {/* Mensaje */}
+        {/* MENSAJE */}
         <div className="flex items-center gap-2 min-w-0">
-          <span className="text-sm font-semibold text-azulOscuro whitespace-nowrap">
+          <span className="text-sm font-semibold whitespace-nowrap">
             🚀 Implementamos tu web en 7 días
           </span>
-          <span className="text-xs text-azulGrisaceo">|</span>
-          <span className="text-xs text-azulGrisaceo whitespace-nowrap">
+          <span className="text-xs text-white/60">|</span>
+          <span className="text-xs text-white/80 whitespace-nowrap">
             Coyhaique · Chile
           </span>
         </div>
@@ -44,20 +49,26 @@ function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
             href={calendlyUrl}
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold
-                       border border-azulOscuro/20 text-azulOscuro hover:bg-blancoCremoso transition
-                       focus:outline-none focus-visible:ring-2 focus-visible:ring-azulOscuro/30"
-            aria-label="Agendar 30 minutos"
+            className="
+              hidden sm:inline-flex items-center
+              px-3 py-1.5 rounded-full text-xs font-semibold
+              border border-white/30 text-white
+              hover:bg-white/10 transition
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30
+            "
           >
             Agenda 30 min
           </a>
 
           <a
             href={quoteUrl}
-            className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-extrabold
-                       bg-azulOscuro text-blancoHueso hover:bg-azulProfundo transition
-                       focus:outline-none focus-visible:ring-2 focus-visible:ring-azulOscuro/30"
-            aria-label="Cotizar"
+            className="
+              inline-flex items-center
+              px-3 py-1.5 rounded-full text-xs font-extrabold
+              bg-white text-indigo-700
+              hover:bg-white/90 transition
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40
+            "
           >
             Cotiza
           </a>
@@ -66,10 +77,13 @@ function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold
-                       border border-azulOscuro/20 text-azulOscuro hover:bg-blancoCremoso transition
-                       focus:outline-none focus-visible:ring-2 focus-visible:ring-azulOscuro/30"
-            aria-label="Hablar por WhatsApp"
+            className="
+              inline-flex items-center
+              px-3 py-1.5 rounded-full text-xs font-semibold
+              border border-white/30 text-white
+              hover:bg-white/10 transition
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30
+            "
             title="WhatsApp"
           >
             WhatsApp
@@ -79,6 +93,7 @@ function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
     </div>
   );
 }
+
 
 
 const App = () => {
