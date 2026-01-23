@@ -100,6 +100,246 @@ const Servicios = () => {
         </div>
       </section>
 
+      {/* PACKS DE SERVICIOS */}
+      <section className="bg-white py-10 sm:py-14">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <header className="text-center mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro mb-3 sm:mb-4">
+              Packs de Servicios
+            </h2>
+            <p className="text-sm sm:text-base text-azulGrisaceo max-w-3xl mx-auto">
+              Soluciones completas diseñadas para resolver necesidades específicas de tu empresa
+            </p>
+          </header>
+
+          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {/* Pack 1: Web PYME Profesional */}
+            <article className="rounded-lg sm:rounded-xl border-2 border-blue-600 bg-gradient-to-br from-blue-50 to-white p-3 sm:p-4 shadow-lg">
+              <div className="flex items-center justify-between mb-2">
+                <span className="px-2 py-0.5 rounded-full bg-blue-600 text-white text-xs font-extrabold">
+                  Esencial
+                </span>
+              </div>
+              <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
+                Pack Web PYME Profesional
+              </h3>
+              <p className="text-xs text-azulGrisaceo mb-2">
+                <strong className="text-azulOscuro">Resuelve:</strong> Presencia digital + conversión
+              </p>
+              <div className="space-y-1 mb-3">
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
+                  <span>Web corporativa (5–7 secciones)</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
+                  <span>Diseño responsive</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
+                  <span>SEO básico</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
+                  <span>Formulario + WhatsApp</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
+                  <span>Analytics</span>
+                </div>
+              </div>
+              <div className="rounded bg-blue-100 border border-blue-200 p-2 mb-3">
+                <p className="text-xs text-blue-900 font-semibold leading-tight">
+                  Web profesional que genera contactos.
+                </p>
+              </div>
+              <a
+                href="/contacto"
+                className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
+              >
+                Cotizar
+              </a>
+            </article>
+
+            {/* Pack 2: Automatización & Backoffice */}
+            <article className="rounded-lg sm:rounded-xl border-2 border-green-600 bg-gradient-to-br from-green-50 to-white p-3 sm:p-4 shadow-lg">
+              <div className="flex items-center justify-between mb-2">
+                <span className="px-2 py-0.5 rounded-full bg-green-600 text-white text-xs font-extrabold">
+                  Eficiencia
+                </span>
+              </div>
+              <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
+                Pack Automatización & Backoffice
+              </h3>
+              <p className="text-xs text-azulGrisaceo mb-2">
+                <strong className="text-azulOscuro">Resuelve:</strong> Pérdida de tiempo, Excel infinito, errores
+              </p>
+              <div className="space-y-1 mb-3">
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-green-600 mt-0.5 shrink-0">✓</span>
+                  <span>Levantamiento de procesos</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-green-600 mt-0.5 shrink-0">✓</span>
+                  <span>Automatización (formularios, flujos)</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-green-600 mt-0.5 shrink-0">✓</span>
+                  <span>Backend en la nube</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-green-600 mt-0.5 shrink-0">✓</span>
+                  <span>Documentación</span>
+                </div>
+              </div>
+              <div className="rounded bg-green-100 border border-green-200 p-2 mb-3">
+                <p className="text-xs text-green-900 font-semibold leading-tight">
+                  Menos tareas manuales, más orden.
+                </p>
+              </div>
+              <a
+                href="/contacto"
+                className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-green-600 via-green-700 to-green-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
+              >
+                Cotizar
+              </a>
+            </article>
+
+            {/* Pack 3: Datos & Dashboards */}
+            <article className="rounded-lg sm:rounded-xl border-2 border-yellow-600 bg-gradient-to-br from-yellow-50 to-white p-3 sm:p-4 shadow-lg">
+              <div className="flex items-center justify-between mb-2">
+                <span className="px-2 py-0.5 rounded-full bg-yellow-600 text-white text-xs font-extrabold">
+                  Inteligencia
+                </span>
+              </div>
+              <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
+                Pack Datos & Dashboards
+              </h3>
+              <p className="text-xs text-azulGrisaceo mb-2">
+                <strong className="text-azulOscuro">Resuelve:</strong> Decisiones a ciegas
+              </p>
+              <div className="space-y-1 mb-3">
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-yellow-600 mt-0.5 shrink-0">✓</span>
+                  <span>Modelo de datos simple</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-yellow-600 mt-0.5 shrink-0">✓</span>
+                  <span>Integración de fuentes</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-yellow-600 mt-0.5 shrink-0">✓</span>
+                  <span>Dashboard ejecutivo</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-yellow-600 mt-0.5 shrink-0">✓</span>
+                  <span>Métricas clave</span>
+                </div>
+              </div>
+              <div className="rounded bg-yellow-100 border border-yellow-200 p-2 mb-3">
+                <p className="text-xs text-yellow-900 font-semibold leading-tight">
+                  Ver el negocio con datos claros.
+                </p>
+              </div>
+              <a
+                href="/contacto"
+                className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-yellow-600 via-yellow-700 to-yellow-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
+              >
+                Cotizar
+              </a>
+            </article>
+
+            {/* Pack 4: IA Aplicada */}
+            <article className="rounded-lg sm:rounded-xl border-2 border-purple-600 bg-gradient-to-br from-purple-50 to-white p-3 sm:p-4 shadow-lg">
+              <div className="flex items-center justify-between mb-2">
+                <span className="px-2 py-0.5 rounded-full bg-purple-600 text-white text-xs font-extrabold">
+                  Innovación
+                </span>
+              </div>
+              <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
+                Pack IA Aplicada / Soluciones a Medida
+              </h3>
+              <p className="text-xs text-azulGrisaceo mb-2">
+                <strong className="text-azulOscuro">Resuelve:</strong> Tareas complejas, análisis, asistencia
+              </p>
+              <div className="space-y-1 mb-3">
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
+                  <span>Diagnóstico del caso</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
+                  <span>Solución con IA / LLM</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
+                  <span>Integración backend</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
+                  <span>Control y seguridad</span>
+                </div>
+              </div>
+              <div className="rounded bg-purple-100 border border-purple-200 p-2 mb-3">
+                <p className="text-xs text-purple-900 font-semibold leading-tight">
+                  Uso real de IA, no demo.
+                </p>
+              </div>
+              <a
+                href="/contacto"
+                className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
+              >
+                Cotizar
+              </a>
+            </article>
+
+            {/* Pack 5: Acompañamiento Tecnológico */}
+            <article className="rounded-lg sm:rounded-xl border-2 border-red-600 bg-gradient-to-br from-red-50 to-white p-3 sm:p-4 shadow-lg">
+              <div className="flex items-center justify-between mb-2">
+                <span className="px-2 py-0.5 rounded-full bg-red-600 text-white text-xs font-extrabold">
+                  Tranquilidad
+                </span>
+              </div>
+              <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
+                Pack Acompañamiento Tecnológico
+              </h3>
+              <p className="text-xs text-azulGrisaceo mb-2">
+                <strong className="text-azulOscuro">Resuelve:</strong> Desorden, malas decisiones técnicas
+              </p>
+              <div className="space-y-1 mb-3">
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-red-600 mt-0.5 shrink-0">✓</span>
+                  <span>Soporte mensual</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-red-600 mt-0.5 shrink-0">✓</span>
+                  <span>Revisión de sistemas</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-red-600 mt-0.5 shrink-0">✓</span>
+                  <span>Asesoría técnica</span>
+                </div>
+                <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
+                  <span className="text-red-600 mt-0.5 shrink-0">✓</span>
+                  <span>Mejoras continuas</span>
+                </div>
+              </div>
+              <div className="rounded bg-red-100 border border-red-200 p-2 mb-3">
+                <p className="text-xs text-red-900 font-semibold leading-tight">
+                  Tranquilidad y orden tecnológico.
+                </p>
+              </div>
+              <a
+                href="/contacto"
+                className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-red-600 via-red-700 to-red-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
+              >
+                Cotizar
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
       {/* FILTROS Y BÚSQUEDA */}
       <section className="bg-white border-b border-azulOscuro/10 sticky top-[104px] z-30 shadow-sm">
         <div className="mx-auto w-full max-w-6xl px-4 py-4">
