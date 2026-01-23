@@ -76,6 +76,83 @@ const Nosotros = () => {
     []
   );
 
+  const proyectos = useMemo(
+    () => [
+      {
+        titulo: "Plataforma de agentes especializados con LLMs",
+        contexto: "Necesidad de automatizar análisis y tareas complejas usando modelos de lenguaje en entornos productivos.",
+        problema: "Orquestar múltiples capacidades sin perder control técnico ni trazabilidad de decisiones.",
+        solucion: "Diseño de agentes especializados con LangChain, separación clara de responsabilidades y flujos de decisión explícitos.",
+        entrega: "Arquitectura de agentes coordinados, integrables vía API y extensibles por dominio.",
+        valor: "Mayor capacidad de automatización avanzada y base sólida para escalar casos de uso con LLMs.",
+      },
+      {
+        titulo: "Custom GPT integrado con backend productivo",
+        contexto: "Requerimiento de exponer capacidades internas a través de un GPT personalizado.",
+        problema: "Integrar datos corporativos y lógica de negocio sin exponer directamente sistemas internos.",
+        solucion: "Desarrollo de backend en Cloud Run, definición de contrato OpenAPI y autenticación con OAuth y Cloud Run Invoker.",
+        entrega: "Custom GPT conectado a un endpoint controlado, compatible con el esquema esperado por OpenAI/Cosmos.",
+        valor: "Uso seguro y gobernado de LLMs sobre datos reales, manteniendo control técnico y operativo.",
+      },
+      {
+        titulo: "Sistema de microplanificación y optimización de tareas",
+        contexto: "Necesidad de planificar y ajustar tareas operativas de forma dinámica.",
+        problema: "Falta de visibilidad y optimización en la asignación y secuencia de tareas.",
+        solucion: "Diseño modular con frontend de gestión, backend en Cloud Run y modelos de optimización entrenados.",
+        entrega: "Plataforma con base operativa, análisis en BigQuery y capacidad de simulación de escenarios.",
+        valor: "Mejora en la toma de decisiones operativas y reducción de fricción en la planificación diaria.",
+      },
+      {
+        titulo: "Frontend de gestión conectado a API backend",
+        contexto: "Requerimiento de una interfaz clara para administrar entidades de negocio.",
+        problema: "Desacople entre UI y lógica backend dificultaba evolución y mantenimiento.",
+        solucion: "Implementación de frontend en Next.js con Ant Design y backend en FastAPI para orquestar CRUD y acciones.",
+        entrega: "Aplicación web desacoplada, con contratos claros entre frontend y backend.",
+        valor: "Mayor velocidad de desarrollo, mejor mantenibilidad y experiencia de uso consistente.",
+      },
+      {
+        titulo: "Infraestructura de bases de datos en GCP con red privada",
+        contexto: "Necesidad de desplegar bases de datos seguras y reutilizables entre entornos.",
+        problema: "Configuración manual y poco consistente de redes, permisos y secretos.",
+        solucion: "Infraestructura como código con Terraform, uso de módulos comunes, VPC peering y Secret Manager.",
+        entrega: "Cloud SQL en red privada, con entornos dev/prod y permisos gestionados por módulos.",
+        valor: "Infraestructura reproducible, segura y alineada con buenas prácticas de operación.",
+      },
+    ],
+    []
+  );
+
+  const proceso = useMemo(
+    () => [
+      {
+        paso: "1",
+        titulo: "Análisis y diagnóstico",
+        descripcion: "Entendemos el contexto, los objetivos y las restricciones reales del cliente.",
+      },
+      {
+        paso: "2",
+        titulo: "Diseño de solución",
+        descripcion: "Definimos arquitectura, tecnologías y alcance, priorizando mantenibilidad y escalabilidad.",
+      },
+      {
+        paso: "3",
+        titulo: "Ejecución controlada",
+        descripcion: "Desarrollo iterativo, coordinación técnica y validaciones constantes.",
+      },
+      {
+        paso: "4",
+        titulo: "Entrega y traspaso",
+        descripcion: "Documentación, explicación del sistema y apoyo en la adopción.",
+      },
+      {
+        paso: "5",
+        titulo: "Acompañamiento",
+        descripcion: "Soporte inicial y mejoras según evolución del negocio.",
+      },
+    ],
+    []
+  );
+
   return (
     <div className="w-full">
       {/* HERO SECTION */}
@@ -89,24 +166,30 @@ const Nosotros = () => {
               Nosotros
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-white/90 text-lg">
-              Conoce al equipo detrás de Sur Digital Labs
+              Desarrollo de software con foco regional y estándar profesional
             </p>
           </div>
         </div>
       </section>
 
-      {/* ABOUT SECTION */}
+      {/* ENFOQUE DE LA EMPRESA */}
       <section className="bg-white py-14">
         <div className="mx-auto w-full max-w-6xl px-4">
           <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-extrabold text-azulOscuro mb-6 text-center">
+              Nuestro enfoque
+            </h2>
             <div className="prose prose-lg max-w-none">
               <p className="text-azulGrisaceo text-lg mb-4">
-                En <strong className="text-azulOscuro">Sur Digital Labs</strong> diseñamos y construimos
-                soluciones de <em>software</em>, <em>datos</em> e{" "}
-                <em>inteligencia artificial</em> que mejoran la vida de las personas
-                y potencian a los negocios del sur de Chile y LATAM.
+                Somos una empresa de desarrollo de software y consultoría tecnológica con base regional.
+                Creamos soluciones digitales reales para empresas que necesitan avanzar con orden, criterio técnico y acompañamiento cercano.
               </p>
               <p className="text-azulGrisaceo text-lg mb-4">
+                Nuestro enfoque combina <strong className="text-azulOscuro">experiencia en proyectos complejos</strong> con un{" "}
+                <strong className="text-azulOscuro">compromiso activo por el desarrollo del talento tecnológico local</strong>, 
+                integrando formación, mentoría y supervisión profesional en cada iniciativa.
+              </p>
+              <p className="text-azulGrisaceo text-lg">
                 Nacimos en <strong className="text-azulOscuro">Coyhaique, Aysén</strong>, con la idea de acercar
                 tecnología de clase mundial a la Patagonia y a cualquier
                 organización que valore la calidad técnica. Unimos ingeniería,
@@ -118,8 +201,205 @@ const Nosotros = () => {
         </div>
       </section>
 
-      {/* TEAM SECTION */}
+      {/* EXPERIENCIA */}
       <section className="bg-blancoCremoso/40 py-14">
+        <div className="mx-auto w-full max-w-6xl px-4">
+          <header className="text-center mb-10">
+            <h2 className="text-3xl font-extrabold text-azulOscuro mb-4">
+              Experiencia en proyectos reales
+            </h2>
+            <p className="text-lg text-azulGrisaceo max-w-3xl mx-auto">
+              Nuestro equipo ha participado en proyectos de software, cloud, datos e inteligencia artificial 
+              en distintos contextos operativos y empresariales. Trabajamos en iniciativas que van desde 
+              plataformas web y backends productivos, hasta arquitecturas en la nube, automatización avanzada 
+              y soluciones basadas en modelos de lenguaje (LLMs).
+            </p>
+            <p className="mt-4 text-azulGrisaceo max-w-3xl mx-auto">
+              Por confidencialidad, no publicamos nombres de clientes, pero sí compartimos{" "}
+              <strong className="text-azulOscuro">el tipo de problemas que abordamos, cómo los resolvemos y el valor que entregamos</strong>.
+            </p>
+          </header>
+        </div>
+      </section>
+
+      {/* PROYECTOS REPRESENTATIVOS */}
+      <section className="bg-white py-14">
+        <div className="mx-auto w-full max-w-6xl px-4">
+          <header className="text-center mb-10">
+            <h2 className="text-3xl font-extrabold text-azulOscuro mb-4">
+              Proyectos representativos
+            </h2>
+            <p className="text-azulGrisaceo max-w-3xl mx-auto">
+              A continuación, algunos ejemplos de proyectos en los que hemos trabajado, descritos de forma anonimizada 
+              y enfocados en el proceso técnico y el impacto logrado.
+            </p>
+            <p className="mt-2 text-sm text-azulGrisaceo italic max-w-3xl mx-auto">
+              Nuestro interés no es mostrar logos, sino demostrar <strong className="text-azulOscuro">criterio profesional, forma de trabajo y capacidad técnica</strong>.
+            </p>
+          </header>
+
+          <div className="space-y-8">
+            {proyectos.map((proyecto, i) => (
+              <article
+                key={i}
+                className="rounded-2xl border border-azulOscuro/10 bg-white p-6 md:p-8 shadow-sm"
+              >
+                <h3 className="text-xl font-extrabold text-azulOscuro mb-4">
+                  {proyecto.titulo}
+                </h3>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <h4 className="text-sm font-extrabold text-azulOscuro mb-2 uppercase tracking-wide">
+                      Contexto
+                    </h4>
+                    <p className="text-sm text-azulGrisaceo mb-4">{proyecto.contexto}</p>
+                    <h4 className="text-sm font-extrabold text-azulOscuro mb-2 uppercase tracking-wide">
+                      Problema
+                    </h4>
+                    <p className="text-sm text-azulGrisaceo">{proyecto.problema}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-extrabold text-azulOscuro mb-2 uppercase tracking-wide">
+                      Cómo se trabajó
+                    </h4>
+                    <p className="text-sm text-azulGrisaceo mb-4">{proyecto.solucion}</p>
+                    <h4 className="text-sm font-extrabold text-azulOscuro mb-2 uppercase tracking-wide">
+                      Solución entregada
+                    </h4>
+                    <p className="text-sm text-azulGrisaceo mb-4">{proyecto.entrega}</p>
+                    <div className="rounded-lg bg-blue-50 border border-blue-200 p-3">
+                      <h4 className="text-sm font-extrabold text-blue-900 mb-1">
+                        Valor aportado
+                      </h4>
+                      <p className="text-sm text-blue-800">{proyecto.valor}</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CÓMO TRABAJAMOS */}
+      <section className="bg-blancoCremoso/40 py-14">
+        <div className="mx-auto w-full max-w-6xl px-4">
+          <header className="text-center mb-10">
+            <h2 className="text-3xl font-extrabold text-azulOscuro mb-4">
+              Cómo abordamos cada proyecto
+            </h2>
+            <p className="text-azulGrisaceo max-w-3xl mx-auto">
+              Nuestro trabajo se basa en procesos claros y decisiones técnicas bien fundamentadas:
+            </p>
+          </header>
+
+          <div className="grid gap-6 md:grid-cols-5">
+            {proceso.map((item) => (
+              <div
+                key={item.paso}
+                className="rounded-2xl border border-azulOscuro/10 bg-white p-6 shadow-sm"
+              >
+                <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white text-xl font-extrabold mb-4">
+                  {item.paso}
+                </div>
+                <h3 className="text-lg font-extrabold text-azulOscuro mb-2">
+                  {item.titulo}
+                </h3>
+                <p className="text-sm text-azulGrisaceo">{item.descripcion}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TALENTO REGIONAL */}
+      <section className="bg-white py-14">
+        <div className="mx-auto w-full max-w-6xl px-4">
+          <div className="max-w-3xl mx-auto">
+            <header className="text-center mb-8">
+              <h2 className="text-3xl font-extrabold text-azulOscuro mb-4">
+                Compromiso con el talento tecnológico regional
+              </h2>
+            </header>
+            <div className="prose prose-lg max-w-none">
+              <p className="text-azulGrisaceo text-lg mb-4">
+                Creemos en el desarrollo del talento local como parte del crecimiento tecnológico sostenible.
+              </p>
+              <p className="text-azulGrisaceo text-lg mb-4">
+                Por eso, fomentamos la participación de <strong className="text-azulOscuro">ingenieros y profesionales en formación</strong> en nuestros proyectos, 
+                bajo un modelo de <strong className="text-azulOscuro">mentorías, revisión técnica y supervisión senior</strong>.
+              </p>
+              <p className="text-azulGrisaceo text-lg mb-6">
+                Esto nos permite:
+              </p>
+              <ul className="space-y-2 text-azulGrisaceo mb-6">
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>Aportar a la formación práctica de la comunidad</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>Mantener estándares profesionales en cada entrega</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">•</span>
+                  <span>Construir soluciones con impacto técnico y social</span>
+                </li>
+              </ul>
+              <div className="rounded-lg bg-blue-50 border border-blue-200 p-4">
+                <p className="text-sm text-blue-900 italic">
+                  <strong>Nota importante:</strong> La responsabilidad técnica y la calidad final del proyecto siempre están lideradas por perfiles senior.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PARA QUIÉNES TRABAJAMOS */}
+      <section className="bg-blancoCremoso/40 py-14">
+        <div className="mx-auto w-full max-w-6xl px-4">
+          <header className="text-center mb-10">
+            <h2 className="text-3xl font-extrabold text-azulOscuro mb-4">
+              Para quiénes trabajamos
+            </h2>
+            <p className="text-azulGrisaceo max-w-3xl mx-auto mb-8">
+              Trabajamos con empresas que buscan:
+            </p>
+          </header>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              "Ordenar y profesionalizar su tecnología",
+              "Desarrollar software a medida",
+              "Automatizar procesos reales",
+              "Escalar con criterio, no improvisación",
+              "Acompañamiento cercano y comunicación clara",
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="rounded-2xl border border-azulOscuro/10 bg-white p-6 shadow-sm"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shrink-0">
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-azulGrisaceo font-medium">{item}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-azulGrisaceo mt-8 max-w-3xl mx-auto">
+            Especialmente pymes y organizaciones regionales que necesitan{" "}
+            <strong className="text-azulOscuro">un socio tecnológico</strong>, no solo un proveedor.
+          </p>
+        </div>
+      </section>
+
+      {/* TEAM SECTION */}
+      <section className="bg-white py-14">
         <div className="mx-auto w-full max-w-6xl px-4">
           <header className="text-center mb-10">
             <h2 className="text-3xl font-extrabold text-azulOscuro">Nuestro Equipo</h2>
@@ -135,7 +415,7 @@ const Nosotros = () => {
       </section>
 
       {/* VALUES SECTION */}
-      <section className="bg-white py-14">
+      <section className="bg-blancoCremoso/40 py-14">
         <div className="mx-auto w-full max-w-6xl px-4">
           <header className="text-center mb-10">
             <h2 className="text-3xl font-extrabold text-azulOscuro">Nuestros Valores</h2>
@@ -173,14 +453,17 @@ const Nosotros = () => {
       </section>
 
       {/* CTA SECTION */}
-      <section className="bg-blancoCremoso/40 py-14">
+      <section className="bg-white py-14">
         <div className="mx-auto w-full max-w-6xl px-4">
           <div className="rounded-3xl border border-azulOscuro/10 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-8 md:p-12 text-center">
             <h2 className="text-3xl font-extrabold text-white mb-4">
-              ¿Quieres trabajar con nosotros?
+              Desarrollamos software con estándar profesional
             </h2>
-            <p className="text-white/90 mb-6 max-w-2xl mx-auto">
-              Estamos siempre buscando talento y proyectos interesantes. Contáctanos para conocer más.
+            <p className="text-white/90 mb-2 text-lg">
+              Experiencia real y compromiso con el talento regional
+            </p>
+            <p className="text-white/80 mb-6">
+              ¿Quieres trabajar con nosotros?
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <a
