@@ -32,30 +32,32 @@ function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
       "
       style={{ height: TOPBAR_HEIGHT }}
     >
-      <div className="mx-auto h-full w-full max-w-6xl px-4 flex items-center justify-between gap-3">
+      <div className="mx-auto h-full w-full max-w-6xl px-2 sm:px-4 flex items-center justify-between gap-1 sm:gap-3 overflow-hidden">
         {/* MENSAJE */}
-        <div className="flex items-center gap-2 min-w-0">
-          <span className="text-sm font-semibold whitespace-nowrap">
-            🚀 Implementamos tu web en 7 días
+        <div className="flex items-center gap-1 sm:gap-2 min-w-0 flex-1">
+          <span className="text-xs sm:text-sm font-semibold whitespace-nowrap truncate">
+            <span className="hidden sm:inline">🚀 Tu web online en 7 días</span>
+            <span className="sm:hidden">🚀 Tu web en 7 días</span>
           </span>
-          <span className="text-xs text-white/60">|</span>
-          <span className="text-xs text-white/80 whitespace-nowrap">
+          <span className="text-xs text-white/60 hidden sm:inline shrink-0">|</span>
+          <span className="text-xs text-white/80 whitespace-nowrap hidden sm:inline shrink-0">
             Coyhaique · Chile
           </span>
         </div>
 
         {/* CTAs */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           <a
             href={calendlyUrl}
             target="_blank"
             rel="noreferrer"
             className="
-              hidden sm:inline-flex items-center
-              px-3 py-1.5 rounded-full text-xs font-semibold
+              hidden md:inline-flex items-center
+              px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold
               border border-white/30 text-white
               hover:bg-white/10 transition
               focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30
+              touch-manipulation
             "
           >
             Agenda 30 min
@@ -65,10 +67,11 @@ function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
             href={quoteUrl}
             className="
               inline-flex items-center
-              px-3 py-1.5 rounded-full text-xs font-extrabold
+              px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-extrabold
               bg-white text-blue-700
               hover:bg-white/90 transition
               focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40
+              touch-manipulation
             "
           >
             Cotiza
@@ -80,14 +83,16 @@ function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
             rel="noreferrer"
             className="
               inline-flex items-center
-              px-3 py-1.5 rounded-full text-xs font-semibold
+              px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold
               border border-white/30 text-white
               hover:bg-white/10 transition
               focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30
+              touch-manipulation
             "
             title="WhatsApp"
           >
-            WhatsApp
+            <span className="hidden sm:inline">WhatsApp</span>
+            <span className="sm:hidden">WA</span>
           </a>
         </div>
       </div>

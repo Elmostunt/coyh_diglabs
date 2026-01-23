@@ -301,23 +301,23 @@ export default function Home() {
         <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-white/10 blur-2xl" />
         <div className="pointer-events-none absolute -bottom-28 -right-24 h-72 w-72 rounded-full bg-white/10 blur-2xl" />
 
-        <div className="mx-auto w-full max-w-6xl px-4 py-14 md:py-16">
-          <div className="grid items-center gap-10 md:grid-cols-2">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 py-10 sm:py-14 md:py-16">
+          <div className="grid items-center gap-8 sm:gap-10 md:grid-cols-2">
             {/* Texto */}
-            <div>
-              <h1 className="text-4xl font-extrabold leading-tight text-white md:text-5xl">
+            <div className="order-2 md:order-1">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-white">
                 Soluciones tecnológicas
                 <span className="block">desde la Patagonia</span>
               </h1>
-              <p className="mt-4 max-w-xl text-white/90 text-lg">
+              <p className="mt-3 sm:mt-4 max-w-xl text-white/90 text-base sm:text-lg leading-relaxed">
                 Software, datos e inteligencia artificial con estándar profesional. 
                 Experiencia real, criterio técnico y compromiso con el talento regional.
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3">
                 <a
                   href="/servicios"
-                  className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90 transition"
+                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90 transition touch-manipulation"
                 >
                   Ver Servicios
                 </a>
@@ -325,20 +325,20 @@ export default function Home() {
                   href={CALENDLY_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm font-bold text-white hover:bg-white/15 transition"
+                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm font-bold text-white hover:bg-white/15 transition touch-manipulation"
                 >
                   Agenda 30 min
                 </a>
               </div>
 
               {/* mini métricas */}
-              <div className="mt-7 grid gap-3 sm:grid-cols-3">
+              <div className="mt-6 sm:mt-7 grid grid-cols-3 gap-2 sm:gap-3">
                 {TRUST.map((t) => (
                   <div
                     key={t.title}
-                    className="rounded-2xl border border-white/15 bg-white/10 p-4"
+                    className="rounded-xl sm:rounded-2xl border border-white/15 bg-white/10 p-3 sm:p-4"
                   >
-                    <div className="text-lg font-extrabold text-white">{t.kpi}</div>
+                    <div className="text-base sm:text-lg font-extrabold text-white">{t.kpi}</div>
                     <div className="mt-0.5 text-xs font-semibold text-white/85">{t.title}</div>
                   </div>
                 ))}
@@ -346,17 +346,17 @@ export default function Home() {
             </div>
 
             {/* Visual */}
-            <div className="relative">
-              <div className="rounded-3xl border border-white/15 bg-white/10 p-3 shadow-[0_30px_80px_rgba(0,0,0,0.25)]">
-                <div className="flex items-center gap-2 border-b border-white/10 px-3 py-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/90" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-amber-300/90" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-300/90" />
-                  <span className="ml-2 text-xs font-semibold text-white/75">surdigitallabs.cl</span>
+            <div className="relative order-1 md:order-2">
+              <div className="rounded-2xl sm:rounded-3xl border border-white/15 bg-white/10 p-2 sm:p-3 shadow-[0_30px_80px_rgba(0,0,0,0.25)]">
+                <div className="flex items-center gap-2 border-b border-white/10 px-2 sm:px-3 py-1.5 sm:py-2">
+                  <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-red-400/90" />
+                  <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-amber-300/90" />
+                  <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-emerald-300/90" />
+                  <span className="ml-2 text-xs font-semibold text-white/75 truncate">surdigitallabs.cl</span>
                 </div>
 
                 <div
-                  className="relative mt-3 aspect-[16/10] overflow-hidden rounded-2xl bg-white/10"
+                  className="relative mt-2 sm:mt-3 aspect-[16/10] overflow-hidden rounded-xl sm:rounded-2xl bg-white/10"
                   aria-roledescription="carousel"
                   aria-label="Galería principal"
                 >
@@ -378,20 +378,20 @@ export default function Home() {
                     ))
                   ) : (
                     <div className="absolute inset-0 grid place-items-center">
-                      <p className="text-white/80">Cargando imágenes…</p>
+                      <p className="text-white/80 text-sm">Cargando imágenes…</p>
                     </div>
                   )}
 
                   <button
                     onClick={() => changeSlide(-1)}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/35 px-3 py-2 text-white hover:bg-black/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/35 px-2.5 py-2 sm:px-3 sm:py-2 text-white hover:bg-black/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-white touch-manipulation text-lg sm:text-base"
                     aria-label="Anterior"
                   >
                     &#10094;
                   </button>
                   <button
                     onClick={() => changeSlide(1)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/35 px-3 py-2 text-white hover:bg-black/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/35 px-2.5 py-2 sm:px-3 sm:py-2 text-white hover:bg-black/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-white touch-manipulation text-lg sm:text-base"
                     aria-label="Siguiente"
                   >
                     &#10095;
@@ -404,58 +404,58 @@ export default function Home() {
       </section>
 
       {/* SERVICIOS RÁPIDOS */}
-      <section className="bg-white py-14">
-        <div className="mx-auto w-full max-w-6xl px-4">
-          <header className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-azulOscuro">Nuestros Servicios</h2>
-            <p className="mt-2 text-azulGrisaceo">Soluciones tecnológicas completas para tu empresa</p>
+      <section className="bg-white py-10 sm:py-14">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <header className="text-center mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Nuestros Servicios</h2>
+            <p className="mt-2 text-sm sm:text-base text-azulGrisaceo">Soluciones tecnológicas completas para tu empresa</p>
           </header>
 
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-3">
             <a
               href="/servicios"
-              className="group rounded-2xl border border-azulOscuro/10 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              className="group rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg touch-manipulation"
             >
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm mb-4">
-                <span className="text-lg">⚡</span>
+              <div className="grid h-10 w-10 sm:h-12 sm:w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm mb-3 sm:mb-4">
+                <span className="text-base sm:text-lg">⚡</span>
               </div>
-              <h3 className="text-lg font-extrabold text-azulOscuro mb-2">Desarrollo Web & Apps</h3>
-              <p className="text-sm text-azulGrisaceo mb-4">
+              <h3 className="text-base sm:text-lg font-extrabold text-azulOscuro mb-2">Desarrollo Web & Apps</h3>
+              <p className="text-xs sm:text-sm text-azulGrisaceo mb-3 sm:mb-4 leading-relaxed">
                 Frontend, backend, APIs y aplicaciones móviles con tecnologías modernas.
               </p>
-              <span className="inline-flex items-center gap-2 text-sm font-bold text-azulOscuro group-hover:text-blue-600 transition">
+              <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-azulOscuro group-hover:text-blue-600 transition">
                 Ver servicios →
               </span>
             </a>
 
             <a
               href="/servicios"
-              className="group rounded-2xl border border-azulOscuro/10 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              className="group rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg touch-manipulation"
             >
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm mb-4">
-                <span className="text-lg">🤖</span>
+              <div className="grid h-10 w-10 sm:h-12 sm:w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm mb-3 sm:mb-4">
+                <span className="text-base sm:text-lg">🤖</span>
               </div>
-              <h3 className="text-lg font-extrabold text-azulOscuro mb-2">IA & Machine Learning</h3>
-              <p className="text-sm text-azulGrisaceo mb-4">
+              <h3 className="text-base sm:text-lg font-extrabold text-azulOscuro mb-2">IA & Machine Learning</h3>
+              <p className="text-xs sm:text-sm text-azulGrisaceo mb-3 sm:mb-4 leading-relaxed">
                 LLMs, agentes especializados, modelos de optimización y análisis de datos.
               </p>
-              <span className="inline-flex items-center gap-2 text-sm font-bold text-azulOscuro group-hover:text-blue-600 transition">
+              <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-azulOscuro group-hover:text-blue-600 transition">
                 Ver servicios →
               </span>
             </a>
 
             <a
               href="/servicios"
-              className="group rounded-2xl border border-azulOscuro/10 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              className="group rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg touch-manipulation"
             >
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm mb-4">
-                <span className="text-lg">☁️</span>
+              <div className="grid h-10 w-10 sm:h-12 sm:w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm mb-3 sm:mb-4">
+                <span className="text-base sm:text-lg">☁️</span>
               </div>
-              <h3 className="text-lg font-extrabold text-azulOscuro mb-2">Cloud & DevOps</h3>
-              <p className="text-sm text-azulGrisaceo mb-4">
+              <h3 className="text-base sm:text-lg font-extrabold text-azulOscuro mb-2">Cloud & DevOps</h3>
+              <p className="text-xs sm:text-sm text-azulGrisaceo mb-3 sm:mb-4 leading-relaxed">
                 Infraestructura cloud, automatización, CI/CD y gestión de infraestructura como código.
               </p>
-              <span className="inline-flex items-center gap-2 text-sm font-bold text-azulOscuro group-hover:text-blue-600 transition">
+              <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-azulOscuro group-hover:text-blue-600 transition">
                 Ver servicios →
               </span>
             </a>
@@ -464,47 +464,47 @@ export default function Home() {
       </section>
 
       {/* PROYECTOS DESTACADOS */}
-      <section className="bg-blancoCremoso/40 py-14">
-        <div className="mx-auto w-full max-w-6xl px-4">
-          <header className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-azulOscuro">Proyectos Representativos</h2>
-            <p className="mt-2 text-azulGrisaceo">
-              Ejemplos de proyectos técnicos en los que hemos trabajado. Haz click para ver detalles.
+      <section className="bg-blancoCremoso/40 py-10 sm:py-14">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <header className="text-center mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Proyectos Representativos</h2>
+            <p className="mt-2 text-sm sm:text-base text-azulGrisaceo px-2">
+              Ejemplos de proyectos técnicos en los que hemos trabajado. Toca para ver detalles.
             </p>
           </header>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {proyectosDestacados.map((proyecto) => (
               <article
                 key={proyecto.id}
                 onClick={() => handleProyectoClick(proyecto)}
-                className="group cursor-pointer rounded-2xl border border-azulOscuro/10 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                className="group cursor-pointer rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg touch-manipulation active:scale-[0.98]"
               >
-                <div className="flex items-start justify-between mb-3">
-                  <span className="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold">
+                <div className="flex items-start justify-between mb-2 sm:mb-3">
+                  <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold">
                     {proyecto.categoria}
                   </span>
-                  <svg className="h-5 w-5 text-azulGrisaceo group-hover:text-blue-600 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="h-4 w-4 sm:h-5 sm:w-5 text-azulGrisaceo group-hover:text-blue-600 transition shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-extrabold text-azulOscuro mb-2 group-hover:text-blue-600 transition">
+                <h3 className="text-base sm:text-lg font-extrabold text-azulOscuro mb-2 group-hover:text-blue-600 transition leading-tight">
                   {proyecto.titulo}
                 </h3>
-                <p className="text-sm text-azulGrisaceo line-clamp-3">
+                <p className="text-xs sm:text-sm text-azulGrisaceo line-clamp-3 leading-relaxed">
                   {proyecto.descripcion}
                 </p>
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-3 sm:mt-4 flex flex-wrap gap-1.5 sm:gap-2">
                   {proyecto.tecnologias.slice(0, 3).map((tech, i) => (
                     <span
                       key={i}
-                      className="px-2 py-1 rounded bg-azulOscuro/5 text-azulOscuro text-xs font-medium"
+                      className="px-2 py-0.5 sm:py-1 rounded bg-azulOscuro/5 text-azulOscuro text-xs font-medium"
                     >
                       {tech}
                     </span>
                   ))}
                   {proyecto.tecnologias.length > 3 && (
-                    <span className="px-2 py-1 rounded bg-azulOscuro/5 text-azulOscuro text-xs font-medium">
+                    <span className="px-2 py-0.5 sm:py-1 rounded bg-azulOscuro/5 text-azulOscuro text-xs font-medium">
                       +{proyecto.tecnologias.length - 3}
                     </span>
                   )}
@@ -513,10 +513,10 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-6 sm:mt-8">
             <a
               href="/nosotros"
-              className="inline-flex items-center gap-2 text-sm font-extrabold text-blue-600 hover:text-blue-700 transition"
+              className="inline-flex items-center gap-2 text-sm font-extrabold text-blue-600 hover:text-blue-700 transition touch-manipulation"
             >
               Ver todos los proyectos
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -528,22 +528,22 @@ export default function Home() {
       </section>
 
       {/* CTA FINAL */}
-      <section className="bg-white py-14">
-        <div className="mx-auto w-full max-w-6xl px-4">
-          <div className="rounded-3xl border border-azulOscuro/10 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-8 md:p-12 text-center">
-            <h2 className="text-3xl font-extrabold text-white mb-4">
+      <section className="bg-white py-10 sm:py-14">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <div className="rounded-2xl sm:rounded-3xl border border-azulOscuro/10 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 md:p-12 text-center">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 sm:mb-4 leading-tight">
               Desarrollamos software con estándar profesional
             </h2>
-            <p className="text-white/90 mb-2 text-lg">
+            <p className="text-white/90 mb-2 text-base sm:text-lg">
               Experiencia real y compromiso con el talento regional
             </p>
-            <p className="text-white/80 mb-6">
+            <p className="text-white/80 mb-5 sm:mb-6 text-sm sm:text-base px-2">
               Especialmente para pymes y organizaciones regionales que necesitan un socio tecnológico.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3">
               <a
                 href="/contacto"
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90 transition"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90 transition touch-manipulation"
               >
                 Contáctanos
               </a>
@@ -551,7 +551,7 @@ export default function Home() {
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white hover:bg-white/15 transition"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white hover:bg-white/15 transition touch-manipulation"
               >
                 Agenda 30 min
               </a>

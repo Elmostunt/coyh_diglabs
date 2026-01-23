@@ -9,49 +9,21 @@ const Empleos = () => {
   const jobListings = [
     {
       id: 1,
-      title: "Manager GenAI",
-      department: "Data & AI",
-      location: { country: "CHILE", city: "SANTIAGO" },
-      timeAgo: "Hace 3 días",
+      title: "Practicante Frontend",
+      department: "Desarrollo",
+      location: { country: "CHILE", city: "COYHAIQUE" },
+      timeAgo: "Hace 1 día",
     },
     {
       id: 2,
-      title: "Data Platform Administrator",
-      department: "Data & AI",
-      location: { country: "CHILE", city: "SANTIAGO" },
-      timeAgo: "Hace 3 días",
-    },
-    {
-      id: 3,
-      title: "Data Engineer Azure MLOps",
-      department: "Data & AI",
-      location: { country: "CHILE", city: "SANTIAGO" },
-      timeAgo: "Hace 3 días",
-    },
-    {
-      id: 4,
-      title: "Especialista de Conectividad | Minería",
-      department: "Information Technology Operations",
-      location: { country: "CHILE", city: "SANTIAGO" },
-      timeAgo: "Hace 3 días",
-    },
-    {
-      id: 5,
-      title: "Desarrollador/a iOS Senior",
-      department: "Software Engineering",
-      location: { country: "CHILE", city: "SANTIAGO" },
-      timeAgo: "Hace 3 días",
-    },
-    {
-      id: 6,
-      title: "Consultores SAP Plant Maintenance",
-      department: "Software Engineering",
-      location: { country: "CHILE", city: "SANTIAGO" },
-      timeAgo: "Hace 3 días",
+      title: "Practicante Backend",
+      department: "Desarrollo",
+      location: { country: "CHILE", city: "COYHAIQUE" },
+      timeAgo: "Hace 1 día",
     },
   ];
 
-  const departments = ["Todos", "Data & AI", "Software Engineering", "Information Technology Operations"];
+  const departments = ["Todos", "Desarrollo"];
 
   const filteredJobs = jobListings
     .filter((job) => {
