@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-[44px] z-40 w-full border-b border-white/10 bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600">
+    <nav className="sticky top-[44px] z-40 w-full border-b border-white/10 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800">
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between gap-4 px-4">
         {/* Marca */}
         <div className="flex items-center gap-3 min-w-0">
@@ -54,7 +54,7 @@ const Navbar = () => {
               </Link>
               <button
                 onClick={handleCerrarSesion}
-                className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-extrabold text-indigo-700 shadow-sm hover:bg-white/90"
+                className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90"
               >
                 Cerrar sesión
               </button>

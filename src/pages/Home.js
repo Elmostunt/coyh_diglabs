@@ -146,7 +146,7 @@ export default function Home() {
   return (
     <div className="w-full">
       {/* HERO (estilo mockup) */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600">
+      <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800">
         {/* decoraciones */}
         <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-white/10 blur-2xl" />
         <div className="pointer-events-none absolute -bottom-28 -right-24 h-72 w-72 rounded-full bg-white/10 blur-2xl" />
@@ -169,7 +169,7 @@ export default function Home() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <a
                   href="/servicios"
-                  className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-extrabold text-indigo-700 shadow-sm hover:bg-white/90"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90"
                 >
                   Nuestros Servicios
                 </a>
@@ -266,7 +266,7 @@ export default function Home() {
               const common =
                 "group rounded-2xl border border-azulOscuro/10 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md";
               const innerIcon =
-                "grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 text-white shadow-sm";
+                "grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm";
               const linkCls =
                 "mt-5 inline-flex items-center gap-2 text-sm font-bold text-azulOscuro group-hover:text-azulProfundo";
 
@@ -351,7 +351,7 @@ export default function Home() {
                 className="rounded-2xl border border-azulOscuro/10 bg-white p-6 shadow-sm"
               >
                 <div className="flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600" />
+                  <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800" />
                   <div>
                     <div className="font-extrabold text-azulOscuro">{t.title}</div>
                     <div className="text-xs text-azulGrisaceo">{t.kpi}</div>

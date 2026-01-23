@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-r from-indigo-950 via-violet-950 to-fuchsia-950 text-white">
+    <footer className="bg-gradient-to-r from-blue-950 via-blue-900 to-blue-800 text-white">
       <div className="mx-auto w-full max-w-6xl px-4 py-12">
         <div className="grid gap-10 md:grid-cols-4">
           {/* Sobre */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-3">
               <img
-                src="/serio.webp"
+                src="/logo_chico.jpg"
                 alt="Sur Digital Labs"
                 className="h-10 w-10 rounded-xl object-cover ring-1 ring-white/20"
               />
@@ -52,7 +52,7 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="h-10 shrink-0 rounded-lg bg-white px-4 font-extrabold text-indigo-900 hover:bg-white/90"
+                className="h-10 shrink-0 rounded-lg bg-white px-4 font-extrabold text-blue-900 hover:bg-white/90"
               >
                 Suscribir
               </button>

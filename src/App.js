@@ -14,6 +14,7 @@ import MiPerfil from "./pages/MiPerfil";
 import Nosotros from "./pages/Nosotros";
 import Empleos from "./pages/Empleos";
 import Galeria from "./pages/Galeria";
+import Contactanos from "./pages/Contactanos";
 
 const CALENDLY_URL = "https://calendly.com/surdigitallabs/30min";
 const QUOTE_URL = "/contacto";
@@ -25,7 +26,7 @@ function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
     <div
       className="
         fixed top-0 left-0 right-0 z-50
-        bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600
+        bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
         text-white shadow-lg
         border-b border-white/10
       "
@@ -65,7 +66,7 @@ function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
             className="
               inline-flex items-center
               px-3 py-1.5 rounded-full text-xs font-extrabold
-              bg-white text-indigo-700
+              bg-white text-blue-700
               hover:bg-white/90 transition
               focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40
             "
@@ -127,6 +128,7 @@ const App = () => {
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/empleos" element={<Empleos />} />
             <Route path="/galeria" element={<Galeria />} />
+            <Route path="/contacto" element={<Contactanos />} />
           </Routes>
         </main>
 
