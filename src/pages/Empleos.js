@@ -5,6 +5,8 @@ const Empleos = () => {
   const [sortBy, setSortBy] = useState("recent");
   const [search, setSearch] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("Todos");
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const jobListings = [
     {
@@ -13,6 +15,29 @@ const Empleos = () => {
       department: "Desarrollo",
       location: { country: "CHILE", city: "COYHAIQUE" },
       timeAgo: "Hace 1 día",
+      descripcion: "Buscamos un practicante de Frontend para unirse a nuestro equipo de desarrollo. Trabajarás en proyectos reales, desarrollando interfaces modernas y responsivas con React y tecnologías web actuales.",
+      labores: [
+        "Desarrollar componentes React reutilizables y mantenibles",
+        "Implementar diseños responsive usando Tailwind CSS",
+        "Integrar componentes frontend con APIs REST",
+        "Realizar testing básico de componentes",
+        "Colaborar con el equipo en code reviews",
+        "Participar en reuniones de planificación y retrospectivas",
+        "Documentar código y componentes desarrollados",
+        "Optimizar rendimiento de aplicaciones web",
+      ],
+      requisitos: [
+        "Conocimientos básicos de HTML, CSS y JavaScript",
+        "Interés en React o frameworks similares",
+        "Disposición para aprender y trabajar en equipo",
+        "Compromiso y responsabilidad",
+      ],
+      beneficios: [
+        "Experiencia en proyectos reales",
+        "Mentoría y supervisión senior",
+        "Ambiente de trabajo colaborativo",
+        "Oportunidad de crecimiento profesional",
+      ],
     },
     {
       id: 2,
@@ -20,8 +45,41 @@ const Empleos = () => {
       department: "Desarrollo",
       location: { country: "CHILE", city: "COYHAIQUE" },
       timeAgo: "Hace 1 día",
+      descripcion: "Buscamos un practicante de Backend para desarrollar APIs y lógica de negocio. Trabajarás con tecnologías modernas en la nube, aprendiendo arquitectura de software y mejores prácticas.",
+      labores: [
+        "Desarrollar endpoints de APIs REST con Python/FastAPI o Node.js",
+        "Implementar lógica de negocio y validaciones",
+        "Integrar con bases de datos (SQL y NoSQL)",
+        "Escribir y ejecutar tests unitarios",
+        "Documentar APIs usando OpenAPI/Swagger",
+        "Colaborar en el diseño de arquitectura de servicios",
+        "Participar en code reviews y mejoras continuas",
+        "Trabajar con servicios cloud (GCP/AWS)",
+      ],
+      requisitos: [
+        "Conocimientos básicos de programación (Python o JavaScript)",
+        "Interés en desarrollo backend y APIs",
+        "Disposición para aprender arquitectura de software",
+        "Compromiso y responsabilidad",
+      ],
+      beneficios: [
+        "Experiencia en proyectos reales",
+        "Mentoría y supervisión senior",
+        "Aprendizaje de tecnologías cloud",
+        "Oportunidad de crecimiento profesional",
+      ],
     },
   ];
+
+  const handleVerDetalle = (job) => {
+    setSelectedJob(job);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedJob(null);
+  };
 
   const departments = ["Todos", "Desarrollo"];
 
@@ -160,7 +218,8 @@ const Empleos = () => {
                     </p>
                     <button
                       type="button"
-                      className="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-sm font-extrabold text-white shadow-sm hover:shadow-md transition-all duration-200 hover:scale-[1.02]"
+                      onClick={() => handleVerDetalle(job)}
+                      className="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-sm font-extrabold text-white shadow-sm hover:shadow-md transition-all duration-200 hover:scale-[1.02] touch-manipulation"
                     >
                       Ver detalle
                     </button>
@@ -211,6 +270,116 @@ const Empleos = () => {
           </div>
         </div>
       </section>
+
+      {/* MODAL DE DETALLES */}
+      {isModalOpen && selectedJob && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+          onClick={handleCloseModal}
+        >
+          <div
+            className="relative w-full max-w-2xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-4 sm:px-6 py-4 sm:py-5">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <h2 className="text-xl sm:text-2xl font-extrabold text-white mb-2">
+                    {selectedJob.title}
+                  </h2>
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-white/90">
+                    <span className="font-semibold">{selectedJob.department}</span>
+                    <span>•</span>
+                    <span>{selectedJob.location.city}, {selectedJob.location.country}</span>
+                    <span>•</span>
+                    <span>{selectedJob.timeAgo}</span>
+                  </div>
+                </div>
+                <button
+                  onClick={handleCloseModal}
+                  className="ml-4 grid h-8 w-8 sm:h-10 sm:w-10 place-items-center rounded-lg bg-white/10 hover:bg-white/20 text-white transition touch-manipulation shrink-0"
+                  aria-label="Cerrar"
+                >
+                  <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="px-4 sm:px-6 py-4 sm:py-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+              {/* Descripción */}
+              <div className="mb-6">
+                <h3 className="text-lg font-extrabold text-azulOscuro mb-3">Descripción del puesto</h3>
+                <p className="text-sm sm:text-base text-azulGrisaceo leading-relaxed">
+                  {selectedJob.descripcion}
+                </p>
+              </div>
+
+              {/* Labores */}
+              <div className="mb-6">
+                <h3 className="text-lg font-extrabold text-azulOscuro mb-3">Labores y responsabilidades</h3>
+                <ul className="space-y-2">
+                  {selectedJob.labores.map((labor, index) => (
+                    <li key={index} className="flex items-start gap-2 sm:gap-3">
+                      <span className="text-blue-600 mt-1 shrink-0 font-bold">•</span>
+                      <span className="text-sm sm:text-base text-azulGrisaceo leading-relaxed">{labor}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Requisitos */}
+              <div className="mb-6">
+                <h3 className="text-lg font-extrabold text-azulOscuro mb-3">Requisitos</h3>
+                <ul className="space-y-2">
+                  {selectedJob.requisitos.map((req, index) => (
+                    <li key={index} className="flex items-start gap-2 sm:gap-3">
+                      <span className="text-green-600 mt-1 shrink-0">✓</span>
+                      <span className="text-sm sm:text-base text-azulGrisaceo leading-relaxed">{req}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Beneficios */}
+              <div className="mb-6">
+                <h3 className="text-lg font-extrabold text-azulOscuro mb-3">Beneficios</h3>
+                <ul className="space-y-2">
+                  {selectedJob.beneficios.map((beneficio, index) => (
+                    <li key={index} className="flex items-start gap-2 sm:gap-3">
+                      <span className="text-yellow-600 mt-1 shrink-0">★</span>
+                      <span className="text-sm sm:text-base text-azulGrisaceo leading-relaxed">{beneficio}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* CTA */}
+              <div className="mt-6 pt-6 border-t border-azulOscuro/10">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href="/contacto"
+                    className="flex-1 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-5 py-3 text-sm sm:text-base font-extrabold text-white shadow-lg hover:shadow-xl transition touch-manipulation"
+                  >
+                    Postular ahora
+                  </a>
+                  <a
+                    href={`https://wa.me/56975204813?text=${encodeURIComponent(`Hola! Estoy interesado en el puesto de ${selectedJob.title}. ¿Me pueden dar más información?`)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 inline-flex items-center justify-center rounded-lg border-2 border-green-600 bg-white px-5 py-3 text-sm sm:text-base font-extrabold text-green-700 hover:bg-green-50 transition touch-manipulation"
+                  >
+                    Consultar por WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

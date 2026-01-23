@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Contactanos = () => {
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
-    telefono: "",
-    servicio: "",
     mensaje: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  // SEO
+  useEffect(() => {
+    document.title = "Contacto - Sur Digital Labs | Cotiza tu proyecto";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Contacta con Sur Digital Labs. Empresa regional de Coyhaique. Cotiza tu proyecto, agenda diagnóstico o escríbenos por WhatsApp.');
+    }
+  }, []);
 
   const servicios = [
     "Desarrollo Web",
@@ -47,8 +54,6 @@ const Contactanos = () => {
       setFormData({
         nombre: "",
         email: "",
-        telefono: "",
-        servicio: "",
         mensaje: "",
       });
     }, 1500);
@@ -108,7 +113,7 @@ const Contactanos = () => {
                     value={formData.nombre}
                     onChange={handleChange}
                     required
-                    className="w-full h-11 rounded-lg border border-azulOscuro/20 bg-white px-4 text-azulOscuro placeholder:text-azulGrisaceo focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition"
+                    className="w-full h-12 rounded-lg border border-azulOscuro/20 bg-white px-4 text-azulOscuro placeholder:text-azulGrisaceo focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition text-base touch-manipulation"
                     placeholder="Tu nombre"
                   />
                 </div>
@@ -124,44 +129,9 @@ const Contactanos = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full h-11 rounded-lg border border-azulOscuro/20 bg-white px-4 text-azulOscuro placeholder:text-azulGrisaceo focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition"
+                    className="w-full h-12 rounded-lg border border-azulOscuro/20 bg-white px-4 text-azulOscuro placeholder:text-azulGrisaceo focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition text-base touch-manipulation"
                     placeholder="tu@email.com"
                   />
-                </div>
-
-                <div>
-                  <label htmlFor="telefono" className="block text-sm font-semibold text-azulOscuro mb-2">
-                    Teléfono
-                  </label>
-                  <input
-                    type="tel"
-                    id="telefono"
-                    name="telefono"
-                    value={formData.telefono}
-                    onChange={handleChange}
-                    className="w-full h-11 rounded-lg border border-azulOscuro/20 bg-white px-4 text-azulOscuro placeholder:text-azulGrisaceo focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition"
-                    placeholder="+56 9 1234 5678"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="servicio" className="block text-sm font-semibold text-azulOscuro mb-2">
-                    Servicio de interés
-                  </label>
-                  <select
-                    id="servicio"
-                    name="servicio"
-                    value={formData.servicio}
-                    onChange={handleChange}
-                    className="w-full h-11 rounded-lg border border-azulOscuro/20 bg-white px-4 text-azulOscuro focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition"
-                  >
-                    <option value="">Selecciona un servicio</option>
-                    {servicios.map((serv) => (
-                      <option key={serv} value={serv}>
-                        {serv}
-                      </option>
-                    ))}
-                  </select>
                 </div>
 
                 <div>
@@ -174,8 +144,8 @@ const Contactanos = () => {
                     value={formData.mensaje}
                     onChange={handleChange}
                     required
-                    rows={5}
-                    className="w-full rounded-lg border border-azulOscuro/20 bg-white px-4 py-3 text-azulOscuro placeholder:text-azulGrisaceo focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition resize-none"
+                    rows={4}
+                    className="w-full rounded-lg border border-azulOscuro/20 bg-white px-4 py-3 text-azulOscuro placeholder:text-azulGrisaceo focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition resize-none text-base touch-manipulation"
                     placeholder="Cuéntanos sobre tu proyecto..."
                   />
                 </div>
@@ -183,9 +153,9 @@ const Contactanos = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-6 py-3 text-sm font-extrabold text-white shadow-sm hover:shadow-md transition-all duration-200 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-6 py-3.5 text-base font-extrabold text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
                 >
-                  {isSubmitting ? "Enviando..." : "Enviar mensaje"}
+                  {isSubmitting ? "Enviando..." : "Cotiza tu proyecto"}
                 </button>
               </form>
             </div>
@@ -248,30 +218,44 @@ const Contactanos = () => {
               </div>
 
               {/* ACCIONES RÁPIDAS */}
-              <div className="rounded-2xl border border-azulOscuro/10 bg-white p-6 md:p-8 shadow-sm">
+              <div className="rounded-2xl border-2 border-blue-600 bg-gradient-to-br from-blue-50 to-white p-6 md:p-8 shadow-lg">
                 <h3 className="text-xl font-extrabold text-azulOscuro mb-4">
-                  Acciones rápidas
+                  Contacto directo
                 </h3>
+                <p className="text-sm text-azulGrisaceo mb-4">
+                  Empresa regional de Coyhaique. Acompañamiento cercano con talento local y supervisión senior.
+                </p>
                 <div className="space-y-3">
                   <a
                     href="https://calendly.com/surdigitallabs/30min"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-between rounded-lg border border-azulOscuro/20 bg-white px-4 py-3 hover:bg-azulOscuro/5 transition group"
+                    className="flex items-center justify-between rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-5 py-3.5 text-white font-extrabold hover:shadow-lg transition group touch-manipulation"
                   >
-                    <span className="font-semibold text-azulOscuro">Agenda una reunión</span>
-                    <svg className="h-5 w-5 text-azulGrisaceo group-hover:text-blue-600 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span>Agenda diagnóstico</span>
+                    <svg className="h-5 w-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </a>
                   <a
-                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20un%20servicio.%20¿Me%20ayudas?"
+                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Web%20PYME%20Profesional.%20¿Me%20pueden%20ayudar?"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-between rounded-lg border border-azulOscuro/20 bg-white px-4 py-3 hover:bg-azulOscuro/5 transition group"
+                    className="flex items-center justify-between rounded-lg bg-green-600 px-5 py-3.5 text-white font-extrabold hover:bg-green-700 hover:shadow-lg transition group touch-manipulation"
                   >
-                    <span className="font-semibold text-azulOscuro">WhatsApp</span>
-                    <svg className="h-5 w-5 text-azulGrisaceo group-hover:text-blue-600 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span>WhatsApp (Pack Web PYME)</span>
+                    <svg className="h-5 w-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20un%20servicio.%20¿Me%20pueden%20ayudar?"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-between rounded-lg border-2 border-green-600 bg-white px-5 py-3.5 text-green-700 font-extrabold hover:bg-green-50 transition group touch-manipulation"
+                  >
+                    <span>WhatsApp (Otro servicio)</span>
+                    <svg className="h-5 w-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </a>

@@ -214,6 +214,15 @@ export default function Home() {
   const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // SEO
+  useEffect(() => {
+    document.title = "Sur Digital Labs - Soluciones tecnológicas desde la Patagonia";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Empresa regional de Coyhaique. Desarrollo de software, datos e inteligencia artificial con estándar profesional. Acompañamiento cercano con talento local.');
+    }
+  }, []);
+
   useEffect(() => {
     const fetchImages = async () => {
       try {
@@ -310,24 +319,24 @@ export default function Home() {
                 <span className="block">desde la Patagonia</span>
               </h1>
               <p className="mt-3 sm:mt-4 max-w-xl text-white/90 text-base sm:text-lg leading-relaxed">
-                Software, datos e inteligencia artificial con estándar profesional. 
-                Experiencia real, criterio técnico y compromiso con el talento regional.
+                Empresa regional de Coyhaique. Acompañamiento cercano con talento local y supervisión senior. 
+                Software, datos e inteligencia artificial con estándar profesional.
               </p>
 
               <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3">
                 <a
-                  href="/servicios"
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90 transition touch-manipulation"
+                  href="/contacto"
+                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 hover:shadow-xl transition touch-manipulation"
                 >
-                  Ver Servicios
+                  Cotiza tu proyecto
                 </a>
                 <a
                   href={CALENDLY_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm font-bold text-white hover:bg-white/15 transition touch-manipulation"
+                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border-2 border-white/40 bg-white/10 px-5 py-3 text-sm font-bold text-white hover:bg-white/20 transition touch-manipulation"
                 >
-                  Agenda 30 min
+                  Agenda diagnóstico
                 </a>
               </div>
 
@@ -474,11 +483,14 @@ export default function Home() {
           </header>
 
           <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {/* Pack 1: Web PYME Profesional */}
+            {/* Pack 1: Web PYME Profesional - PRINCIPAL */}
             <article className="group relative rounded-lg sm:rounded-xl border-2 border-blue-600 bg-gradient-to-br from-blue-50 to-white p-3 sm:p-4 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 overflow-hidden">
               <div className="flex items-center justify-between mb-2">
                 <span className="px-2 py-0.5 rounded-full bg-blue-600 text-white text-xs font-extrabold">
                   Esencial
+                </span>
+                <span className="px-1.5 py-0.5 rounded bg-yellow-400 text-yellow-900 text-xs font-extrabold">
+                  ⭐ PRINCIPAL
                 </span>
               </div>
               <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
@@ -486,12 +498,15 @@ export default function Home() {
               </h3>
               
               {/* Contenido expandido en hover */}
-              <div className="max-h-0 group-hover:max-h-[500px] transition-all duration-300 overflow-hidden">
+              <div className="max-h-0 group-hover:max-h-[600px] transition-all duration-300 overflow-hidden">
                 <div className="pt-2">
+                  <p className="text-xs text-azulGrisaceo mb-1.5">
+                    <strong className="text-azulOscuro">Ideal para:</strong> Pymes, emprendedores, servicios locales
+                  </p>
                   <p className="text-xs text-azulGrisaceo mb-2">
                     <strong className="text-azulOscuro">Resuelve:</strong> Presencia digital + conversión
                   </p>
-                  <div className="space-y-1 mb-3">
+                  <div className="space-y-1 mb-2">
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
                       <span>Web corporativa (5–7 secciones)</span>
@@ -510,19 +525,24 @@ export default function Home() {
                     </div>
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
-                      <span>Analytics</span>
+                      <span>Analytics configurado</span>
                     </div>
                   </div>
-                  <div className="rounded bg-blue-100 border border-blue-200 p-2 mb-3">
-                    <p className="text-xs text-blue-900 font-semibold leading-tight">
-                      Web profesional que genera contactos.
+                  <div className="rounded bg-blue-100 border border-blue-200 p-2 mb-2">
+                    <p className="text-xs text-blue-900 font-semibold leading-tight mb-1">
+                      <strong>Resultado:</strong> Web profesional que genera contactos.
+                    </p>
+                    <p className="text-xs text-blue-800">
+                      <strong>Tiempo:</strong> 7-14 días
                     </p>
                   </div>
                   <a
-                    href="/contacto"
+                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Web%20PYME%20Profesional.%20¿Me%20pueden%20ayudar?"
+                    target="_blank"
+                    rel="noreferrer"
                     className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
                   >
-                    Cotizar
+                    Cotizar por WhatsApp
                   </a>
                 </div>
               </div>
@@ -539,19 +559,22 @@ export default function Home() {
                 Pack Automatización & Backoffice
               </h3>
               
-              <div className="max-h-0 group-hover:max-h-[500px] transition-all duration-300 overflow-hidden">
+              <div className="max-h-0 group-hover:max-h-[600px] transition-all duration-300 overflow-hidden">
                 <div className="pt-2">
+                  <p className="text-xs text-azulGrisaceo mb-1.5">
+                    <strong className="text-azulOscuro">Ideal para:</strong> Empresas con procesos manuales
+                  </p>
                   <p className="text-xs text-azulGrisaceo mb-2">
                     <strong className="text-azulOscuro">Resuelve:</strong> Pérdida de tiempo, Excel infinito, errores
                   </p>
-                  <div className="space-y-1 mb-3">
+                  <div className="space-y-1 mb-2">
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-green-600 mt-0.5 shrink-0">✓</span>
                       <span>Levantamiento de procesos</span>
                     </div>
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-green-600 mt-0.5 shrink-0">✓</span>
-                      <span>Automatización (formularios, flujos)</span>
+                      <span>Automatización (formularios, flujos, integraciones)</span>
                     </div>
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-green-600 mt-0.5 shrink-0">✓</span>
@@ -559,19 +582,24 @@ export default function Home() {
                     </div>
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-green-600 mt-0.5 shrink-0">✓</span>
-                      <span>Documentación</span>
+                      <span>Documentación básica</span>
                     </div>
                   </div>
-                  <div className="rounded bg-green-100 border border-green-200 p-2 mb-3">
-                    <p className="text-xs text-green-900 font-semibold leading-tight">
-                      Menos tareas manuales, más orden.
+                  <div className="rounded bg-green-100 border border-green-200 p-2 mb-2">
+                    <p className="text-xs text-green-900 font-semibold leading-tight mb-1">
+                      <strong>Resultado:</strong> Menos tareas manuales, más orden.
+                    </p>
+                    <p className="text-xs text-green-800">
+                      <strong>Tiempo:</strong> 14-21 días
                     </p>
                   </div>
                   <a
-                    href="/contacto"
+                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Automatización%20%26%20Backoffice.%20¿Me%20pueden%20ayudar?"
+                    target="_blank"
+                    rel="noreferrer"
                     className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-green-600 via-green-700 to-green-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
                   >
-                    Cotizar
+                    Cotizar por WhatsApp
                   </a>
                 </div>
               </div>
@@ -588,12 +616,15 @@ export default function Home() {
                 Pack Datos & Dashboards
               </h3>
               
-              <div className="max-h-0 group-hover:max-h-[500px] transition-all duration-300 overflow-hidden">
+              <div className="max-h-0 group-hover:max-h-[600px] transition-all duration-300 overflow-hidden">
                 <div className="pt-2">
+                  <p className="text-xs text-azulGrisaceo mb-1.5">
+                    <strong className="text-azulOscuro">Ideal para:</strong> Empresas que operan pero no miden bien
+                  </p>
                   <p className="text-xs text-azulGrisaceo mb-2">
                     <strong className="text-azulOscuro">Resuelve:</strong> Decisiones a ciegas
                   </p>
-                  <div className="space-y-1 mb-3">
+                  <div className="space-y-1 mb-2">
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-yellow-600 mt-0.5 shrink-0">✓</span>
                       <span>Modelo de datos simple</span>
@@ -608,19 +639,24 @@ export default function Home() {
                     </div>
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-yellow-600 mt-0.5 shrink-0">✓</span>
-                      <span>Métricas clave</span>
+                      <span>Métricas clave del negocio</span>
                     </div>
                   </div>
-                  <div className="rounded bg-yellow-100 border border-yellow-200 p-2 mb-3">
-                    <p className="text-xs text-yellow-900 font-semibold leading-tight">
-                      Ver el negocio con datos claros.
+                  <div className="rounded bg-yellow-100 border border-yellow-200 p-2 mb-2">
+                    <p className="text-xs text-yellow-900 font-semibold leading-tight mb-1">
+                      <strong>Resultado:</strong> Ver el negocio con datos claros.
+                    </p>
+                    <p className="text-xs text-yellow-800">
+                      <strong>Tiempo:</strong> 21-30 días
                     </p>
                   </div>
                   <a
-                    href="/contacto"
+                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Datos%20%26%20Dashboards.%20¿Me%20pueden%20ayudar?"
+                    target="_blank"
+                    rel="noreferrer"
                     className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-yellow-600 via-yellow-700 to-yellow-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
                   >
-                    Cotizar
+                    Cotizar por WhatsApp
                   </a>
                 </div>
               </div>
@@ -637,39 +673,47 @@ export default function Home() {
                 Pack IA Aplicada / Soluciones a Medida
               </h3>
               
-              <div className="max-h-0 group-hover:max-h-[500px] transition-all duration-300 overflow-hidden">
+              <div className="max-h-0 group-hover:max-h-[600px] transition-all duration-300 overflow-hidden">
                 <div className="pt-2">
-                  <p className="text-xs text-azulGrisaceo mb-2">
-                    <strong className="text-azulOscuro">Resuelve:</strong> Tareas complejas, análisis, asistencia
+                  <p className="text-xs text-azulGrisaceo mb-1.5">
+                    <strong className="text-azulOscuro">Ideal para:</strong> Empresas con necesidad específica
                   </p>
-                  <div className="space-y-1 mb-3">
+                  <p className="text-xs text-azulGrisaceo mb-2">
+                    <strong className="text-azulOscuro">Resuelve:</strong> Tareas complejas, análisis, asistencia interna
+                  </p>
+                  <div className="space-y-1 mb-2">
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
                       <span>Diagnóstico del caso</span>
                     </div>
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
-                      <span>Solución con IA / LLM</span>
+                      <span>Diseño de solución con IA / LLM</span>
                     </div>
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
-                      <span>Integración backend</span>
+                      <span>Integración con backend</span>
                     </div>
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
                       <span>Control y seguridad</span>
                     </div>
                   </div>
-                  <div className="rounded bg-purple-100 border border-purple-200 p-2 mb-3">
-                    <p className="text-xs text-purple-900 font-semibold leading-tight">
-                      Uso real de IA, no demo.
+                  <div className="rounded bg-purple-100 border border-purple-200 p-2 mb-2">
+                    <p className="text-xs text-purple-900 font-semibold leading-tight mb-1">
+                      <strong>Resultado:</strong> Uso real de IA, no demo.
+                    </p>
+                    <p className="text-xs text-purple-800">
+                      <strong>Tiempo:</strong> 30-45 días
                     </p>
                   </div>
                   <a
-                    href="/contacto"
+                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20IA%20Aplicada.%20¿Me%20pueden%20ayudar?"
+                    target="_blank"
+                    rel="noreferrer"
                     className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
                   >
-                    Cotizar
+                    Cotizar por WhatsApp
                   </a>
                 </div>
               </div>
@@ -686,12 +730,15 @@ export default function Home() {
                 Pack Acompañamiento Tecnológico
               </h3>
               
-              <div className="max-h-0 group-hover:max-h-[500px] transition-all duration-300 overflow-hidden">
+              <div className="max-h-0 group-hover:max-h-[600px] transition-all duration-300 overflow-hidden">
                 <div className="pt-2">
+                  <p className="text-xs text-azulGrisaceo mb-1.5">
+                    <strong className="text-azulOscuro">Ideal para:</strong> Empresas sin área TI
+                  </p>
                   <p className="text-xs text-azulGrisaceo mb-2">
                     <strong className="text-azulOscuro">Resuelve:</strong> Desorden, malas decisiones técnicas
                   </p>
-                  <div className="space-y-1 mb-3">
+                  <div className="space-y-1 mb-2">
                     <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                       <span className="text-red-600 mt-0.5 shrink-0">✓</span>
                       <span>Soporte mensual</span>
@@ -709,16 +756,21 @@ export default function Home() {
                       <span>Mejoras continuas</span>
                     </div>
                   </div>
-                  <div className="rounded bg-red-100 border border-red-200 p-2 mb-3">
-                    <p className="text-xs text-red-900 font-semibold leading-tight">
-                      Tranquilidad y orden tecnológico.
+                  <div className="rounded bg-red-100 border border-red-200 p-2 mb-2">
+                    <p className="text-xs text-red-900 font-semibold leading-tight mb-1">
+                      <strong>Resultado:</strong> Tranquilidad y orden tecnológico.
+                    </p>
+                    <p className="text-xs text-red-800">
+                      <strong>Tiempo:</strong> Servicio mensual
                     </p>
                   </div>
                   <a
-                    href="/contacto"
+                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Acompañamiento%20Tecnológico.%20¿Me%20pueden%20ayudar?"
+                    target="_blank"
+                    rel="noreferrer"
                     className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-red-600 via-red-700 to-red-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
                   >
-                    Cotizar
+                    Cotizar por WhatsApp
                   </a>
                 </div>
               </div>
@@ -731,6 +783,104 @@ export default function Home() {
               className="inline-flex items-center gap-2 text-sm font-extrabold text-blue-600 hover:text-blue-700 transition touch-manipulation"
             >
               Ver todos los servicios
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA INTERMEDIO */}
+      <section className="bg-white py-10 sm:py-14">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <div className="rounded-2xl sm:rounded-3xl border-2 border-blue-600 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 md:p-12 text-center">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 sm:mb-4">
+              ¿Listo para empezar tu proyecto?
+            </h2>
+            <p className="text-white/90 mb-5 sm:mb-6 text-sm sm:text-base max-w-2xl mx-auto">
+              Empresa regional de Coyhaique. Acompañamiento cercano con talento local y supervisión senior.
+            </p>
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
+              <a
+                href="/contacto"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 hover:shadow-xl transition touch-manipulation"
+              >
+                Cotiza tu proyecto
+              </a>
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border-2 border-white/40 bg-white/10 px-6 py-3.5 text-sm font-bold text-white hover:bg-white/20 transition touch-manipulation"
+              >
+                Agenda diagnóstico
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MINI-CASOS DE EXPERIENCIA */}
+      <section className="bg-blancoCremoso/40 py-10 sm:py-14">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <header className="text-center mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Experiencia en proyectos reales</h2>
+            <p className="mt-2 text-sm sm:text-base text-azulGrisaceo">
+              Casos resumidos: Problema → Solución → Impacto
+            </p>
+          </header>
+
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
+            {[
+              {
+                problema: "Orquestar múltiples capacidades sin perder control técnico",
+                solucion: "Arquitectura de agentes especializados con LangChain y flujos de decisión explícitos",
+                impacto: "Mayor automatización avanzada y base sólida para escalar casos de uso con LLMs",
+              },
+              {
+                problema: "Integrar datos corporativos y lógica de negocio sin exponer sistemas internos",
+                solucion: "Backend en Cloud Run con OpenAPI, autenticación OAuth y Cloud Run Invoker",
+                impacto: "Uso seguro y gobernado de LLMs sobre datos reales, manteniendo control técnico",
+              },
+              {
+                problema: "Falta de visibilidad y optimización en asignación de tareas operativas",
+                solucion: "Plataforma con frontend de gestión, backend en Cloud Run y modelos de optimización",
+                impacto: "Mejora en toma de decisiones operativas y reducción de fricción en planificación",
+              },
+            ].map((caso, i) => (
+              <article
+                key={i}
+                className="rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm"
+              >
+                <div className="mb-3">
+                  <div className="inline-block px-2 py-1 rounded bg-red-50 border border-red-200 text-red-700 text-xs font-extrabold mb-2">
+                    Problema
+                  </div>
+                  <p className="text-xs sm:text-sm text-azulGrisaceo leading-relaxed">{caso.problema}</p>
+                </div>
+                <div className="mb-3">
+                  <div className="inline-block px-2 py-1 rounded bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold mb-2">
+                    Solución
+                  </div>
+                  <p className="text-xs sm:text-sm text-azulGrisaceo leading-relaxed">{caso.solucion}</p>
+                </div>
+                <div className="rounded-lg bg-green-50 border border-green-200 p-3">
+                  <div className="inline-block px-2 py-1 rounded bg-green-100 text-green-700 text-xs font-extrabold mb-1.5">
+                    Impacto
+                  </div>
+                  <p className="text-xs sm:text-sm text-green-900 font-semibold leading-tight">{caso.impacto}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="text-center mt-6 sm:mt-8">
+            <a
+              href="/nosotros"
+              className="inline-flex items-center gap-2 text-sm font-extrabold text-blue-600 hover:text-blue-700 transition touch-manipulation"
+            >
+              Ver experiencia completa
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -806,12 +956,12 @@ export default function Home() {
       {/* CTA FINAL */}
       <section className="bg-white py-10 sm:py-14">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="rounded-2xl sm:rounded-3xl border border-azulOscuro/10 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 md:p-12 text-center">
+          <div className="rounded-2xl sm:rounded-3xl border-2 border-blue-600 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 md:p-12 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 sm:mb-4 leading-tight">
               Desarrollamos software con estándar profesional
             </h2>
             <p className="text-white/90 mb-2 text-base sm:text-lg">
-              Experiencia real y compromiso con el talento regional
+              Empresa regional de Coyhaique. Acompañamiento cercano con talento local y supervisión senior.
             </p>
             <p className="text-white/80 mb-5 sm:mb-6 text-sm sm:text-base px-2">
               Especialmente para pymes y organizaciones regionales que necesitan un socio tecnológico.
@@ -819,17 +969,17 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3">
               <a
                 href="/contacto"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90 transition touch-manipulation"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 hover:shadow-xl transition touch-manipulation"
               >
-                Contáctanos
+                Cotiza tu proyecto
               </a>
               <a
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white hover:bg-white/15 transition touch-manipulation"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border-2 border-white/40 bg-white/10 px-6 py-3.5 text-sm font-bold text-white hover:bg-white/20 transition touch-manipulation"
               >
-                Agenda 30 min
+                Agenda diagnóstico
               </a>
             </div>
           </div>

@@ -8,6 +8,17 @@ const useScrollTop = () => {
   }, []);
 };
 
+// --- SEO hook
+const useSEO = (title, description) => {
+  useEffect(() => {
+    document.title = title;
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', description);
+    }
+  }, [title, description]);
+};
+
 // --- card de persona/mascota con estilo moderno
 const TeamCard = ({ name, role, img, linkedin, email }) => (
   <article className="group rounded-2xl border border-azulOscuro/10 bg-white overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
@@ -57,6 +68,10 @@ const TeamCard = ({ name, role, img, linkedin, email }) => (
 
 const Nosotros = () => {
   useScrollTop();
+  useSEO(
+    "Nosotros - Sur Digital Labs | Equipo y experiencia en proyectos reales",
+    "Empresa regional de Coyhaique. Conoce nuestro equipo, experiencia en proyectos reales y compromiso con el talento tecnológico local."
+  );
 
   const team = useMemo(
     () => [
@@ -180,8 +195,18 @@ const Nosotros = () => {
               Nuestro enfoque
             </h2>
             <div className="prose prose-lg max-w-none">
+              <div className="rounded-lg bg-blue-50 border-2 border-blue-200 p-4 mb-6">
+                <p className="text-blue-900 font-extrabold text-lg mb-2">
+                  Empresa regional de Coyhaique, Patagonia
+                </p>
+                <p className="text-blue-800 text-base">
+                  Acompañamiento cercano con talento local y supervisión senior. 
+                  Creamos soluciones digitales reales para empresas que necesitan avanzar con orden, criterio técnico y acompañamiento cercano.
+                </p>
+              </div>
               <p className="text-azulGrisaceo text-lg mb-4">
-                Somos una empresa de desarrollo de software y consultoría tecnológica con base regional.
+                Somos una empresa de desarrollo de software y consultoría tecnológica con base en{" "}
+                <strong className="text-azulOscuro">Coyhaique, Aysén</strong>. 
                 Creamos soluciones digitales reales para empresas que necesitan avanzar con orden, criterio técnico y acompañamiento cercano.
               </p>
               <p className="text-azulGrisaceo text-lg mb-4">
@@ -468,15 +493,17 @@ const Nosotros = () => {
             <div className="flex flex-wrap justify-center gap-3">
               <a
                 href="/contacto"
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90 transition"
+                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 hover:shadow-xl transition touch-manipulation"
               >
-                Contáctanos
+                Cotiza tu proyecto
               </a>
               <a
-                href="/empleos"
-                className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white hover:bg-white/15 transition"
+                href="https://calendly.com/surdigitallabs/30min"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full border-2 border-white/40 bg-white/10 px-6 py-3.5 text-sm font-bold text-white hover:bg-white/20 transition touch-manipulation"
               >
-                Ver Empleos
+                Agenda diagnóstico
               </a>
             </div>
           </div>

@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Servicios = () => {
+  // SEO
+  useEffect(() => {
+    document.title = "Servicios - Sur Digital Labs | Packs y soluciones tecnológicas";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Packs de servicios: Web PYME, Automatización, Datos, IA Aplicada y Acompañamiento Tecnológico. Empresa regional de Coyhaique.');
+    }
+  }, []);
   // Lista de servicios agrupados por categoría
   const servicios = [
     // Desarrollo Web
@@ -113,8 +121,11 @@ const Servicios = () => {
           </header>
 
           <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {/* Pack 1: Web PYME Profesional */}
-            <article className="rounded-lg sm:rounded-xl border-2 border-blue-600 bg-gradient-to-br from-blue-50 to-white p-3 sm:p-4 shadow-lg">
+            {/* Pack 1: Web PYME Profesional - PRINCIPAL */}
+            <article className="rounded-lg sm:rounded-xl border-2 border-blue-600 bg-gradient-to-br from-blue-50 to-white p-3 sm:p-4 shadow-lg relative">
+              <div className="absolute -top-2 -right-2 px-2 py-1 rounded-full bg-yellow-400 text-yellow-900 text-xs font-extrabold shadow-lg z-10">
+                ⭐ PRINCIPAL
+              </div>
               <div className="flex items-center justify-between mb-2">
                 <span className="px-2 py-0.5 rounded-full bg-blue-600 text-white text-xs font-extrabold">
                   Esencial
@@ -123,6 +134,9 @@ const Servicios = () => {
               <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
                 Pack Web PYME Profesional
               </h3>
+              <p className="text-xs text-azulGrisaceo mb-1.5">
+                <strong className="text-azulOscuro">Ideal para:</strong> Pymes, emprendedores, servicios locales
+              </p>
               <p className="text-xs text-azulGrisaceo mb-2">
                 <strong className="text-azulOscuro">Resuelve:</strong> Presencia digital + conversión
               </p>
@@ -145,19 +159,24 @@ const Servicios = () => {
                 </div>
                 <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                   <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
-                  <span>Analytics</span>
+                  <span>Analytics configurado</span>
                 </div>
               </div>
               <div className="rounded bg-blue-100 border border-blue-200 p-2 mb-3">
-                <p className="text-xs text-blue-900 font-semibold leading-tight">
-                  Web profesional que genera contactos.
+                <p className="text-xs text-blue-900 font-semibold leading-tight mb-1">
+                  <strong>Resultado:</strong> Web profesional que genera contactos.
+                </p>
+                <p className="text-xs text-blue-800">
+                  <strong>Tiempo:</strong> 7-14 días
                 </p>
               </div>
               <a
-                href="/contacto"
+                href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Web%20PYME%20Profesional.%20¿Me%20pueden%20ayudar?"
+                target="_blank"
+                rel="noreferrer"
                 className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
               >
-                Cotizar
+                Cotizar por WhatsApp
               </a>
             </article>
 
@@ -171,6 +190,9 @@ const Servicios = () => {
               <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
                 Pack Automatización & Backoffice
               </h3>
+              <p className="text-xs text-azulGrisaceo mb-1.5">
+                <strong className="text-azulOscuro">Ideal para:</strong> Empresas con procesos manuales
+              </p>
               <p className="text-xs text-azulGrisaceo mb-2">
                 <strong className="text-azulOscuro">Resuelve:</strong> Pérdida de tiempo, Excel infinito, errores
               </p>
@@ -181,7 +203,7 @@ const Servicios = () => {
                 </div>
                 <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                   <span className="text-green-600 mt-0.5 shrink-0">✓</span>
-                  <span>Automatización (formularios, flujos)</span>
+                  <span>Automatización (formularios, flujos, integraciones)</span>
                 </div>
                 <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                   <span className="text-green-600 mt-0.5 shrink-0">✓</span>
@@ -189,19 +211,24 @@ const Servicios = () => {
                 </div>
                 <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                   <span className="text-green-600 mt-0.5 shrink-0">✓</span>
-                  <span>Documentación</span>
+                  <span>Documentación básica</span>
                 </div>
               </div>
               <div className="rounded bg-green-100 border border-green-200 p-2 mb-3">
-                <p className="text-xs text-green-900 font-semibold leading-tight">
-                  Menos tareas manuales, más orden.
+                <p className="text-xs text-green-900 font-semibold leading-tight mb-1">
+                  <strong>Resultado:</strong> Menos tareas manuales, más orden.
+                </p>
+                <p className="text-xs text-green-800">
+                  <strong>Tiempo:</strong> 14-21 días
                 </p>
               </div>
               <a
-                href="/contacto"
+                href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Automatización%20%26%20Backoffice.%20¿Me%20pueden%20ayudar?"
+                target="_blank"
+                rel="noreferrer"
                 className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-green-600 via-green-700 to-green-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
               >
-                Cotizar
+                Cotizar por WhatsApp
               </a>
             </article>
 
@@ -215,6 +242,9 @@ const Servicios = () => {
               <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
                 Pack Datos & Dashboards
               </h3>
+              <p className="text-xs text-azulGrisaceo mb-1.5">
+                <strong className="text-azulOscuro">Ideal para:</strong> Empresas que operan pero no miden bien
+              </p>
               <p className="text-xs text-azulGrisaceo mb-2">
                 <strong className="text-azulOscuro">Resuelve:</strong> Decisiones a ciegas
               </p>
@@ -233,19 +263,24 @@ const Servicios = () => {
                 </div>
                 <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                   <span className="text-yellow-600 mt-0.5 shrink-0">✓</span>
-                  <span>Métricas clave</span>
+                  <span>Métricas clave del negocio</span>
                 </div>
               </div>
               <div className="rounded bg-yellow-100 border border-yellow-200 p-2 mb-3">
-                <p className="text-xs text-yellow-900 font-semibold leading-tight">
-                  Ver el negocio con datos claros.
+                <p className="text-xs text-yellow-900 font-semibold leading-tight mb-1">
+                  <strong>Resultado:</strong> Ver el negocio con datos claros.
+                </p>
+                <p className="text-xs text-yellow-800">
+                  <strong>Tiempo:</strong> 21-30 días
                 </p>
               </div>
               <a
-                href="/contacto"
+                href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Datos%20%26%20Dashboards.%20¿Me%20pueden%20ayudar?"
+                target="_blank"
+                rel="noreferrer"
                 className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-yellow-600 via-yellow-700 to-yellow-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
               >
-                Cotizar
+                Cotizar por WhatsApp
               </a>
             </article>
 
@@ -259,8 +294,11 @@ const Servicios = () => {
               <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
                 Pack IA Aplicada / Soluciones a Medida
               </h3>
+              <p className="text-xs text-azulGrisaceo mb-1.5">
+                <strong className="text-azulOscuro">Ideal para:</strong> Empresas con necesidad específica
+              </p>
               <p className="text-xs text-azulGrisaceo mb-2">
-                <strong className="text-azulOscuro">Resuelve:</strong> Tareas complejas, análisis, asistencia
+                <strong className="text-azulOscuro">Resuelve:</strong> Tareas complejas, análisis, asistencia interna
               </p>
               <div className="space-y-1 mb-3">
                 <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
@@ -269,11 +307,11 @@ const Servicios = () => {
                 </div>
                 <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                   <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
-                  <span>Solución con IA / LLM</span>
+                  <span>Diseño de solución con IA / LLM</span>
                 </div>
                 <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                   <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
-                  <span>Integración backend</span>
+                  <span>Integración con backend</span>
                 </div>
                 <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
                   <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
@@ -281,15 +319,20 @@ const Servicios = () => {
                 </div>
               </div>
               <div className="rounded bg-purple-100 border border-purple-200 p-2 mb-3">
-                <p className="text-xs text-purple-900 font-semibold leading-tight">
-                  Uso real de IA, no demo.
+                <p className="text-xs text-purple-900 font-semibold leading-tight mb-1">
+                  <strong>Resultado:</strong> Uso real de IA, no demo.
+                </p>
+                <p className="text-xs text-purple-800">
+                  <strong>Tiempo:</strong> 30-45 días
                 </p>
               </div>
               <a
-                href="/contacto"
+                href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20IA%20Aplicada.%20¿Me%20pueden%20ayudar?"
+                target="_blank"
+                rel="noreferrer"
                 className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
               >
-                Cotizar
+                Cotizar por WhatsApp
               </a>
             </article>
 
@@ -303,6 +346,9 @@ const Servicios = () => {
               <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
                 Pack Acompañamiento Tecnológico
               </h3>
+              <p className="text-xs text-azulGrisaceo mb-1.5">
+                <strong className="text-azulOscuro">Ideal para:</strong> Empresas sin área TI
+              </p>
               <p className="text-xs text-azulGrisaceo mb-2">
                 <strong className="text-azulOscuro">Resuelve:</strong> Desorden, malas decisiones técnicas
               </p>
@@ -325,15 +371,20 @@ const Servicios = () => {
                 </div>
               </div>
               <div className="rounded bg-red-100 border border-red-200 p-2 mb-3">
-                <p className="text-xs text-red-900 font-semibold leading-tight">
-                  Tranquilidad y orden tecnológico.
+                <p className="text-xs text-red-900 font-semibold leading-tight mb-1">
+                  <strong>Resultado:</strong> Tranquilidad y orden tecnológico.
+                </p>
+                <p className="text-xs text-red-800">
+                  <strong>Tiempo:</strong> Servicio mensual
                 </p>
               </div>
               <a
-                href="/contacto"
+                href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Acompañamiento%20Tecnológico.%20¿Me%20pueden%20ayudar?"
+                target="_blank"
+                rel="noreferrer"
                 className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-red-600 via-red-700 to-red-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
               >
-                Cotizar
+                Cotizar por WhatsApp
               </a>
             </article>
           </div>
@@ -440,29 +491,32 @@ const Servicios = () => {
       </section>
 
       {/* CTA SECTION */}
-      <section className="bg-white py-14">
-        <div className="mx-auto w-full max-w-6xl px-4">
-          <div className="rounded-3xl border border-azulOscuro/10 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-8 md:p-12 text-center">
-            <h2 className="text-3xl font-extrabold text-white mb-4">
-              ¿No encuentras lo que buscas?
+      <section className="bg-white py-10 sm:py-14">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <div className="rounded-2xl sm:rounded-3xl border-2 border-blue-600 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 md:p-12 text-center">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 sm:mb-4">
+              ¿Listo para empezar tu proyecto?
             </h2>
-            <p className="text-white/90 mb-6 max-w-2xl mx-auto">
+            <p className="text-white/90 mb-2 text-sm sm:text-base">
+              Empresa regional de Coyhaique. Acompañamiento cercano con talento local y supervisión senior.
+            </p>
+            <p className="text-white/80 mb-5 sm:mb-6 text-xs sm:text-sm max-w-2xl mx-auto">
               Contáctanos y te ayudamos a encontrar la solución perfecta para tu empresa.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3">
               <a
                 href="/contacto"
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90 transition"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 hover:shadow-xl transition touch-manipulation"
               >
-                Contáctanos
+                Cotiza tu proyecto
               </a>
               <a
                 href="https://calendly.com/surdigitallabs/30min"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white hover:bg-white/15 transition"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border-2 border-white/40 bg-white/10 px-6 py-3.5 text-sm font-bold text-white hover:bg-white/20 transition touch-manipulation"
               >
-                Agenda 30 min
+                Agenda diagnóstico
               </a>
             </div>
           </div>

@@ -96,6 +96,38 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* CTA FOOTER */}
+      <div className="border-t border-white/10 bg-blue-900/50">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 py-4 sm:py-5">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+            <div className="text-center sm:text-left">
+              <p className="text-sm sm:text-base font-extrabold text-white mb-1">
+                ¿Listo para empezar tu proyecto?
+              </p>
+              <p className="text-xs text-white/80">
+                Empresa regional de Coyhaique. Acompañamiento cercano.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 shrink-0">
+              <a
+                href="/contacto"
+                className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90 transition touch-manipulation"
+              >
+                Cotiza tu proyecto
+              </a>
+              <a
+                href="https://calendly.com/surdigitallabs/30min"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-4 py-2.5 text-xs font-bold text-white hover:bg-white/15 transition touch-manipulation"
+              >
+                Agenda diagnóstico
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="border-t border-white/10">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 sm:px-6 py-4 sm:py-5 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between">
           <span className="text-center sm:text-left">Hecho en Coyhaique, Patagonia.</span>
