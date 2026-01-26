@@ -1,5 +1,5 @@
 // src/pages/Empleos.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Empleos = () => {
   const [sortBy, setSortBy] = useState("recent");
@@ -81,6 +81,15 @@ const Empleos = () => {
     setSelectedJob(null);
   };
 
+  // SEO
+  useEffect(() => {
+    document.title = "Oportunidades Laborales - Practicante Frontend y Backend en Coyhaique | Sur Digital Labs";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Oportunidades laborales en desarrollo de software en Coyhaique, Patagonia. Practicante Frontend y Practicante Backend. Únete a nuestro equipo regional.');
+    }
+  }, []);
+
   const departments = ["Todos", "Desarrollo"];
 
   const filteredJobs = jobListings
@@ -114,7 +123,8 @@ const Empleos = () => {
               Oportunidades Laborales
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-white/90 text-lg">
-              Únete a nuestro equipo y trabaja en proyectos desafiantes desde la Patagonia
+              Únete a nuestro equipo y trabaja en proyectos desafiantes desde la Patagonia. 
+              <a href="/nosotros" className="text-white underline ml-1">Conoce nuestro equipo →</a> o <a href="/contacto" className="text-white underline ml-1">envía tu CV →</a>
             </p>
           </div>
         </div>

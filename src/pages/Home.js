@@ -216,10 +216,10 @@ export default function Home() {
 
   // SEO
   useEffect(() => {
-    document.title = "Sur Digital Labs - Soluciones tecnológicas desde la Patagonia";
+    document.title = "Sur Digital Labs - Desarrollo de Software y Soluciones Tecnológicas en Coyhaique, Patagonia";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Empresa regional de Coyhaique. Desarrollo de software, datos e inteligencia artificial con estándar profesional. Acompañamiento cercano con talento local.');
+      metaDescription.setAttribute('content', 'Empresa regional de Coyhaique, Patagonia. Desarrollo de software, datos e inteligencia artificial con estándar profesional. Acompañamiento cercano con talento local y supervisión senior. Packs de servicios: Web PYME, Automatización, Datos, IA Aplicada.');
     }
   }, []);
 
@@ -417,7 +417,10 @@ export default function Home() {
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <header className="text-center mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Nuestros Servicios</h2>
-            <p className="mt-2 text-sm sm:text-base text-azulGrisaceo">Soluciones tecnológicas completas para tu empresa</p>
+            <p className="mt-2 text-sm sm:text-base text-azulGrisaceo">
+              Soluciones tecnológicas completas para tu empresa. 
+              <a href="/servicios" className="text-blue-600 hover:text-blue-700 font-semibold ml-1">Ver todos los servicios →</a>
+            </p>
           </header>
 
           <div className="grid gap-4 sm:gap-6 sm:grid-cols-3">
@@ -827,7 +830,8 @@ export default function Home() {
           <header className="text-center mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Experiencia en proyectos reales</h2>
             <p className="mt-2 text-sm sm:text-base text-azulGrisaceo">
-              Casos resumidos: Problema → Solución → Impacto
+              Casos resumidos: Problema → Solución → Impacto. 
+              <a href="/nosotros" className="text-blue-600 hover:text-blue-700 font-semibold ml-1">Conoce más sobre nuestro equipo →</a>
             </p>
           </header>
 
@@ -895,7 +899,8 @@ export default function Home() {
           <header className="text-center mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Proyectos Representativos</h2>
             <p className="mt-2 text-sm sm:text-base text-azulGrisaceo px-2">
-              Ejemplos de proyectos técnicos en los que hemos trabajado. Toca para ver detalles.
+              Ejemplos de proyectos técnicos en los que hemos trabajado. Toca para ver detalles. 
+              <a href="/galeria" className="text-blue-600 hover:text-blue-700 font-semibold ml-1">Ver portafolio completo →</a> o <a href="/nosotros" className="text-blue-600 hover:text-blue-700 font-semibold ml-1">conocer más sobre nosotros →</a>
             </p>
           </header>
 

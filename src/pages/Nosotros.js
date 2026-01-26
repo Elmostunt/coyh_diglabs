@@ -69,8 +69,8 @@ const TeamCard = ({ name, role, img, linkedin, email }) => (
 const Nosotros = () => {
   useScrollTop();
   useSEO(
-    "Nosotros - Sur Digital Labs | Equipo y experiencia en proyectos reales",
-    "Empresa regional de Coyhaique. Conoce nuestro equipo, experiencia en proyectos reales y compromiso con el talento tecnológico local."
+    "Nosotros - Equipo de Desarrollo de Software en Coyhaique, Patagonia | Sur Digital Labs",
+    "Empresa regional de desarrollo de software en Coyhaique, Aysén. Equipo con experiencia en proyectos reales: desarrollo web, APIs, cloud, IA. Compromiso con talento tecnológico local y supervisión senior."
   );
 
   const team = useMemo(
@@ -194,6 +194,10 @@ const Nosotros = () => {
             <h2 className="text-3xl font-extrabold text-azulOscuro mb-6 text-center">
               Nuestro enfoque
             </h2>
+            <p className="text-center mb-6 text-azulGrisaceo">
+              <a href="/servicios" className="text-blue-600 hover:text-blue-700 font-semibold">Ver nuestros servicios →</a> | 
+              <a href="/contacto" className="text-blue-600 hover:text-blue-700 font-semibold ml-1"> Contacta con nosotros →</a>
+            </p>
             <div className="prose prose-lg max-w-none">
               <div className="rounded-lg bg-blue-50 border-2 border-blue-200 p-4 mb-6">
                 <p className="text-blue-900 font-extrabold text-lg mb-2">

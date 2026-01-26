@@ -12,10 +12,10 @@ const Contactanos = () => {
 
   // SEO
   useEffect(() => {
-    document.title = "Contacto - Sur Digital Labs | Cotiza tu proyecto";
+    document.title = "Contacto - Cotiza tu Proyecto de Software en Coyhaique | Sur Digital Labs";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Contacta con Sur Digital Labs. Empresa regional de Coyhaique. Cotiza tu proyecto, agenda diagnóstico o escríbenos por WhatsApp.');
+      metaDescription.setAttribute('content', 'Contacta con Sur Digital Labs en Coyhaique, Patagonia. Cotiza tu proyecto de desarrollo web, automatización o IA. Agenda diagnóstico gratuito o escríbenos por WhatsApp. Empresa regional con talento local.');
     }
   }, []);
 

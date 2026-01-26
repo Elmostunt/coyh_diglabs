@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 const Servicios = () => {
   // SEO
   useEffect(() => {
-    document.title = "Servicios - Sur Digital Labs | Packs y soluciones tecnológicas";
+    document.title = "Servicios de Desarrollo Web, Automatización y IA - Sur Digital Labs Coyhaique";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Packs de servicios: Web PYME, Automatización, Datos, IA Aplicada y Acompañamiento Tecnológico. Empresa regional de Coyhaique.');
+      metaDescription.setAttribute('content', 'Servicios tecnológicos en Coyhaique: Pack Web PYME Profesional, Automatización y Backoffice, Datos y Dashboards, IA Aplicada, Acompañamiento Tecnológico. Desarrollo web, APIs, cloud, inteligencia artificial.');
     }
   }, []);
   // Lista de servicios agrupados por categoría
@@ -102,7 +102,8 @@ const Servicios = () => {
               Nuestros Servicios
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-white/90 text-lg">
-              Soluciones tecnológicas completas para tu empresa. Desde desarrollo web hasta inteligencia artificial.
+              Soluciones tecnológicas completas para tu empresa. Desde desarrollo web hasta inteligencia artificial. 
+              <a href="/contacto" className="text-white underline ml-1">Cotiza tu proyecto →</a> o <a href="/nosotros" className="text-white underline ml-1">conoce nuestra experiencia →</a>
             </p>
           </div>
         </div>

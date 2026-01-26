@@ -82,6 +82,15 @@ const Galeria = () => {
     return () => window.removeEventListener("keydown", manejarTecla);
   }, [indiceActual, imagenSeleccionada]);
 
+  // SEO
+  useEffect(() => {
+    document.title = "Portafolio de Proyectos - Desarrollo Web y Software en Coyhaique | Sur Digital Labs";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Portafolio de proyectos de desarrollo web, aplicaciones y software desarrollados por Sur Digital Labs en Coyhaique, Patagonia. Casos de éxito en tecnología.');
+    }
+  }, []);
+
   return (
     <div className="w-full">
       {/* HERO SECTION */}
@@ -92,10 +101,11 @@ const Galeria = () => {
         <div className="mx-auto w-full max-w-6xl px-4 py-16 md:py-20">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold leading-tight text-white md:text-5xl">
-              Galería
+              Portafolio de Proyectos
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-white/90 text-lg">
-              Explora nuestros proyectos y momentos destacados
+              Explora nuestros proyectos y momentos destacados. 
+              <a href="/nosotros" className="text-white underline ml-1">Conoce nuestro equipo →</a> o <a href="/servicios" className="text-white underline ml-1">ver servicios →</a>
             </p>
           </div>
         </div>
