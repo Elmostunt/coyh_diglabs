@@ -17,11 +17,11 @@ export default function Footer() {
               />
               <div className="leading-tight min-w-0">
                 <div className="font-extrabold text-sm sm:text-base">Sur Digital Labs</div>
-                <div className="text-xs text-white/70">Software · Datos · Cloud</div>
+                <div className="text-xs text-white/70">Software · Datos · Automatización</div>
               </div>
             </div>
-            <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-white/80 leading-relaxed">
-              Software y datos desde la Patagonia. Soluciones web, analítica y nube (GCP/AWS).
+            <p className="mt-3 text-xs text-white/80">
+              Software, datos y automatización. Coyhaique.
             </p>
           </div>
 
@@ -31,33 +31,20 @@ export default function Footer() {
             <ul className="space-y-1.5 sm:space-y-2 text-white/80">
               <li><Link className="hover:text-white transition touch-manipulation block py-0.5" to="/">Inicio</Link></li>
               <li><Link className="hover:text-white transition touch-manipulation block py-0.5" to="/servicios">Servicios</Link></li>
-              <li><Link className="hover:text-white transition touch-manipulation block py-0.5" to="/galeria">Portafolio</Link></li>
               <li><Link className="hover:text-white transition touch-manipulation block py-0.5" to="/nosotros">Nosotros</Link></li>
               <li><Link className="hover:text-white transition touch-manipulation block py-0.5" to="/contacto">Contacto</Link></li>
+              <li>
+                <a href="https://wa.me/56975204813?text=Hola!%20Quiero%20información%20sobre%20SDLabCar." target="_blank" rel="noopener noreferrer" className="hover:text-white transition touch-manipulation block py-0.5">
+                  SDLabCar
+                </a>
+              </li>
             </ul>
           </nav>
 
-          {/* Suscripción */}
+          {/* Contacto */}
           <div className="text-sm">
-            <h4 className="mb-3 sm:mb-4 font-extrabold text-sm sm:text-base">Suscríbete</h4>
-            <p className="text-white/80 text-xs sm:text-sm mb-2 sm:mb-0">Recibe nuestras novedades:</p>
-            <form
-              className="mt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-2"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <input
-                type="email"
-                placeholder="Email"
-                className="h-10 sm:h-10 w-full rounded-lg bg-white/10 px-3 text-white placeholder:text-white/50 ring-1 ring-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 text-sm touch-manipulation"
-              />
-              <button
-                type="submit"
-                className="h-10 w-full sm:w-auto sm:shrink-0 rounded-lg bg-white px-4 font-extrabold text-blue-900 hover:bg-white/90 transition touch-manipulation text-sm"
-              >
-                Suscribir
-              </button>
-            </form>
-            <div className="mt-2 text-xs text-white/60">Máximo 1 correo al mes.</div>
+            <h4 className="mb-3 font-extrabold text-sm">Contacto</h4>
+            <Link to="/contacto" className="text-white/80 hover:text-white text-xs">Escríbenos</Link>
           </div>
 
           {/* Redes */}
@@ -65,7 +52,7 @@ export default function Footer() {
             <h4 className="mb-3 sm:mb-4 font-extrabold text-sm sm:text-base">Síguenos</h4>
             <div className="flex items-center gap-2 sm:gap-3">
               <a
-                href="https://www.linkedin.com/company/surlabssl/"
+                href="https://www.linkedin.com/company/sur-digital-labs/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -76,19 +63,19 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://twitter.com/surlabs#"
+                href="https://www.instagram.com/surdigitallabs"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Twitter"
+                aria-label="Instagram"
                 className="grid h-10 w-10 place-items-center rounded-full bg-white/10 ring-1 ring-white/15 hover:bg-white/15 transition touch-manipulation"
               >
-                <svg viewBox="0 0 512 512" className="h-4 w-4 fill-current">
-                  <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z" />
                 </svg>
               </a>
             </div>
             <div className="mt-3 sm:mt-4 text-xs text-white/70 break-words">
-              surdigitallabs@gmail.cl<br className="sm:hidden" />
+              surdigitallabs@gmail.com<br className="sm:hidden" />
               <span className="hidden sm:inline"> · </span>
               +56 9 7520 4813
             </div>
@@ -98,32 +85,12 @@ export default function Footer() {
 
       {/* CTA FOOTER */}
       <div className="border-t border-white/10 bg-blue-900/50">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 py-4 sm:py-5">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-            <div className="text-center sm:text-left">
-              <p className="text-sm sm:text-base font-extrabold text-white mb-1">
-                ¿Listo para empezar tu proyecto?
-              </p>
-              <p className="text-xs text-white/80">
-                Empresa regional de Coyhaique. Acompañamiento cercano.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-2 shrink-0">
-              <a
-                href="/contacto"
-                className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90 transition touch-manipulation"
-              >
-                Cotiza tu proyecto
-              </a>
-              <a
-                href="https://calendly.com/surdigitallabs/30min"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-4 py-2.5 text-xs font-bold text-white hover:bg-white/15 transition touch-manipulation"
-              >
-                Agenda diagnóstico
-              </a>
-            </div>
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 py-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-sm text-white/90">¿Proyecto en mente?</p>
+            <Link to="/contacto" className="rounded-full bg-white px-5 py-2 text-sm font-extrabold text-blue-700 hover:bg-white/90 transition">
+              Cotiza
+            </Link>
           </div>
         </div>
       </div>

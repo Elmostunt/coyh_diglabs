@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProyectoModal = ({ proyecto, isOpen, onClose }) => {
   if (!isOpen || !proyecto) return null;
@@ -7,6 +8,9 @@ const ProyectoModal = ({ proyecto, isOpen, onClose }) => {
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/60 backdrop-blur-sm"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="proyecto-modal-title"
     >
       <div
         className="relative w-full max-w-3xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto bg-white rounded-xl sm:rounded-2xl shadow-xl"
@@ -19,7 +23,7 @@ const ProyectoModal = ({ proyecto, isOpen, onClose }) => {
               <div className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/20 text-white text-xs font-semibold mb-1.5 sm:mb-2">
                 {proyecto.categoria}
               </div>
-              <h2 className="text-lg sm:text-xl md:text-2xl font-extrabold text-white leading-tight">{proyecto.titulo}</h2>
+              <h2 id="proyecto-modal-title" className="text-lg sm:text-xl md:text-2xl font-extrabold text-white leading-tight">{proyecto.titulo}</h2>
             </div>
             <button
               onClick={onClose}
@@ -82,12 +86,12 @@ const ProyectoModal = ({ proyecto, isOpen, onClose }) => {
         {/* Footer */}
         <div className="sticky bottom-0 border-t border-azulOscuro/10 bg-white px-4 sm:px-6 py-3 sm:py-4 rounded-b-xl sm:rounded-b-2xl">
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-            <a
-              href="/contacto"
+            <Link
+              to="/contacto"
               className="w-full sm:flex-1 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-4 py-2.5 sm:py-2 text-sm font-extrabold text-white shadow-sm hover:shadow-md transition"
             >
               Solicitar cotización
-            </a>
+            </Link>
             <button
               onClick={onClose}
               className="w-full sm:w-auto px-4 py-2.5 sm:py-2 rounded-lg border border-azulOscuro/20 text-azulOscuro text-sm font-semibold hover:bg-azulOscuro/5 transition"

@@ -6,14 +6,8 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Footer from "./pages/Footer";
 import Servicios from "./pages/Servicios";
-import Usuarios from "./pages/Usuarios";
-import ConfirmacionCompra from "./pages/ConfirmacionCompra";
-import IniciarSesion from "./pages/IniciarSesion";
-import Registrarse from "./pages/Registrarse";
-import MiPerfil from "./pages/MiPerfil";
 import Nosotros from "./pages/Nosotros";
 import Empleos from "./pages/Empleos";
-import Galeria from "./pages/Galeria";
 import Contactanos from "./pages/Contactanos";
 
 const CALENDLY_URL = "https://calendly.com/surdigitallabs/30min";
@@ -36,8 +30,8 @@ function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
         {/* MENSAJE */}
         <div className="flex items-center gap-1 sm:gap-2 min-w-0 flex-1">
           <span className="text-xs sm:text-sm font-semibold whitespace-nowrap truncate">
-            <span className="hidden sm:inline">🚀 Tu web online en 7 días</span>
-            <span className="sm:hidden">🚀 Tu web en 7 días</span>
+            <span className="hidden sm:inline">Socio tecnológico · Coyhaique</span>
+            <span className="sm:hidden">Software · Datos · Coyhaique</span>
           </span>
           <span className="text-xs text-white/60 hidden sm:inline shrink-0">|</span>
           <span className="text-xs text-white/80 whitespace-nowrap hidden sm:inline shrink-0">
@@ -50,7 +44,7 @@ function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
           <a
             href={calendlyUrl}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="
               hidden md:inline-flex items-center
               px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold
@@ -80,7 +74,7 @@ function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
           <a
             href={whatsappUrl}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="
               inline-flex items-center
               px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold
@@ -121,18 +115,12 @@ const App = () => {
       >
         <Navbar />
 
-        <main className="flex-1">
+        <main id="main-content" className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/usuarios" element={<Usuarios />} />
-            <Route path="/confirmacion-compra" element={<ConfirmacionCompra />} />
-            <Route path="/iniciar-sesion" element={<IniciarSesion />} />
-            <Route path="/registrarse" element={<Registrarse />} />
-            <Route path="/mi-perfil" element={<MiPerfil />} />
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/empleos" element={<Empleos />} />
-            <Route path="/galeria" element={<Galeria />} />
             <Route path="/contacto" element={<Contactanos />} />
           </Routes>
         </main>

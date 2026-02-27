@@ -1,5 +1,6 @@
 // src/pages/Empleos.js
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Empleos = () => {
   const [sortBy, setSortBy] = useState("recent");
@@ -124,7 +125,7 @@ const Empleos = () => {
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-white/90 text-lg">
               Únete a nuestro equipo y trabaja en proyectos desafiantes desde la Patagonia. 
-              <a href="/nosotros" className="text-white underline ml-1">Conoce nuestro equipo →</a> o <a href="/contacto" className="text-white underline ml-1">envía tu CV →</a>
+              <Link to="/nosotros" className="text-white underline ml-1">Conoce nuestro equipo →</Link> o <Link to="/contacto" className="text-white underline ml-1">envía tu CV →</Link>
             </p>
           </div>
         </div>
@@ -262,16 +263,16 @@ const Empleos = () => {
               Envíanos tu CV y te contactaremos cuando tengamos una posición que coincida con tu perfil.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <a
-                href="/contacto"
+              <Link
+                to="/contacto"
                 className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90 transition"
               >
                 Enviar CV
-              </a>
+              </Link>
               <a
                 href="https://calendly.com/surdigitallabs/30min"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white hover:bg-white/15 transition"
               >
                 Agenda 30 min
@@ -286,6 +287,9 @@ const Empleos = () => {
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
           onClick={handleCloseModal}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="empleo-modal-title"
         >
           <div
             className="relative w-full max-w-2xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden"
@@ -295,7 +299,7 @@ const Empleos = () => {
             <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-4 sm:px-6 py-4 sm:py-5">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <h2 className="text-xl sm:text-2xl font-extrabold text-white mb-2">
+                  <h2 id="empleo-modal-title" className="text-xl sm:text-2xl font-extrabold text-white mb-2">
                     {selectedJob.title}
                   </h2>
                   <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-white/90">
@@ -370,16 +374,16 @@ const Empleos = () => {
               {/* CTA */}
               <div className="mt-6 pt-6 border-t border-azulOscuro/10">
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href="/contacto"
+                  <Link
+                    to="/contacto"
                     className="flex-1 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-5 py-3 text-sm sm:text-base font-extrabold text-white shadow-lg hover:shadow-xl transition touch-manipulation"
                   >
                     Postular ahora
-                  </a>
+                  </Link>
                   <a
                     href={`https://wa.me/56975204813?text=${encodeURIComponent(`Hola! Estoy interesado en el puesto de ${selectedJob.title}. ¿Me pueden dar más información?`)}`}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="flex-1 inline-flex items-center justify-center rounded-lg border-2 border-green-600 bg-white px-5 py-3 text-sm sm:text-base font-extrabold text-green-700 hover:bg-green-50 transition touch-manipulation"
                   >
                     Consultar por WhatsApp

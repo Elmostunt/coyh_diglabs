@@ -1,5 +1,6 @@
 // src/pages/Nosotros.js
 import React, { useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
 
 // --- util: scroll to top
 const useScrollTop = () => {
@@ -69,8 +70,8 @@ const TeamCard = ({ name, role, img, linkedin, email }) => (
 const Nosotros = () => {
   useScrollTop();
   useSEO(
-    "Nosotros - Equipo de Desarrollo de Software en Coyhaique, Patagonia | Sur Digital Labs",
-    "Empresa regional de desarrollo de software en Coyhaique, Aysén. Equipo con experiencia en proyectos reales: desarrollo web, APIs, cloud, IA. Compromiso con talento tecnológico local y supervisión senior."
+    "Nosotros - Socio tecnológico en Coyhaique, Patagonia | Sur Digital Labs",
+    "Equipo con base en Coyhaique, Aysén: software, datos y automatización con estándar profesional. Experiencia en proyectos reales, APIs, cloud e IA. Compromiso con talento tecnológico local y supervisión senior."
   );
 
   const team = useMemo(
@@ -181,7 +182,7 @@ const Nosotros = () => {
               Nosotros
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-white/90 text-lg">
-              Desarrollo de software con foco regional y estándar profesional
+              Socio tecnológico con base en Coyhaique: software, datos y automatización con estándar profesional.
             </p>
           </div>
         </div>
@@ -194,36 +195,24 @@ const Nosotros = () => {
             <h2 className="text-3xl font-extrabold text-azulOscuro mb-6 text-center">
               Nuestro enfoque
             </h2>
-            <p className="text-center mb-6 text-azulGrisaceo">
-              <a href="/servicios" className="text-blue-600 hover:text-blue-700 font-semibold">Ver nuestros servicios →</a> | 
-              <a href="/contacto" className="text-blue-600 hover:text-blue-700 font-semibold ml-1"> Contacta con nosotros →</a>
+            <p className="text-center mb-6 text-sm text-azulGrisaceo">
+              <Link to="/servicios" className="text-blue-600 hover:text-blue-700 font-semibold">Servicios</Link> · <Link to="/contacto" className="text-blue-600 hover:text-blue-700 font-semibold">Contacto</Link>
             </p>
             <div className="prose prose-lg max-w-none">
-              <div className="rounded-lg bg-blue-50 border-2 border-blue-200 p-4 mb-6">
-                <p className="text-blue-900 font-extrabold text-lg mb-2">
-                  Empresa regional de Coyhaique, Patagonia
-                </p>
-                <p className="text-blue-800 text-base">
-                  Acompañamiento cercano con talento local y supervisión senior. 
-                  Creamos soluciones digitales reales para empresas que necesitan avanzar con orden, criterio técnico y acompañamiento cercano.
+              <div className="rounded-lg bg-blue-50 border border-blue-200 p-4 mb-6">
+                <p className="text-blue-900 font-extrabold mb-1">Coyhaique, Patagonia</p>
+                <p className="text-blue-800 text-sm">
+                  Socio tecnológico con talento local y supervisión senior. Software, datos y automatización con estándar profesional.
                 </p>
               </div>
-              <p className="text-azulGrisaceo text-lg mb-4">
-                Somos una empresa de desarrollo de software y consultoría tecnológica con base en{" "}
-                <strong className="text-azulOscuro">Coyhaique, Aysén</strong>. 
-                Creamos soluciones digitales reales para empresas que necesitan avanzar con orden, criterio técnico y acompañamiento cercano.
+              <p className="text-azulGrisaceo text-base mb-4">
+                Combinamos experiencia en proyectos complejos con compromiso por el talento tecnológico local: mentoría y supervisión en cada iniciativa.
               </p>
-              <p className="text-azulGrisaceo text-lg mb-4">
-                Nuestro enfoque combina <strong className="text-azulOscuro">experiencia en proyectos complejos</strong> con un{" "}
-                <strong className="text-azulOscuro">compromiso activo por el desarrollo del talento tecnológico local</strong>, 
-                integrando formación, mentoría y supervisión profesional en cada iniciativa.
-              </p>
-              <p className="text-azulGrisaceo text-lg">
-                Nacimos en <strong className="text-azulOscuro">Coyhaique, Aysén</strong>, con la idea de acercar
-                tecnología de clase mundial a la Patagonia y a cualquier
-                organización que valore la calidad técnica. Unimos ingeniería,
-                educación y comunidad: desarrollamos proyectos reales, formamos
-                talento y compartimos conocimiento.
+              <div className="rounded-lg bg-amber-50 border border-amber-200 p-3 mb-6">
+                <p className="text-amber-800 text-sm"><strong className="text-amber-900">SDLabCar:</strong> sistema de rentacar que se adapta al proceso de cada empresa. <a href="https://wa.me/56975204813?text=Hola!%20Quiero%20información%20sobre%20SDLabCar." target="_blank" rel="noopener noreferrer" className="font-extrabold text-amber-700 hover:text-amber-800">Info →</a></p>
+              </div>
+              <p className="text-azulGrisaceo text-base">
+                Nacimos en Coyhaique con la idea de acercar tecnología de calidad a la Patagonia: proyectos reales, formación y comunidad.
               </p>
             </div>
           </div>
@@ -231,40 +220,20 @@ const Nosotros = () => {
       </section>
 
       {/* EXPERIENCIA */}
-      <section className="bg-blancoCremoso/40 py-14">
+      <section className="bg-blancoCremoso/40 py-10">
         <div className="mx-auto w-full max-w-6xl px-4">
-          <header className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-azulOscuro mb-4">
-              Experiencia en proyectos reales
-            </h2>
-            <p className="text-lg text-azulGrisaceo max-w-3xl mx-auto">
-              Nuestro equipo ha participado en proyectos de software, cloud, datos e inteligencia artificial 
-              en distintos contextos operativos y empresariales. Trabajamos en iniciativas que van desde 
-              plataformas web y backends productivos, hasta arquitecturas en la nube, automatización avanzada 
-              y soluciones basadas en modelos de lenguaje (LLMs).
-            </p>
-            <p className="mt-4 text-azulGrisaceo max-w-3xl mx-auto">
-              Por confidencialidad, no publicamos nombres de clientes, pero sí compartimos{" "}
-              <strong className="text-azulOscuro">el tipo de problemas que abordamos, cómo los resolvemos y el valor que entregamos</strong>.
-            </p>
+          <header className="text-center mb-8">
+            <h2 className="text-2xl font-extrabold text-azulOscuro">Experiencia</h2>
+            <p className="mt-2 text-sm text-azulGrisaceo max-w-2xl mx-auto">Proyectos descritos de forma anonimizada: problema, solución e impacto.</p>
           </header>
         </div>
       </section>
 
       {/* PROYECTOS REPRESENTATIVOS */}
-      <section className="bg-white py-14">
+      <section className="bg-white py-10">
         <div className="mx-auto w-full max-w-6xl px-4">
-          <header className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-azulOscuro mb-4">
-              Proyectos representativos
-            </h2>
-            <p className="text-azulGrisaceo max-w-3xl mx-auto">
-              A continuación, algunos ejemplos de proyectos en los que hemos trabajado, descritos de forma anonimizada 
-              y enfocados en el proceso técnico y el impacto logrado.
-            </p>
-            <p className="mt-2 text-sm text-azulGrisaceo italic max-w-3xl mx-auto">
-              Nuestro interés no es mostrar logos, sino demostrar <strong className="text-azulOscuro">criterio profesional, forma de trabajo y capacidad técnica</strong>.
-            </p>
+          <header className="text-center mb-8">
+            <h2 className="text-2xl font-extrabold text-azulOscuro">Proyectos representativos</h2>
           </header>
 
           <div className="space-y-8">
@@ -311,15 +280,10 @@ const Nosotros = () => {
       </section>
 
       {/* CÓMO TRABAJAMOS */}
-      <section className="bg-blancoCremoso/40 py-14">
+      <section className="bg-blancoCremoso/40 py-10">
         <div className="mx-auto w-full max-w-6xl px-4">
-          <header className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-azulOscuro mb-4">
-              Cómo abordamos cada proyecto
-            </h2>
-            <p className="text-azulGrisaceo max-w-3xl mx-auto">
-              Nuestro trabajo se basa en procesos claros y decisiones técnicas bien fundamentadas:
-            </p>
+          <header className="text-center mb-8">
+            <h2 className="text-2xl font-extrabold text-azulOscuro">Cómo trabajamos</h2>
           </header>
 
           <div className="grid gap-6 md:grid-cols-5">
@@ -342,59 +306,22 @@ const Nosotros = () => {
       </section>
 
       {/* TALENTO REGIONAL */}
-      <section className="bg-white py-14">
+      <section className="bg-white py-10">
         <div className="mx-auto w-full max-w-6xl px-4">
-          <div className="max-w-3xl mx-auto">
-            <header className="text-center mb-8">
-              <h2 className="text-3xl font-extrabold text-azulOscuro mb-4">
-                Compromiso con el talento tecnológico regional
-              </h2>
-            </header>
-            <div className="prose prose-lg max-w-none">
-              <p className="text-azulGrisaceo text-lg mb-4">
-                Creemos en el desarrollo del talento local como parte del crecimiento tecnológico sostenible.
-              </p>
-              <p className="text-azulGrisaceo text-lg mb-4">
-                Por eso, fomentamos la participación de <strong className="text-azulOscuro">ingenieros y profesionales en formación</strong> en nuestros proyectos, 
-                bajo un modelo de <strong className="text-azulOscuro">mentorías, revisión técnica y supervisión senior</strong>.
-              </p>
-              <p className="text-azulGrisaceo text-lg mb-6">
-                Esto nos permite:
-              </p>
-              <ul className="space-y-2 text-azulGrisaceo mb-6">
-                <li className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">•</span>
-                  <span>Aportar a la formación práctica de la comunidad</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">•</span>
-                  <span>Mantener estándares profesionales en cada entrega</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">•</span>
-                  <span>Construir soluciones con impacto técnico y social</span>
-                </li>
-              </ul>
-              <div className="rounded-lg bg-blue-50 border border-blue-200 p-4">
-                <p className="text-sm text-blue-900 italic">
-                  <strong>Nota importante:</strong> La responsabilidad técnica y la calidad final del proyecto siempre están lideradas por perfiles senior.
-                </p>
-              </div>
-            </div>
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-2xl font-extrabold text-azulOscuro mb-4">Talento regional</h2>
+            <p className="text-azulGrisaceo text-base">
+              Fomentamos la participación de profesionales en formación con mentoría y supervisión senior. La calidad final siempre la lideran perfiles senior.
+            </p>
           </div>
         </div>
       </section>
 
       {/* PARA QUIÉNES TRABAJAMOS */}
-      <section className="bg-blancoCremoso/40 py-14">
+      <section className="bg-blancoCremoso/40 py-10">
         <div className="mx-auto w-full max-w-6xl px-4">
-          <header className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-azulOscuro mb-4">
-              Para quiénes trabajamos
-            </h2>
-            <p className="text-azulGrisaceo max-w-3xl mx-auto mb-8">
-              Trabajamos con empresas que buscan:
-            </p>
+          <header className="text-center mb-8">
+            <h2 className="text-2xl font-extrabold text-azulOscuro">Para quiénes</h2>
           </header>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -420,19 +347,15 @@ const Nosotros = () => {
               </div>
             ))}
           </div>
-          <p className="text-center text-azulGrisaceo mt-8 max-w-3xl mx-auto">
-            Especialmente pymes y organizaciones regionales que necesitan{" "}
-            <strong className="text-azulOscuro">un socio tecnológico</strong>, no solo un proveedor.
-          </p>
+          <p className="text-center text-azulGrisaceo mt-6 text-sm max-w-2xl mx-auto">Pymes y organizaciones que necesitan un socio tecnológico.</p>
         </div>
       </section>
 
       {/* TEAM SECTION */}
-      <section className="bg-white py-14">
+      <section className="bg-white py-10">
         <div className="mx-auto w-full max-w-6xl px-4">
-          <header className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-azulOscuro">Nuestro Equipo</h2>
-            <p className="mt-2 text-azulGrisaceo">Las personas que hacen posible Sur Digital Labs</p>
+          <header className="text-center mb-8">
+            <h2 className="text-2xl font-extrabold text-azulOscuro">Equipo</h2>
           </header>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -444,37 +367,21 @@ const Nosotros = () => {
       </section>
 
       {/* VALUES SECTION */}
-      <section className="bg-blancoCremoso/40 py-14">
+      <section className="bg-blancoCremoso/40 py-10">
         <div className="mx-auto w-full max-w-6xl px-4">
-          <header className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-azulOscuro">Nuestros Valores</h2>
+          <header className="text-center mb-6">
+            <h2 className="text-2xl font-extrabold text-azulOscuro">Valores</h2>
           </header>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              {
-                title: "Calidad Técnica",
-                desc: "Desarrollamos soluciones robustas y escalables con las mejores prácticas de la industria.",
-                icon: "⚡"
-              },
-              {
-                title: "Innovación",
-                desc: "Aplicamos tecnologías de vanguardia para resolver problemas reales de manera eficiente.",
-                icon: "🚀"
-              },
-              {
-                title: "Comunidad",
-                desc: "Creemos en compartir conocimiento y formar talento local en la Patagonia.",
-                icon: "🤝"
-              }
+              { title: "Calidad", desc: "Soluciones robustas y buenas prácticas.", icon: "⚡" },
+              { title: "Innovación", desc: "Tecnología para problemas reales.", icon: "🚀" },
+              { title: "Comunidad", desc: "Conocimiento y talento local.", icon: "🤝" }
             ].map((value, i) => (
-              <div
-                key={i}
-                className="rounded-2xl border border-azulOscuro/10 bg-white p-6 shadow-sm"
-              >
-                <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-extrabold text-azulOscuro mb-2">{value.title}</h3>
-                <p className="text-azulGrisaceo">{value.desc}</p>
+              <div key={i} className="rounded-xl border border-azulOscuro/10 bg-white p-4 shadow-sm">
+                <span className="text-2xl">{value.icon}</span>
+                <h3 className="text-lg font-extrabold text-azulOscuro mt-2 mb-1">{value.title}</h3>
+                <p className="text-sm text-azulGrisaceo">{value.desc}</p>
               </div>
             ))}
           </div>
@@ -482,34 +389,13 @@ const Nosotros = () => {
       </section>
 
       {/* CTA SECTION */}
-      <section className="bg-white py-14">
+      <section className="bg-white py-8">
         <div className="mx-auto w-full max-w-6xl px-4">
-          <div className="rounded-3xl border border-azulOscuro/10 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-8 md:p-12 text-center">
-            <h2 className="text-3xl font-extrabold text-white mb-4">
-              Desarrollamos software con estándar profesional
-            </h2>
-            <p className="text-white/90 mb-2 text-lg">
-              Experiencia real y compromiso con el talento regional
-            </p>
-            <p className="text-white/80 mb-6">
-              ¿Quieres trabajar con nosotros?
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <a
-                href="/contacto"
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 hover:shadow-xl transition touch-manipulation"
-              >
-                Cotiza tu proyecto
-              </a>
-              <a
-                href="https://calendly.com/surdigitallabs/30min"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border-2 border-white/40 bg-white/10 px-6 py-3.5 text-sm font-bold text-white hover:bg-white/20 transition touch-manipulation"
-              >
-                Agenda diagnóstico
-              </a>
-            </div>
+          <div className="rounded-2xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 text-center">
+            <p className="text-white/90 mb-4 text-sm">¿Proyecto en mente?</p>
+            <Link to="/contacto" className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 transition">
+              Contactar
+            </Link>
           </div>
         </div>
       </section>

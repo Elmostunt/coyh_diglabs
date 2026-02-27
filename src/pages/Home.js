@@ -1,5 +1,6 @@
 // src/pages/Home.js
 import React, { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import ProyectoModal from "../components/ProyectoModal";
 
 /* =========================
@@ -216,10 +217,10 @@ export default function Home() {
 
   // SEO
   useEffect(() => {
-    document.title = "Sur Digital Labs - Desarrollo de Software y Soluciones Tecnológicas en Coyhaique, Patagonia";
+    document.title = "Sur Digital Labs - Software, datos y automatización en Coyhaique, Patagonia";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Empresa regional de Coyhaique, Patagonia. Desarrollo de software, datos e inteligencia artificial con estándar profesional. Acompañamiento cercano con talento local y supervisión senior. Packs de servicios: Web PYME, Automatización, Datos, IA Aplicada.');
+      metaDescription.setAttribute('content', 'Socio tecnológico en Coyhaique, Patagonia: software a medida, datos y automatización para pymes y empresas regionales. Estándar profesional y acompañamiento cercano.');
     }
   }, []);
 
@@ -249,7 +250,9 @@ export default function Home() {
 
         setSlides(archivos);
       } catch (error) {
-        console.error("Error al obtener imágenes:", error);
+        if (process.env.NODE_ENV !== "production") {
+          console.error("Error al obtener imágenes del carrusel:", error);
+        }
       }
     };
 
@@ -291,17 +294,22 @@ export default function Home() {
     setProyectoSeleccionado(null);
   };
 
-  // Proyectos destacados (incluyendo proyectos regionales)
+  // Proyectos destacados (4 para Home; el resto en Nosotros)
   const proyectosDestacados = useMemo(() => {
     return [
       PROYECTOS.find((p) => p.id === 17), // E-commerce
-      PROYECTOS.find((p) => p.id === 18), // Sitio web corporativo
-      PROYECTOS.find((p) => p.id === 19), // Sistema de reservas
-      PROYECTOS.find((p) => p.id === 1), // Agentes LLMs
-      PROYECTOS.find((p) => p.id === 2), // Custom GPT
-      PROYECTOS.find((p) => p.id === 8), // Next.js
+      PROYECTOS.find((p) => p.id === 1),  // Agentes LLMs
+      PROYECTOS.find((p) => p.id === 2),  // Custom GPT
+      PROYECTOS.find((p) => p.id === 8),   // Next.js
     ].filter(Boolean);
   }, []);
+
+  const [experienciaTab, setExperienciaTab] = useState('casos');
+  const miniCasos = useMemo(() => [
+    { problema: "Orquestar múltiples capacidades sin perder control técnico", solucion: "Arquitectura de agentes especializados con LangChain y flujos de decisión explícitos", impacto: "Mayor automatización avanzada y base sólida para escalar casos de uso con LLMs" },
+    { problema: "Integrar datos corporativos y lógica de negocio sin exponer sistemas internos", solucion: "Backend en Cloud Run con OpenAPI, autenticación OAuth y Cloud Run Invoker", impacto: "Uso seguro y gobernado de LLMs sobre datos reales, manteniendo control técnico" },
+    { problema: "Falta de visibilidad y optimización en asignación de tareas operativas", solucion: "Plataforma con frontend de gestión, backend en Cloud Run y modelos de optimización", impacto: "Mejora en toma de decisiones operativas y reducción de fricción en planificación" },
+  ], []);
 
   return (
     <div className="w-full">
@@ -315,29 +323,21 @@ export default function Home() {
             {/* Texto */}
             <div className="order-2 md:order-1">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-white">
-                Soluciones tecnológicas
-                <span className="block">desde la Patagonia</span>
+                Software, datos y automatización
+                <span className="block">Desde la Patagonia.</span>
               </h1>
               <p className="mt-3 sm:mt-4 max-w-xl text-white/90 text-base sm:text-lg leading-relaxed">
-                Empresa regional de Coyhaique. Acompañamiento cercano con talento local y supervisión senior. 
-                Software, datos e inteligencia artificial con estándar profesional.
+                Socio tecnológico para pymes y empresas regionales.
               </p>
 
-              <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3">
-                <a
-                  href="/contacto"
+              <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row items-center gap-3">
+                <Link
+                  to="/contacto"
                   className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 hover:shadow-xl transition touch-manipulation"
                 >
                   Cotiza tu proyecto
-                </a>
-                <a
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border-2 border-white/40 bg-white/10 px-5 py-3 text-sm font-bold text-white hover:bg-white/20 transition touch-manipulation"
-                >
-                  Agenda diagnóstico
-                </a>
+                </Link>
+                <span className="text-white/70 text-sm">o <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">agenda una llamada</a></span>
               </div>
 
               {/* mini métricas */}
@@ -417,15 +417,14 @@ export default function Home() {
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <header className="text-center mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Nuestros Servicios</h2>
-            <p className="mt-2 text-sm sm:text-base text-azulGrisaceo">
-              Soluciones tecnológicas completas para tu empresa. 
-              <a href="/servicios" className="text-blue-600 hover:text-blue-700 font-semibold ml-1">Ver todos los servicios →</a>
+            <p className="mt-2 text-sm text-azulGrisaceo">
+              <Link to="/servicios" className="text-blue-600 hover:text-blue-700 font-semibold">Ver servicios →</Link>
             </p>
           </header>
 
           <div className="grid gap-4 sm:gap-6 sm:grid-cols-3">
-            <a
-              href="/servicios"
+            <Link
+              to="/servicios"
               className="group rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg touch-manipulation"
             >
               <div className="grid h-10 w-10 sm:h-12 sm:w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm mb-3 sm:mb-4">
@@ -433,15 +432,15 @@ export default function Home() {
               </div>
               <h3 className="text-base sm:text-lg font-extrabold text-azulOscuro mb-2">Desarrollo Web & Apps</h3>
               <p className="text-xs sm:text-sm text-azulGrisaceo mb-3 sm:mb-4 leading-relaxed">
-                Frontend, backend, APIs y aplicaciones móviles con tecnologías modernas.
+                Sistemas y sitios que escalan y se mantienen.
               </p>
               <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-azulOscuro group-hover:text-blue-600 transition">
                 Ver servicios →
               </span>
-            </a>
+            </Link>
 
-            <a
-              href="/servicios"
+            <Link
+              to="/servicios"
               className="group rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg touch-manipulation"
             >
               <div className="grid h-10 w-10 sm:h-12 sm:w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm mb-3 sm:mb-4">
@@ -449,15 +448,15 @@ export default function Home() {
               </div>
               <h3 className="text-base sm:text-lg font-extrabold text-azulOscuro mb-2">IA & Machine Learning</h3>
               <p className="text-xs sm:text-sm text-azulGrisaceo mb-3 sm:mb-4 leading-relaxed">
-                LLMs, agentes especializados, modelos de optimización y análisis de datos.
+                Automatización y análisis con LLMs e integraciones seguras.
               </p>
               <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-azulOscuro group-hover:text-blue-600 transition">
                 Ver servicios →
               </span>
-            </a>
+            </Link>
 
-            <a
-              href="/servicios"
+            <Link
+              to="/servicios"
               className="group rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg touch-manipulation"
             >
               <div className="grid h-10 w-10 sm:h-12 sm:w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm mb-3 sm:mb-4">
@@ -465,11 +464,32 @@ export default function Home() {
               </div>
               <h3 className="text-base sm:text-lg font-extrabold text-azulOscuro mb-2">Cloud & DevOps</h3>
               <p className="text-xs sm:text-sm text-azulGrisaceo mb-3 sm:mb-4 leading-relaxed">
-                Infraestructura cloud, automatización, CI/CD y gestión de infraestructura como código.
+                Infraestructura clara, segura y reproducible.
               </p>
               <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-azulOscuro group-hover:text-blue-600 transition">
                 Ver servicios →
               </span>
+            </Link>
+          </div>
+
+          {/* Stack + proceso */}
+          <div className="mt-8 sm:mt-10 rounded-xl sm:rounded-2xl border border-blue-200 bg-blue-50/50 p-4 sm:p-5">
+            <p className="text-xs sm:text-sm text-azulGrisaceo leading-relaxed">
+              <strong className="text-azulOscuro">Stack:</strong> GCP, AWS, Terraform, FastAPI, React/Next.js, Python, LangChain. <strong className="text-azulOscuro">Proceso:</strong> análisis, hitos claros, documentación. Pymes de retail, servicios, turismo y administración en Chile y la región.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SDLabCar */}
+      <section className="bg-white py-6 sm:py-8">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <div className="rounded-xl border border-amber-500/30 bg-amber-50/80 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p className="text-sm text-azulGrisaceo">
+              <strong className="text-azulOscuro">SDLabCar:</strong> sistema de rentacar que se ajusta al proceso de cada empresa.
+            </p>
+            <a href="https://wa.me/56975204813?text=Hola!%20Quiero%20información%20sobre%20SDLabCar." target="_blank" rel="noopener noreferrer" className="shrink-0 text-sm font-extrabold text-amber-700 hover:text-amber-800">
+              Más info →
             </a>
           </div>
         </div>
@@ -478,11 +498,8 @@ export default function Home() {
       {/* PACKS DE SERVICIOS */}
       <section className="bg-blancoCremoso/40 py-10 sm:py-14">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <header className="text-center mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Packs de Servicios</h2>
-            <p className="mt-2 text-sm sm:text-base text-azulGrisaceo">
-              Soluciones completas diseñadas para resolver necesidades específicas
-            </p>
+          <header className="text-center mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Packs</h2>
           </header>
 
           <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -542,7 +559,7 @@ export default function Home() {
                   <a
                     href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Web%20PYME%20Profesional.%20¿Me%20pueden%20ayudar?"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
                   >
                     Cotizar por WhatsApp
@@ -599,7 +616,7 @@ export default function Home() {
                   <a
                     href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Automatización%20%26%20Backoffice.%20¿Me%20pueden%20ayudar?"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-green-600 via-green-700 to-green-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
                   >
                     Cotizar por WhatsApp
@@ -656,7 +673,7 @@ export default function Home() {
                   <a
                     href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Datos%20%26%20Dashboards.%20¿Me%20pueden%20ayudar?"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-yellow-600 via-yellow-700 to-yellow-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
                   >
                     Cotizar por WhatsApp
@@ -713,7 +730,7 @@ export default function Home() {
                   <a
                     href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20IA%20Aplicada.%20¿Me%20pueden%20ayudar?"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
                   >
                     Cotizar por WhatsApp
@@ -770,7 +787,7 @@ export default function Home() {
                   <a
                     href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Acompañamiento%20Tecnológico.%20¿Me%20pueden%20ayudar?"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-red-600 via-red-700 to-red-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
                   >
                     Cotizar por WhatsApp
@@ -780,213 +797,114 @@ export default function Home() {
             </article>
           </div>
 
-          <div className="text-center mt-6 sm:mt-8">
-            <a
-              href="/servicios"
-              className="inline-flex items-center gap-2 text-sm font-extrabold text-blue-600 hover:text-blue-700 transition touch-manipulation"
-            >
-              Ver todos los servicios
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
         </div>
       </section>
 
-      {/* CTA INTERMEDIO */}
-      <section className="bg-white py-10 sm:py-14">
+      {/* EXPERIENCIA: Casos + Proyectos (pestañas) */}
+      <section className="bg-blancoCremoso/40 py-10 sm:py-14">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="rounded-2xl sm:rounded-3xl border-2 border-blue-600 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 md:p-12 text-center">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 sm:mb-4">
-              ¿Listo para empezar tu proyecto?
-            </h2>
-            <p className="text-white/90 mb-5 sm:mb-6 text-sm sm:text-base max-w-2xl mx-auto">
-              Empresa regional de Coyhaique. Acompañamiento cercano con talento local y supervisión senior.
-            </p>
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
-              <a
-                href="/contacto"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 hover:shadow-xl transition touch-manipulation"
-              >
-                Cotiza tu proyecto
-              </a>
-              <a
-                href={CALENDLY_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border-2 border-white/40 bg-white/10 px-6 py-3.5 text-sm font-bold text-white hover:bg-white/20 transition touch-manipulation"
-              >
-                Agenda diagnóstico
-              </a>
+          <header className="text-center mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Experiencia</h2>
+          </header>
+
+          {/* Pestañas */}
+          <div className="flex justify-center gap-2 mb-6 sm:mb-8">
+            <button
+              type="button"
+              onClick={() => setExperienciaTab('casos')}
+              className={`px-4 py-2.5 rounded-full text-sm font-extrabold transition touch-manipulation ${
+                experienciaTab === 'casos'
+                  ? 'bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm'
+                  : 'bg-white border border-azulOscuro/20 text-azulOscuro hover:bg-azulOscuro/5'
+              }`}
+            >
+              Casos
+            </button>
+            <button
+              type="button"
+              onClick={() => setExperienciaTab('proyectos')}
+              className={`px-4 py-2.5 rounded-full text-sm font-extrabold transition touch-manipulation ${
+                experienciaTab === 'proyectos'
+                  ? 'bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm'
+                  : 'bg-white border border-azulOscuro/20 text-azulOscuro hover:bg-azulOscuro/5'
+              }`}
+            >
+              Proyectos
+            </button>
+          </div>
+
+          {experienciaTab === 'casos' && (
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
+              {miniCasos.map((caso, i) => (
+                <article
+                  key={i}
+                  className="rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-5 shadow-sm"
+                >
+                  <div className="mb-3">
+                    <span className="inline-block px-2 py-1 rounded bg-red-50 border border-red-200 text-red-700 text-xs font-extrabold mb-2">Problema</span>
+                    <p className="text-xs sm:text-sm text-azulGrisaceo leading-relaxed">{caso.problema}</p>
+                  </div>
+                  <div className="mb-3">
+                    <span className="inline-block px-2 py-1 rounded bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold mb-2">Solución</span>
+                    <p className="text-xs sm:text-sm text-azulGrisaceo leading-relaxed">{caso.solucion}</p>
+                  </div>
+                  <div className="rounded-lg bg-green-50 border border-green-200 p-3">
+                    <span className="inline-block px-2 py-1 rounded bg-green-100 text-green-700 text-xs font-extrabold mb-1.5">Impacto</span>
+                    <p className="text-xs sm:text-sm text-green-900 font-semibold leading-tight">{caso.impacto}</p>
+                  </div>
+                </article>
+              ))}
             </div>
-          </div>
-        </div>
-      </section>
+          )}
 
-      {/* MINI-CASOS DE EXPERIENCIA */}
-      <section className="bg-blancoCremoso/40 py-10 sm:py-14">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <header className="text-center mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Experiencia en proyectos reales</h2>
-            <p className="mt-2 text-sm sm:text-base text-azulGrisaceo">
-              Casos resumidos: Problema → Solución → Impacto. 
-              <a href="/nosotros" className="text-blue-600 hover:text-blue-700 font-semibold ml-1">Conoce más sobre nuestro equipo →</a>
-            </p>
-          </header>
-
-          <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
-            {[
-              {
-                problema: "Orquestar múltiples capacidades sin perder control técnico",
-                solucion: "Arquitectura de agentes especializados con LangChain y flujos de decisión explícitos",
-                impacto: "Mayor automatización avanzada y base sólida para escalar casos de uso con LLMs",
-              },
-              {
-                problema: "Integrar datos corporativos y lógica de negocio sin exponer sistemas internos",
-                solucion: "Backend en Cloud Run con OpenAPI, autenticación OAuth y Cloud Run Invoker",
-                impacto: "Uso seguro y gobernado de LLMs sobre datos reales, manteniendo control técnico",
-              },
-              {
-                problema: "Falta de visibilidad y optimización en asignación de tareas operativas",
-                solucion: "Plataforma con frontend de gestión, backend en Cloud Run y modelos de optimización",
-                impacto: "Mejora en toma de decisiones operativas y reducción de fricción en planificación",
-              },
-            ].map((caso, i) => (
-              <article
-                key={i}
-                className="rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm"
-              >
-                <div className="mb-3">
-                  <div className="inline-block px-2 py-1 rounded bg-red-50 border border-red-200 text-red-700 text-xs font-extrabold mb-2">
-                    Problema
-                  </div>
-                  <p className="text-xs sm:text-sm text-azulGrisaceo leading-relaxed">{caso.problema}</p>
-                </div>
-                <div className="mb-3">
-                  <div className="inline-block px-2 py-1 rounded bg-blue-50 border border-blue-200 text-blue-700 text-xs font-extrabold mb-2">
-                    Solución
-                  </div>
-                  <p className="text-xs sm:text-sm text-azulGrisaceo leading-relaxed">{caso.solucion}</p>
-                </div>
-                <div className="rounded-lg bg-green-50 border border-green-200 p-3">
-                  <div className="inline-block px-2 py-1 rounded bg-green-100 text-green-700 text-xs font-extrabold mb-1.5">
-                    Impacto
-                  </div>
-                  <p className="text-xs sm:text-sm text-green-900 font-semibold leading-tight">{caso.impacto}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="text-center mt-6 sm:mt-8">
-            <a
-              href="/nosotros"
-              className="inline-flex items-center gap-2 text-sm font-extrabold text-blue-600 hover:text-blue-700 transition touch-manipulation"
-            >
-              Ver experiencia completa
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* PROYECTOS DESTACADOS */}
-      <section className="bg-blancoCremoso/40 py-10 sm:py-14">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <header className="text-center mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Proyectos Representativos</h2>
-            <p className="mt-2 text-sm sm:text-base text-azulGrisaceo px-2">
-              Ejemplos de proyectos técnicos en los que hemos trabajado. Toca para ver detalles. 
-              <a href="/galeria" className="text-blue-600 hover:text-blue-700 font-semibold ml-1">Ver portafolio completo →</a> o <a href="/nosotros" className="text-blue-600 hover:text-blue-700 font-semibold ml-1">conocer más sobre nosotros →</a>
-            </p>
-          </header>
-
-          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {proyectosDestacados.map((proyecto) => (
-              <article
-                key={proyecto.id}
-                onClick={() => handleProyectoClick(proyecto)}
-                className="group cursor-pointer rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg touch-manipulation active:scale-[0.98]"
-              >
-                <div className="flex items-start justify-between mb-2 sm:mb-3">
-                  <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold">
-                    {proyecto.categoria}
-                  </span>
-                  <svg className="h-4 w-4 sm:h-5 sm:w-5 text-azulGrisaceo group-hover:text-blue-600 transition shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-                <h3 className="text-base sm:text-lg font-extrabold text-azulOscuro mb-2 group-hover:text-blue-600 transition leading-tight">
-                  {proyecto.titulo}
-                </h3>
-                <p className="text-xs sm:text-sm text-azulGrisaceo line-clamp-3 leading-relaxed">
-                  {proyecto.descripcion}
-                </p>
-                <div className="mt-3 sm:mt-4 flex flex-wrap gap-1.5 sm:gap-2">
-                  {proyecto.tecnologias.slice(0, 3).map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-0.5 sm:py-1 rounded bg-azulOscuro/5 text-azulOscuro text-xs font-medium"
-                    >
-                      {tech}
+          {experienciaTab === 'proyectos' && (
+            <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {proyectosDestacados.map((proyecto) => (
+                <article
+                  key={proyecto.id}
+                  onClick={() => handleProyectoClick(proyecto)}
+                  className="group cursor-pointer rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg touch-manipulation active:scale-[0.98]"
+                >
+                  <div className="flex items-start justify-between mb-2">
+                    <span className="px-2 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold line-clamp-1">
+                      {proyecto.categoria}
                     </span>
-                  ))}
-                  {proyecto.tecnologias.length > 3 && (
-                    <span className="px-2 py-0.5 sm:py-1 rounded bg-azulOscuro/5 text-azulOscuro text-xs font-medium">
-                      +{proyecto.tecnologias.length - 3}
-                    </span>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
+                    <svg className="h-4 w-4 text-azulGrisaceo group-hover:text-blue-600 transition shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 group-hover:text-blue-600 transition leading-tight line-clamp-2">
+                    {proyecto.titulo}
+                  </h3>
+                  <p className="text-xs text-azulGrisaceo line-clamp-2 leading-relaxed">
+                    {proyecto.descripcion}
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {proyecto.tecnologias.slice(0, 3).map((tech, i) => (
+                      <span key={i} className="px-1.5 py-0.5 rounded bg-azulOscuro/5 text-azulOscuro text-xs font-medium">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
 
-          <div className="text-center mt-6 sm:mt-8">
-            <a
-              href="/nosotros"
-              className="inline-flex items-center gap-2 text-sm font-extrabold text-blue-600 hover:text-blue-700 transition touch-manipulation"
-            >
-              Ver todos los proyectos
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
+          <p className="text-center mt-6">
+            <Link to="/nosotros" className="text-sm font-extrabold text-blue-600 hover:text-blue-700">Más en Nosotros →</Link>
+          </p>
         </div>
       </section>
 
       {/* CTA FINAL */}
-      <section className="bg-white py-10 sm:py-14">
+      <section className="bg-white py-8 sm:py-10">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="rounded-2xl sm:rounded-3xl border-2 border-blue-600 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 md:p-12 text-center">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 sm:mb-4 leading-tight">
-              Desarrollamos software con estándar profesional
-            </h2>
-            <p className="text-white/90 mb-2 text-base sm:text-lg">
-              Empresa regional de Coyhaique. Acompañamiento cercano con talento local y supervisión senior.
-            </p>
-            <p className="text-white/80 mb-5 sm:mb-6 text-sm sm:text-base px-2">
-              Especialmente para pymes y organizaciones regionales que necesitan un socio tecnológico.
-            </p>
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3">
-              <a
-                href="/contacto"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 hover:shadow-xl transition touch-manipulation"
-              >
-                Cotiza tu proyecto
-              </a>
-              <a
-                href={CALENDLY_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border-2 border-white/40 bg-white/10 px-6 py-3.5 text-sm font-bold text-white hover:bg-white/20 transition touch-manipulation"
-              >
-                Agenda diagnóstico
-              </a>
-            </div>
+          <div className="rounded-2xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 text-center">
+            <p className="text-white/90 mb-4 text-sm sm:text-base">Coyhaique · Respuesta en menos de 24 h.</p>
+            <Link to="/contacto" className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 transition">
+              Cotiza tu proyecto
+            </Link>
           </div>
         </div>
       </section>

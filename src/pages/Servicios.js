@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Servicios = () => {
   // SEO
   useEffect(() => {
-    document.title = "Servicios de Desarrollo Web, Automatización y IA - Sur Digital Labs Coyhaique";
+    document.title = "Servicios - Software, datos y automatización | Sur Digital Labs Coyhaique";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Servicios tecnológicos en Coyhaique: Pack Web PYME Profesional, Automatización y Backoffice, Datos y Dashboards, IA Aplicada, Acompañamiento Tecnológico. Desarrollo web, APIs, cloud, inteligencia artificial.');
+      metaDescription.setAttribute('content', 'Socio tecnológico en Coyhaique: Packs Web PYME, Automatización y Backoffice, Datos y Dashboards, IA Aplicada, Acompañamiento. Software a medida, APIs, cloud.');
     }
   }, []);
   // Lista de servicios agrupados por categoría
@@ -57,6 +58,43 @@ const Servicios = () => {
   const [serviciosFiltrados, setServiciosFiltrados] = useState(servicios);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos');
   const [busqueda, setBusqueda] = useState('');
+  const [complementariosAbierto, setComplementariosAbierto] = useState(false);
+
+  // Áreas principales (especialidad: gestión de proyectos, programación, aplicaciones en cloud)
+  const areas = [
+    {
+      id: 'software',
+      titulo: 'Software a medida',
+      descripcion: 'Desarrollo de aplicaciones y sistemas a medida con gestión de proyecto clara: hitos, entregables y documentación. Incluye web, APIs y aplicaciones que tu equipo puede operar y mantener.',
+      icono: '⚡',
+    },
+    {
+      id: 'datos',
+      titulo: 'Datos y dashboards',
+      descripcion: 'Modelado de datos, integración de fuentes y dashboards para que tomes decisiones con información real. Reportes automatizados, análisis y visualización en plataformas modernas.',
+      icono: '📊',
+    },
+    {
+      id: 'cloud',
+      titulo: 'Cloud y DevOps',
+      descripcion: 'Diseño y operación de aplicaciones en la nube (GCP, AWS). Infraestructura como código, despliegues automatizados, monitoreo y buenas prácticas para que tus sistemas sean estables y escalables.',
+      icono: '☁️',
+    },
+    {
+      id: 'integraciones',
+      titulo: 'Integraciones',
+      descripcion: 'Conexión entre sistemas, APIs y flujos de datos. Para que tu operación deje de depender de copiar y pegar entre planillas y aplicaciones.',
+      icono: '🔗',
+    },
+    {
+      id: 'operacionales',
+      titulo: 'Sistemas operacionales',
+      descripcion: 'Soluciones que apoyan el día a día: backoffice, automatización de procesos, reservas, gestión interna. Con foco en que el negocio opere con orden.',
+      icono: '🛠️',
+    },
+  ];
+
+  const SDLABCAR_WHATSAPP = 'https://wa.me/56975204813?text=' + encodeURIComponent('Hola! Quiero información sobre SDLabCar (sistema de rentacar).');
 
   // Función para filtrar servicios
   const filtrarServicios = (criterio, categoria) => {
@@ -101,10 +139,42 @@ const Servicios = () => {
             <h1 className="text-4xl font-extrabold leading-tight text-white md:text-5xl">
               Nuestros Servicios
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-white/90 text-lg">
-              Soluciones tecnológicas completas para tu empresa. Desde desarrollo web hasta inteligencia artificial. 
-              <a href="/contacto" className="text-white underline ml-1">Cotiza tu proyecto →</a> o <a href="/nosotros" className="text-white underline ml-1">conoce nuestra experiencia →</a>
+            <p className="mt-4 max-w-2xl mx-auto text-white/90 text-base">
+              Software a medida, datos y automatización. <Link to="/contacto" className="text-white underline">Cotiza</Link> · <Link to="/nosotros" className="text-white underline">Nosotros</Link>
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ÁREAS EN LAS QUE TRABAJAMOS */}
+      <section className="bg-blancoCremoso/40 py-10 sm:py-14">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <header className="text-center mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Áreas</h2>
+          </header>
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {areas.map((area) => (
+              <article
+                key={area.id}
+                className="rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-5 shadow-sm transition-all duration-300 hover:shadow-md"
+              >
+                <div className="grid h-10 w-10 sm:h-12 sm:w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white text-lg sm:text-xl mb-3 sm:mb-4">
+                  {area.icono}
+                </div>
+                <h3 className="text-base sm:text-lg font-extrabold text-azulOscuro mb-2 leading-tight">
+                  {area.titulo}
+                </h3>
+                <p className="text-xs sm:text-sm text-azulGrisaceo leading-relaxed">
+                  {area.descripcion}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          {/* SDLabCar */}
+          <div className="mt-6 rounded-xl border border-amber-500/30 bg-amber-50/80 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p className="text-sm text-azulGrisaceo"><strong className="text-azulOscuro">SDLabCar:</strong> rentacar que se ajusta al proceso de cada empresa.</p>
+            <a href={SDLABCAR_WHATSAPP} target="_blank" rel="noopener noreferrer" className="shrink-0 text-sm font-extrabold text-amber-700 hover:text-amber-800">Info →</a>
           </div>
         </div>
       </section>
@@ -112,13 +182,8 @@ const Servicios = () => {
       {/* PACKS DE SERVICIOS */}
       <section className="bg-white py-10 sm:py-14">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <header className="text-center mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro mb-3 sm:mb-4">
-              Packs de Servicios
-            </h2>
-            <p className="text-sm sm:text-base text-azulGrisaceo max-w-3xl mx-auto">
-              Soluciones completas diseñadas para resolver necesidades específicas de tu empresa
-            </p>
+          <header className="text-center mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Packs</h2>
           </header>
 
           <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -174,7 +239,7 @@ const Servicios = () => {
               <a
                 href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Web%20PYME%20Profesional.%20¿Me%20pueden%20ayudar?"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
               >
                 Cotizar por WhatsApp
@@ -226,7 +291,7 @@ const Servicios = () => {
               <a
                 href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Automatización%20%26%20Backoffice.%20¿Me%20pueden%20ayudar?"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-green-600 via-green-700 to-green-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
               >
                 Cotizar por WhatsApp
@@ -278,7 +343,7 @@ const Servicios = () => {
               <a
                 href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Datos%20%26%20Dashboards.%20¿Me%20pueden%20ayudar?"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-yellow-600 via-yellow-700 to-yellow-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
               >
                 Cotizar por WhatsApp
@@ -330,7 +395,7 @@ const Servicios = () => {
               <a
                 href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20IA%20Aplicada.%20¿Me%20pueden%20ayudar?"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
               >
                 Cotizar por WhatsApp
@@ -382,7 +447,7 @@ const Servicios = () => {
               <a
                 href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Acompañamiento%20Tecnológico.%20¿Me%20pueden%20ayudar?"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-red-600 via-red-700 to-red-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
               >
                 Cotizar por WhatsApp
@@ -392,134 +457,123 @@ const Servicios = () => {
         </div>
       </section>
 
-      {/* FILTROS Y BÚSQUEDA */}
-      <section className="bg-white border-b border-azulOscuro/10 sticky top-[104px] z-30 shadow-sm">
-        <div className="mx-auto w-full max-w-6xl px-4 py-4">
-          <div className="flex flex-col md:flex-row gap-4 items-center">
-            {/* Búsqueda */}
-            <div className="flex-1 w-full">
-              <input
-                type="text"
-                placeholder="Buscar servicios..."
-                value={busqueda}
-                onChange={handleBusquedaChange}
-                className="w-full h-11 rounded-lg border border-azulOscuro/20 bg-white px-4 text-azulOscuro placeholder:text-azulGrisaceo focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition"
-              />
-            </div>
+      {/* SERVICIOS COMPLEMENTARIOS (colapsable) */}
+      <section className="bg-blancoCremoso/40 py-10 sm:py-14">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <div className="rounded-xl sm:rounded-2xl border border-azulOscuro/15 bg-white overflow-hidden shadow-sm">
+            <button
+              type="button"
+              onClick={() => setComplementariosAbierto(!complementariosAbierto)}
+              className="w-full flex items-center justify-between gap-4 px-4 sm:px-6 py-4 text-left hover:bg-azulOscuro/5 transition"
+              aria-expanded={complementariosAbierto}
+            >
+              <h2 className="text-base sm:text-lg font-extrabold text-azulOscuro">
+                Servicios complementarios (soporte, capacitación, consultoría…)
+              </h2>
+              <span className="shrink-0 grid h-10 w-10 place-items-center rounded-full bg-azulOscuro/10 text-azulOscuro transition-transform duration-200" style={{ transform: complementariosAbierto ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </button>
 
-            {/* Filtros por categoría */}
-            <div className="flex flex-wrap gap-2">
-              {categorias.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => handleCategoriaChange(cat)}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
-                    categoriaSeleccionada === cat
-                      ? 'bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm'
-                      : 'bg-white border border-azulOscuro/20 text-azulOscuro hover:bg-azulOscuro/5'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICIOS GRID */}
-      <section className="bg-blancoCremoso/40 py-14">
-        <div className="mx-auto w-full max-w-6xl px-4">
-          {serviciosFiltrados.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {serviciosFiltrados.map((servicio) => (
-                <article
-                  key={servicio.id}
-                  className="group rounded-2xl border border-azulOscuro/10 bg-white overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-                >
-                  {/* Imagen */}
-                  <div className="relative aspect-video overflow-hidden bg-azulOscuro/5">
-                    <img
-                      src={servicio.imagen_url}
-                      alt={servicio.nombre}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      onError={(e) => {
-                        e.target.src = '/logo_chico.jpg';
-                      }}
-                    />
-                    <div className="absolute top-3 right-3">
-                      <span className="px-2 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold text-azulOscuro">
-                        {servicio.categoria}
-                      </span>
+            {complementariosAbierto && (
+              <div className="border-t border-azulOscuro/10">
+                {/* Filtros */}
+                <div className="p-4 sm:p-6 bg-white border-b border-azulOscuro/10">
+                  <div className="flex flex-col md:flex-row gap-4 items-center">
+                    <div className="flex-1 w-full">
+                      <input
+                        type="text"
+                        placeholder="Buscar servicios..."
+                        value={busqueda}
+                        onChange={handleBusquedaChange}
+                        className="w-full h-11 rounded-lg border border-azulOscuro/20 bg-white px-4 text-azulOscuro placeholder:text-azulGrisaceo focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition"
+                      />
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {categorias.map((cat) => (
+                        <button
+                          key={cat}
+                          onClick={() => handleCategoriaChange(cat)}
+                          type="button"
+                          className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
+                            categoriaSeleccionada === cat
+                              ? 'bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm'
+                              : 'bg-white border border-azulOscuro/20 text-azulOscuro hover:bg-azulOscuro/5'
+                          }`}
+                        >
+                          {cat}
+                        </button>
+                      ))}
                     </div>
                   </div>
+                </div>
 
-                  {/* Contenido */}
-                  <div className="p-5">
-                    <h3 className="text-lg font-extrabold text-azulOscuro line-clamp-2 mb-2">
-                      {servicio.nombre}
-                    </h3>
-                    <p className="text-sm text-azulGrisaceo line-clamp-3 mb-4">
-                      {servicio.descripcion}
-                    </p>
-
-                    {/* Botón */}
-                    <a
-                      href="/contacto"
-                      className="inline-flex items-center justify-center w-full rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-4 py-2.5 text-sm font-extrabold text-white shadow-sm hover:shadow-md transition-all duration-200 hover:scale-[1.02]"
-                    >
-                      Cotizar Servicio
-                      <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </a>
-                  </div>
-                </article>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-azulOscuro/10 mb-4">
-                <svg className="w-8 h-8 text-azulGrisaceo" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+                {/* Grid de servicios */}
+                <div className="p-4 sm:p-6">
+                  {serviciosFiltrados.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                      {serviciosFiltrados.map((servicio) => (
+                        <article
+                          key={servicio.id}
+                          className="group rounded-2xl border border-azulOscuro/10 bg-white overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                        >
+                          <div className="relative aspect-video overflow-hidden bg-azulOscuro/5">
+                            <img
+                              src={servicio.imagen_url}
+                              alt={servicio.nombre}
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                              onError={(e) => {
+                                e.target.src = '/logo_chico.jpg';
+                              }}
+                            />
+                            <div className="absolute top-3 right-3">
+                              <span className="px-2 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold text-azulOscuro">
+                                {servicio.categoria}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="p-5">
+                            <h3 className="text-lg font-extrabold text-azulOscuro line-clamp-2 mb-2">
+                              {servicio.nombre}
+                            </h3>
+                            <p className="text-sm text-azulGrisaceo line-clamp-3 mb-4">
+                              {servicio.descripcion}
+                            </p>
+                            <Link
+                              to="/contacto"
+                              className="inline-flex items-center justify-center w-full rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-4 py-2.5 text-sm font-extrabold text-white shadow-sm hover:shadow-md transition-all duration-200 hover:scale-[1.02]"
+                            >
+                              Cotizar Servicio
+                              <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </Link>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-12">
+                      <p className="text-azulGrisaceo">No se encontraron servicios. Prueba con otros términos o categoría.</p>
+                    </div>
+                  )}
+                </div>
               </div>
-              <h3 className="text-xl font-extrabold text-azulOscuro mb-2">No se encontraron servicios</h3>
-              <p className="text-azulGrisaceo">Intenta con otros términos de búsqueda o selecciona otra categoría.</p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </section>
 
       {/* CTA SECTION */}
       <section className="bg-white py-10 sm:py-14">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="rounded-2xl sm:rounded-3xl border-2 border-blue-600 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 md:p-12 text-center">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 sm:mb-4">
-              ¿Listo para empezar tu proyecto?
-            </h2>
-            <p className="text-white/90 mb-2 text-sm sm:text-base">
-              Empresa regional de Coyhaique. Acompañamiento cercano con talento local y supervisión senior.
-            </p>
-            <p className="text-white/80 mb-5 sm:mb-6 text-xs sm:text-sm max-w-2xl mx-auto">
-              Contáctanos y te ayudamos a encontrar la solución perfecta para tu empresa.
-            </p>
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3">
-              <a
-                href="/contacto"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 hover:shadow-xl transition touch-manipulation"
-              >
-                Cotiza tu proyecto
-              </a>
-              <a
-                href="https://calendly.com/surdigitallabs/30min"
-                target="_blank"
-                rel="noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border-2 border-white/40 bg-white/10 px-6 py-3.5 text-sm font-bold text-white hover:bg-white/20 transition touch-manipulation"
-              >
-                Agenda diagnóstico
-              </a>
-            </div>
+          <div className="rounded-2xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 text-center">
+            <p className="text-white/90 mb-4 text-sm">Respuesta en menos de 24 h.</p>
+            <Link to="/contacto" className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 transition">
+              Cotiza tu proyecto
+            </Link>
           </div>
         </div>
       </section>

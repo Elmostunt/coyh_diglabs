@@ -1,19 +1,9 @@
 // src/components/Navbar.js
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useUsuario } from '../context/UsuarioContext';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const navigate = useNavigate();
-  const { usuario, cerrarSesion } = useUsuario();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleCerrarSesion = () => {
-    cerrarSesion();
-    alert('Has cerrado sesión.');
-    navigate('/');
-    setIsMenuOpen(false);
-  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -30,13 +20,13 @@ const Navbar = () => {
         <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
           <Link to="/" className="flex items-center gap-2 sm:gap-3" onClick={closeMenu}>
             <img
-              src="logo_chico.jpg"
+              src="/logo_chico.jpg"
               className="h-10 w-10 sm:h-12 sm:w-12 rounded-lg sm:rounded-xl object-cover ring-1 ring-white/20 shrink-0"
               alt="logo"
             />
             <div className="leading-tight min-w-0">
               <div className="text-white font-extrabold tracking-tight text-sm sm:text-base truncate">Sur Digital Labs</div>
-              <div className="text-xs text-white/80 hidden xs:block">Software · Datos · Cloud</div>
+              <div className="text-xs text-white/80 hidden xs:block">Software · Datos · Automatización</div>
             </div>
           </Link>
         </div>
@@ -51,32 +41,12 @@ const Navbar = () => {
 
         {/* Acciones Desktop */}
         <div className="hidden md:flex items-center gap-3">
-          {usuario ? (
-            <>
-              <span className="hidden lg:inline text-white/90 text-sm">
-                Bienvenido, <strong className="text-white">{usuario.nombre}</strong>
-              </span>
-              <Link
-                to="/mi-perfil"
-                className="hidden sm:inline-flex items-center rounded-full border border-white/25 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10 transition touch-manipulation"
-              >
-                Mi Perfil
-              </Link>
-              <button
-                onClick={handleCerrarSesion}
-                className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-extrabold text-blue-700 shadow-sm hover:bg-white/90 transition touch-manipulation"
-              >
-                Cerrar sesión
-              </button>
-            </>
-          ) : (
-            <Link
-              to="/contacto"
-              className="inline-flex items-center rounded-full border border-white/25 px-4 sm:px-5 py-2 text-sm font-extrabold text-white hover:bg-white/10 transition touch-manipulation"
-            >
-              Contáctanos
-            </Link>
-          )}
+          <Link
+            to="/contacto"
+            className="inline-flex items-center rounded-full border border-white/25 px-4 sm:px-5 py-2 text-sm font-extrabold text-white hover:bg-white/10 transition touch-manipulation"
+          >
+            Contáctanos
+          </Link>
         </div>
 
         {/* Botón Menú Móvil */}
@@ -130,31 +100,13 @@ const Navbar = () => {
             >
               Empleos
             </Link>
-            {usuario ? (
-              <>
-                <Link
-                  to="/mi-perfil"
-                  className="block py-2 text-white font-semibold hover:text-white/80 transition touch-manipulation"
-                  onClick={closeMenu}
-                >
-                  Mi Perfil
-                </Link>
-                <button
-                  onClick={handleCerrarSesion}
-                  className="w-full text-left py-2 text-white font-extrabold hover:text-white/80 transition touch-manipulation"
-                >
-                  Cerrar sesión
-                </button>
-              </>
-            ) : (
-              <Link
-                to="/contacto"
-                className="block py-2 text-white font-extrabold hover:text-white/80 transition touch-manipulation"
-                onClick={closeMenu}
-              >
-                Contáctanos
-              </Link>
-            )}
+            <Link
+              to="/contacto"
+              className="block py-2 text-white font-extrabold hover:text-white/80 transition touch-manipulation"
+              onClick={closeMenu}
+            >
+              Contáctanos
+            </Link>
           </div>
         </div>
       )}

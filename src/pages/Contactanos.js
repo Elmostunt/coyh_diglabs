@@ -5,6 +5,7 @@ const Contactanos = () => {
     nombre: "",
     email: "",
     mensaje: "",
+    website: "", // honeypot: debe quedar vacío (anti-spam)
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,24 +16,9 @@ const Contactanos = () => {
     document.title = "Contacto - Cotiza tu Proyecto de Software en Coyhaique | Sur Digital Labs";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Contacta con Sur Digital Labs en Coyhaique, Patagonia. Cotiza tu proyecto de desarrollo web, automatización o IA. Agenda diagnóstico gratuito o escríbenos por WhatsApp. Empresa regional con talento local.');
+      metaDescription.setAttribute('content', 'Contacta con Sur Digital Labs en Coyhaique, Patagonia. Cotiza tu proyecto de software, datos o automatización. Agenda diagnóstico gratuito o escríbenos por WhatsApp. Respuesta en menos de 24 h.');
     }
   }, []);
-
-  const servicios = [
-    "Desarrollo Web",
-    "Aplicaciones Móviles",
-    "E-commerce",
-    "APIs y Backend",
-    "Ciencia de Datos",
-    "Machine Learning / AI",
-    "Cloud y DevOps",
-    "Seguridad Informática",
-    "Automatización",
-    "Consultoría",
-    "Capacitaciones",
-    "Otro",
-  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,19 +30,27 @@ const Contactanos = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.website) return; // honeypot: si está rellenado, es spam
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Simular envío (aquí deberías integrar con tu API)
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Simular envío (aquí deberías integrar con tu API)
+      await new Promise((resolve, reject) => {
+        setTimeout(resolve, 1500);
+      });
       setSubmitStatus("success");
       setFormData({
         nombre: "",
         email: "",
         mensaje: "",
+        website: "",
       });
-    }, 1500);
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -71,8 +65,8 @@ const Contactanos = () => {
             <h1 className="text-4xl font-extrabold leading-tight text-white md:text-5xl">
               Contáctanos
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-white/90 text-lg">
-              Cuéntanos tu proyecto y te responderemos en menos de 24 horas
+            <p className="mt-4 max-w-2xl mx-auto text-white/90 text-base">
+              Respuesta en menos de 24 h.
             </p>
           </div>
         </div>
@@ -101,7 +95,25 @@ const Contactanos = () => {
                 </div>
               )}
 
+              {submitStatus === "error" && (
+                <div className="mb-6 rounded-lg bg-red-50 border border-red-200 p-4" role="alert">
+                  <div className="flex items-center gap-2">
+                    <svg className="h-5 w-5 text-red-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p className="text-sm font-semibold text-red-800">
+                      No pudimos enviar el mensaje. Revisa tu conexión e inténtalo de nuevo.
+                    </p>
+                  </div>
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot: oculto para usuarios; los bots lo rellenan */}
+                <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
+                  <label htmlFor="website">No completar</label>
+                  <input type="text" id="website" name="website" value={formData.website} onChange={handleChange} tabIndex={-1} autoComplete="off" />
+                </div>
                 <div>
                   <label htmlFor="nombre" className="block text-sm font-semibold text-azulOscuro mb-2">
                     Nombre completo *
@@ -177,10 +189,10 @@ const Contactanos = () => {
                     <div>
                       <h3 className="font-extrabold text-azulOscuro mb-1">Email</h3>
                       <a
-                        href="mailto:surdigitallabs@gmail.cl"
+                        href="mailto:surdigitallabs@gmail.com"
                         className="text-azulGrisaceo hover:text-blue-600 transition"
                       >
-                        surdigitallabs@gmail.cl
+                        surdigitallabs@gmail.com
                       </a>
                     </div>
                   </div>
@@ -219,45 +231,16 @@ const Contactanos = () => {
 
               {/* ACCIONES RÁPIDAS */}
               <div className="rounded-2xl border-2 border-blue-600 bg-gradient-to-br from-blue-50 to-white p-6 md:p-8 shadow-lg">
-                <h3 className="text-xl font-extrabold text-azulOscuro mb-4">
-                  Contacto directo
-                </h3>
-                <p className="text-sm text-azulGrisaceo mb-4">
-                  Empresa regional de Coyhaique. Acompañamiento cercano con talento local y supervisión senior.
-                </p>
-                <div className="space-y-3">
-                  <a
-                    href="https://calendly.com/surdigitallabs/30min"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-between rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-5 py-3.5 text-white font-extrabold hover:shadow-lg transition group touch-manipulation"
-                  >
-                    <span>Agenda diagnóstico</span>
-                    <svg className="h-5 w-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                <h3 className="text-lg font-extrabold text-azulOscuro mb-3">Contacto directo</h3>
+                <div className="space-y-2">
+                  <a href="https://calendly.com/surdigitallabs/30min" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between rounded-lg bg-blue-600 px-4 py-3 text-white font-extrabold hover:bg-blue-700 transition text-sm">
+                    Agenda llamada
                   </a>
-                  <a
-                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Web%20PYME%20Profesional.%20¿Me%20pueden%20ayudar?"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-between rounded-lg bg-green-600 px-5 py-3.5 text-white font-extrabold hover:bg-green-700 hover:shadow-lg transition group touch-manipulation"
-                  >
-                    <span>WhatsApp (Pack Web PYME)</span>
-                    <svg className="h-5 w-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                  <a href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20o%20consultar." target="_blank" rel="noopener noreferrer" className="flex items-center justify-between rounded-lg bg-green-600 px-4 py-3 text-white font-extrabold hover:bg-green-700 transition text-sm">
+                    WhatsApp (general)
                   </a>
-                  <a
-                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20un%20servicio.%20¿Me%20pueden%20ayudar?"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-between rounded-lg border-2 border-green-600 bg-white px-5 py-3.5 text-green-700 font-extrabold hover:bg-green-50 transition group touch-manipulation"
-                  >
-                    <span>WhatsApp (Otro servicio)</span>
-                    <svg className="h-5 w-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                  <a href="https://wa.me/56975204813?text=Hola!%20Quiero%20información%20sobre%20SDLabCar." target="_blank" rel="noopener noreferrer" className="flex items-center justify-between rounded-lg border border-amber-500 bg-amber-50 px-4 py-3 text-amber-800 font-extrabold hover:bg-amber-100 transition text-sm">
+                    WhatsApp (SDLabCar)
                   </a>
                 </div>
               </div>
@@ -267,21 +250,10 @@ const Contactanos = () => {
       </section>
 
       {/* HORARIOS */}
-      <section className="bg-white py-14">
+      <section className="bg-white py-8">
         <div className="mx-auto w-full max-w-6xl px-4">
-          <div className="rounded-2xl border border-azulOscuro/10 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-8 md:p-12 text-center">
-            <h2 className="text-2xl font-extrabold text-white mb-4">
-              Horarios de atención
-            </h2>
-            <p className="text-white/90 mb-2">
-              <strong>Lunes a Viernes:</strong> 9:00 - 18:00 (GMT-3)
-            </p>
-            <p className="text-white/90">
-              <strong>Sábados:</strong> 10:00 - 14:00
-            </p>
-            <p className="text-white/70 text-sm mt-4">
-              Respondemos emails y mensajes en menos de 24 horas
-            </p>
+          <div className="rounded-xl bg-blue-600/90 p-6 text-center">
+            <p className="text-white/90 text-sm">Lun–Vie 9:00–18:00 · Sáb 10:00–14:00 · Respuesta en menos de 24 h</p>
           </div>
         </div>
       </section>
