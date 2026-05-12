@@ -179,10 +179,10 @@ const Nosotros = () => {
         <div className="mx-auto w-full max-w-6xl px-4 py-16 md:py-20">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold leading-tight text-white md:text-5xl">
-              Nosotros
+              Tecnología con estándar profesional, desde la Patagonia.
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-white/90 text-lg">
-              Socio tecnológico con base en Coyhaique: software, datos y automatización con estándar profesional.
+            <p className="mt-4 max-w-2xl mx-auto text-white/90 text-base leading-relaxed">
+              Socio tecnológico con base en Coyhaique: software, datos y automatización para pymes y organizaciones que necesitan un partner técnico real.
             </p>
           </div>
         </div>
@@ -208,9 +208,6 @@ const Nosotros = () => {
               <p className="text-azulGrisaceo text-base mb-4">
                 Combinamos experiencia en proyectos complejos con compromiso por el talento tecnológico local: mentoría y supervisión en cada iniciativa.
               </p>
-              <div className="rounded-lg bg-amber-50 border border-amber-200 p-3 mb-6">
-                <p className="text-amber-800 text-sm"><strong className="text-amber-900">SDLabCar:</strong> sistema de rentacar que se adapta al proceso de cada empresa. <a href="https://wa.me/56975204813?text=Hola!%20Quiero%20información%20sobre%20SDLabCar." target="_blank" rel="noopener noreferrer" className="font-extrabold text-amber-700 hover:text-amber-800">Info →</a></p>
-              </div>
               <p className="text-azulGrisaceo text-base">
                 Nacimos en Coyhaique con la idea de acercar tecnología de calidad a la Patagonia: proyectos reales, formación y comunidad.
               </p>
@@ -219,21 +216,12 @@ const Nosotros = () => {
         </div>
       </section>
 
-      {/* EXPERIENCIA */}
-      <section className="bg-blancoCremoso/40 py-10">
-        <div className="mx-auto w-full max-w-6xl px-4">
-          <header className="text-center mb-8">
-            <h2 className="text-2xl font-extrabold text-azulOscuro">Experiencia</h2>
-            <p className="mt-2 text-sm text-azulGrisaceo max-w-2xl mx-auto">Proyectos descritos de forma anonimizada: problema, solución e impacto.</p>
-          </header>
-        </div>
-      </section>
-
       {/* PROYECTOS REPRESENTATIVOS */}
-      <section className="bg-white py-10">
+      <section className="bg-blancoHueso py-12 sm:py-14">
         <div className="mx-auto w-full max-w-6xl px-4">
-          <header className="text-center mb-8">
-            <h2 className="text-2xl font-extrabold text-azulOscuro">Proyectos representativos</h2>
+          <header className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Proyectos representativos</h2>
+            <p className="mt-2 text-sm text-azulGrisaceo max-w-2xl mx-auto">Casos reales descritos de forma anonimizada: problema, solución e impacto.</p>
           </header>
 
           <div className="space-y-8">
@@ -326,11 +314,11 @@ const Nosotros = () => {
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[
-              "Ordenar y profesionalizar su tecnología",
-              "Desarrollar software a medida",
-              "Automatizar procesos reales",
-              "Escalar con criterio, no improvisación",
-              "Acompañamiento cercano y comunicación clara",
+              "Empresas que quieren ordenar y profesionalizar su tecnología.",
+              "Organizaciones que necesitan software a medida, no soluciones genéricas.",
+              "Equipos que buscan automatizar procesos reales con impacto medible.",
+              "Pymes que quieren escalar con criterio, sin improvisar.",
+              "Clientes que valoran el acompañamiento cercano y la comunicación directa.",
             ].map((item, i) => (
               <div
                 key={i}
@@ -392,9 +380,10 @@ const Nosotros = () => {
       <section className="bg-white py-8">
         <div className="mx-auto w-full max-w-6xl px-4">
           <div className="rounded-2xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 text-center">
-            <p className="text-white/90 mb-4 text-sm">¿Proyecto en mente?</p>
-            <Link to="/contacto" className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 transition">
-              Contactar
+            <h2 className="text-2xl font-extrabold text-white mb-2">¿Proyecto en mente?</h2>
+            <p className="text-white/80 mb-6 text-sm">Coyhaique · Respuesta en menos de 24 h.</p>
+            <Link to="/contacto" className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 transition">
+              Cotiza tu proyecto
             </Link>
           </div>
         </div>

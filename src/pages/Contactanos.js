@@ -63,10 +63,10 @@ const Contactanos = () => {
         <div className="mx-auto w-full max-w-6xl px-4 py-16 md:py-20">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold leading-tight text-white md:text-5xl">
-              Contáctanos
+              Cuéntanos tu proyecto.
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-white/90 text-base">
-              Respuesta en menos de 24 h.
+            <p className="mt-4 max-w-2xl mx-auto text-white/90 text-base leading-relaxed">
+              Sin compromiso. Evaluamos tu caso y te respondemos en menos de 24 h.
             </p>
           </div>
         </div>

@@ -1,11 +1,13 @@
 // src/App.js
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Footer from "./pages/Footer";
 import Servicios from "./pages/Servicios";
+import ServiciosSoftware from "./pages/ServiciosSoftware";
+import ServiciosDatos from "./pages/ServiciosDatos";
 import Nosotros from "./pages/Nosotros";
 import Empleos from "./pages/Empleos";
 import Contactanos from "./pages/Contactanos";
@@ -16,14 +18,16 @@ const QUOTE_URL = "/contacto";
 const TOPBAR_HEIGHT = 44;
 
 function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
+  const { pathname } = useLocation();
+  const isDatos = pathname === '/datos';
+
   return (
     <div
-      className="
-        fixed top-0 left-0 right-0 z-50
-        bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
-        text-white shadow-lg
-        border-b border-white/10
-      "
+      className={`fixed top-0 left-0 right-0 z-50 text-white shadow-lg border-b border-white/10 ${
+        isDatos
+          ? 'bg-gradient-to-r from-green-600 via-green-700 to-green-800'
+          : 'bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700'
+      }`}
       style={{ height: TOPBAR_HEIGHT }}
     >
       <div className="mx-auto h-full w-full max-w-6xl px-2 sm:px-4 flex items-center justify-between gap-1 sm:gap-3 overflow-hidden">
@@ -59,14 +63,9 @@ function TopBar({ calendlyUrl, quoteUrl, whatsappUrl }) {
 
           <a
             href={quoteUrl}
-            className="
-              inline-flex items-center
-              px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-extrabold
-              bg-white text-blue-700
-              hover:bg-white/90 transition
-              focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40
-              touch-manipulation
-            "
+            className={`inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-extrabold bg-white hover:bg-white/90 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 touch-manipulation ${
+              isDatos ? 'text-green-700' : 'text-blue-700'
+            }`}
           >
             Cotiza
           </a>
@@ -119,6 +118,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/servicios" element={<Servicios />} />
+            <Route path="/software" element={<ServiciosSoftware />} />
+            <Route path="/datos" element={<ServiciosDatos />} />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/empleos" element={<Empleos />} />
             <Route path="/contacto" element={<Contactanos />} />

@@ -11,9 +11,9 @@ const folderName = "carrusel";
 const CALENDLY_URL = "https://calendly.com/surdigitallabs/30min";
 
 const TRUST = [
-  { kpi: "+6 años", title: "Experiencia", desc: "Software, datos y nube en producción." },
-  { kpi: "7–14 días", title: "Entrega", desc: "Roadmap, hitos y entregables claros." },
-  { kpi: "Seguridad", title: "Día 1", desc: "OWASP, IAM, backups y accesos." },
+  { kpi: "+6 años", title: "Experiencia" },
+  { kpi: "7–14 días", title: "Entrega" },
+  { kpi: "Seguridad", title: "Día 1" },
 ];
 
 const PROYECTOS = [
@@ -412,391 +412,75 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SERVICIOS RÁPIDOS */}
+      {/* ÁREAS PRINCIPALES */}
       <section className="bg-white py-10 sm:py-14">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <header className="text-center mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Nuestros Servicios</h2>
-            <p className="mt-2 text-sm text-azulGrisaceo">
-              <Link to="/servicios" className="text-blue-600 hover:text-blue-700 font-semibold">Ver servicios →</Link>
-            </p>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Nuestras áreas</h2>
+            <p className="mt-2 text-sm text-azulGrisaceo">Dos especialidades. Un solo socio tecnológico.</p>
           </header>
 
-          <div className="grid gap-4 sm:gap-6 sm:grid-cols-3">
+          <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
+            {/* Software */}
             <Link
-              to="/servicios"
-              className="group rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg touch-manipulation"
+              to="/software"
+              className="group rounded-2xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white p-6 sm:p-7 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 touch-manipulation flex flex-col"
             >
-              <div className="grid h-10 w-10 sm:h-12 sm:w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm mb-3 sm:mb-4">
-                <span className="text-base sm:text-lg">⚡</span>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 grid place-items-center text-2xl text-white shadow-sm shrink-0 p-3">
+                  ⚡
+                </div>
+                <div>
+                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-blue-800 text-xs font-bold mb-1">Software & Desarrollo</span>
+                  <p className="text-sm font-extrabold text-azulOscuro leading-snug">Construimos software que tu equipo puede operar.</p>
+                </div>
               </div>
-              <h3 className="text-base sm:text-lg font-extrabold text-azulOscuro mb-2">Desarrollo Web & Apps</h3>
-              <p className="text-xs sm:text-sm text-azulGrisaceo mb-3 sm:mb-4 leading-relaxed">
-                Sistemas y sitios que escalan y se mantienen.
-              </p>
-              <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-azulOscuro group-hover:text-blue-600 transition">
-                Ver servicios →
+              <ul className="space-y-1.5 mb-5 flex-1">
+                {['Web, apps y e-commerce', 'APIs y software a medida', 'Cloud & DevOps', 'Automatización de procesos'].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm text-azulGrisaceo">
+                    <span className="text-blue-500 font-bold shrink-0">✓</span> {item}
+                  </li>
+                ))}
+              </ul>
+              <span className="inline-flex items-center text-sm font-extrabold text-blue-600 group-hover:text-blue-700 transition">
+                Ver servicios de Software →
               </span>
             </Link>
 
+            {/* Datos */}
             <Link
-              to="/servicios"
-              className="group rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg touch-manipulation"
+              to="/datos"
+              className="group rounded-2xl border-2 border-green-200 bg-gradient-to-br from-green-50 to-white p-6 sm:p-7 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 touch-manipulation flex flex-col"
             >
-              <div className="grid h-10 w-10 sm:h-12 sm:w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm mb-3 sm:mb-4">
-                <span className="text-base sm:text-lg">🤖</span>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-green-600 to-green-800 grid place-items-center text-2xl text-white shadow-sm shrink-0 p-3">
+                  📊
+                </div>
+                <div>
+                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-green-100 border border-green-200 text-green-800 text-xs font-bold mb-1">Datos & Analítica</span>
+                  <p className="text-sm font-extrabold text-azulOscuro leading-snug">Convierte tus datos en decisiones.</p>
+                </div>
               </div>
-              <h3 className="text-base sm:text-lg font-extrabold text-azulOscuro mb-2">IA & Machine Learning</h3>
-              <p className="text-xs sm:text-sm text-azulGrisaceo mb-3 sm:mb-4 leading-relaxed">
-                Automatización y análisis con LLMs e integraciones seguras.
-              </p>
-              <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-azulOscuro group-hover:text-blue-600 transition">
-                Ver servicios →
-              </span>
-            </Link>
-
-            <Link
-              to="/servicios"
-              className="group rounded-xl sm:rounded-2xl border border-azulOscuro/10 bg-white p-4 sm:p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg touch-manipulation"
-            >
-              <div className="grid h-10 w-10 sm:h-12 sm:w-12 place-items-center rounded-xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-sm mb-3 sm:mb-4">
-                <span className="text-base sm:text-lg">☁️</span>
-              </div>
-              <h3 className="text-base sm:text-lg font-extrabold text-azulOscuro mb-2">Cloud & DevOps</h3>
-              <p className="text-xs sm:text-sm text-azulGrisaceo mb-3 sm:mb-4 leading-relaxed">
-                Infraestructura clara, segura y reproducible.
-              </p>
-              <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-azulOscuro group-hover:text-blue-600 transition">
-                Ver servicios →
+              <ul className="space-y-1.5 mb-5 flex-1">
+                {['Dashboards y reportes ejecutivos', 'Pipelines ETL y Big Data', 'Machine Learning e IA aplicada', 'Consultoría y capacitaciones'].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm text-azulGrisaceo">
+                    <span className="text-green-500 font-bold shrink-0">✓</span> {item}
+                  </li>
+                ))}
+              </ul>
+              <span className="inline-flex items-center text-sm font-extrabold text-green-600 group-hover:text-green-700 transition">
+                Ver servicios de Datos →
               </span>
             </Link>
           </div>
 
-          {/* Stack + proceso */}
-          <div className="mt-8 sm:mt-10 rounded-xl sm:rounded-2xl border border-blue-200 bg-blue-50/50 p-4 sm:p-5">
+          {/* Stack */}
+          <div className="mt-6 sm:mt-8 rounded-xl border border-azulOscuro/10 bg-blancoHueso p-4 sm:p-5">
             <p className="text-xs sm:text-sm text-azulGrisaceo leading-relaxed">
-              <strong className="text-azulOscuro">Stack:</strong> GCP, AWS, Terraform, FastAPI, React/Next.js, Python, LangChain. <strong className="text-azulOscuro">Proceso:</strong> análisis, hitos claros, documentación. Pymes de retail, servicios, turismo y administración en Chile y la región.
+              <strong className="text-azulOscuro">Stack:</strong> GCP, AWS, Terraform, FastAPI, React/Next.js, Python, LangChain, BigQuery, Power BI.{' '}
+              <strong className="text-azulOscuro">Clientes:</strong> pymes de retail, servicios, turismo y administración en Chile y la región.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* SDLabCar */}
-      <section className="bg-white py-6 sm:py-8">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="rounded-xl border border-amber-500/30 bg-amber-50/80 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <p className="text-sm text-azulGrisaceo">
-              <strong className="text-azulOscuro">SDLabCar:</strong> sistema de rentacar que se ajusta al proceso de cada empresa.
-            </p>
-            <a href="https://wa.me/56975204813?text=Hola!%20Quiero%20información%20sobre%20SDLabCar." target="_blank" rel="noopener noreferrer" className="shrink-0 text-sm font-extrabold text-amber-700 hover:text-amber-800">
-              Más info →
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* PACKS DE SERVICIOS */}
-      <section className="bg-blancoCremoso/40 py-10 sm:py-14">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <header className="text-center mb-6 sm:mb-8">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-azulOscuro">Packs</h2>
-          </header>
-
-          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {/* Pack 1: Web PYME Profesional - PRINCIPAL */}
-            <article className="group relative rounded-lg sm:rounded-xl border-2 border-blue-600 bg-gradient-to-br from-blue-50 to-white p-3 sm:p-4 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 overflow-hidden">
-              <div className="flex items-center justify-between mb-2">
-                <span className="px-2 py-0.5 rounded-full bg-blue-600 text-white text-xs font-extrabold">
-                  Esencial
-                </span>
-                <span className="px-1.5 py-0.5 rounded bg-yellow-400 text-yellow-900 text-xs font-extrabold">
-                  ⭐ PRINCIPAL
-                </span>
-              </div>
-              <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
-                Pack Web PYME Profesional
-              </h3>
-              
-              {/* Contenido expandido en hover */}
-              <div className="max-h-0 group-hover:max-h-[600px] transition-all duration-300 overflow-hidden">
-                <div className="pt-2">
-                  <p className="text-xs text-azulGrisaceo mb-1.5">
-                    <strong className="text-azulOscuro">Ideal para:</strong> Pymes, emprendedores, servicios locales
-                  </p>
-                  <p className="text-xs text-azulGrisaceo mb-2">
-                    <strong className="text-azulOscuro">Resuelve:</strong> Presencia digital + conversión
-                  </p>
-                  <div className="space-y-1 mb-2">
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
-                      <span>Web corporativa (5–7 secciones)</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
-                      <span>Diseño responsive</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
-                      <span>SEO básico</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
-                      <span>Formulario + WhatsApp</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-blue-600 mt-0.5 shrink-0">✓</span>
-                      <span>Analytics configurado</span>
-                    </div>
-                  </div>
-                  <div className="rounded bg-blue-100 border border-blue-200 p-2 mb-2">
-                    <p className="text-xs text-blue-900 font-semibold leading-tight mb-1">
-                      <strong>Resultado:</strong> Web profesional que genera contactos.
-                    </p>
-                    <p className="text-xs text-blue-800">
-                      <strong>Tiempo:</strong> 7-14 días
-                    </p>
-                  </div>
-                  <a
-                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Web%20PYME%20Profesional.%20¿Me%20pueden%20ayudar?"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
-                  >
-                    Cotizar por WhatsApp
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            {/* Pack 2: Automatización & Backoffice */}
-            <article className="group relative rounded-lg sm:rounded-xl border-2 border-green-600 bg-gradient-to-br from-green-50 to-white p-3 sm:p-4 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 overflow-hidden">
-              <div className="flex items-center justify-between mb-2">
-                <span className="px-2 py-0.5 rounded-full bg-green-600 text-white text-xs font-extrabold">
-                  Eficiencia
-                </span>
-              </div>
-              <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
-                Pack Automatización & Backoffice
-              </h3>
-              
-              <div className="max-h-0 group-hover:max-h-[600px] transition-all duration-300 overflow-hidden">
-                <div className="pt-2">
-                  <p className="text-xs text-azulGrisaceo mb-1.5">
-                    <strong className="text-azulOscuro">Ideal para:</strong> Empresas con procesos manuales
-                  </p>
-                  <p className="text-xs text-azulGrisaceo mb-2">
-                    <strong className="text-azulOscuro">Resuelve:</strong> Pérdida de tiempo, Excel infinito, errores
-                  </p>
-                  <div className="space-y-1 mb-2">
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-green-600 mt-0.5 shrink-0">✓</span>
-                      <span>Levantamiento de procesos</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-green-600 mt-0.5 shrink-0">✓</span>
-                      <span>Automatización (formularios, flujos, integraciones)</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-green-600 mt-0.5 shrink-0">✓</span>
-                      <span>Backend en la nube</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-green-600 mt-0.5 shrink-0">✓</span>
-                      <span>Documentación básica</span>
-                    </div>
-                  </div>
-                  <div className="rounded bg-green-100 border border-green-200 p-2 mb-2">
-                    <p className="text-xs text-green-900 font-semibold leading-tight mb-1">
-                      <strong>Resultado:</strong> Menos tareas manuales, más orden.
-                    </p>
-                    <p className="text-xs text-green-800">
-                      <strong>Tiempo:</strong> 14-21 días
-                    </p>
-                  </div>
-                  <a
-                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Automatización%20%26%20Backoffice.%20¿Me%20pueden%20ayudar?"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-green-600 via-green-700 to-green-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
-                  >
-                    Cotizar por WhatsApp
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            {/* Pack 3: Datos & Dashboards */}
-            <article className="group relative rounded-lg sm:rounded-xl border-2 border-yellow-600 bg-gradient-to-br from-yellow-50 to-white p-3 sm:p-4 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 overflow-hidden">
-              <div className="flex items-center justify-between mb-2">
-                <span className="px-2 py-0.5 rounded-full bg-yellow-600 text-white text-xs font-extrabold">
-                  Inteligencia
-                </span>
-              </div>
-              <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
-                Pack Datos & Dashboards
-              </h3>
-              
-              <div className="max-h-0 group-hover:max-h-[600px] transition-all duration-300 overflow-hidden">
-                <div className="pt-2">
-                  <p className="text-xs text-azulGrisaceo mb-1.5">
-                    <strong className="text-azulOscuro">Ideal para:</strong> Empresas que operan pero no miden bien
-                  </p>
-                  <p className="text-xs text-azulGrisaceo mb-2">
-                    <strong className="text-azulOscuro">Resuelve:</strong> Decisiones a ciegas
-                  </p>
-                  <div className="space-y-1 mb-2">
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-yellow-600 mt-0.5 shrink-0">✓</span>
-                      <span>Modelo de datos simple</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-yellow-600 mt-0.5 shrink-0">✓</span>
-                      <span>Integración de fuentes</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-yellow-600 mt-0.5 shrink-0">✓</span>
-                      <span>Dashboard ejecutivo</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-yellow-600 mt-0.5 shrink-0">✓</span>
-                      <span>Métricas clave del negocio</span>
-                    </div>
-                  </div>
-                  <div className="rounded bg-yellow-100 border border-yellow-200 p-2 mb-2">
-                    <p className="text-xs text-yellow-900 font-semibold leading-tight mb-1">
-                      <strong>Resultado:</strong> Ver el negocio con datos claros.
-                    </p>
-                    <p className="text-xs text-yellow-800">
-                      <strong>Tiempo:</strong> 21-30 días
-                    </p>
-                  </div>
-                  <a
-                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Datos%20%26%20Dashboards.%20¿Me%20pueden%20ayudar?"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-yellow-600 via-yellow-700 to-yellow-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
-                  >
-                    Cotizar por WhatsApp
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            {/* Pack 4: IA Aplicada */}
-            <article className="group relative rounded-lg sm:rounded-xl border-2 border-purple-600 bg-gradient-to-br from-purple-50 to-white p-3 sm:p-4 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 overflow-hidden">
-              <div className="flex items-center justify-between mb-2">
-                <span className="px-2 py-0.5 rounded-full bg-purple-600 text-white text-xs font-extrabold">
-                  Innovación
-                </span>
-              </div>
-              <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
-                Pack IA Aplicada / Soluciones a Medida
-              </h3>
-              
-              <div className="max-h-0 group-hover:max-h-[600px] transition-all duration-300 overflow-hidden">
-                <div className="pt-2">
-                  <p className="text-xs text-azulGrisaceo mb-1.5">
-                    <strong className="text-azulOscuro">Ideal para:</strong> Empresas con necesidad específica
-                  </p>
-                  <p className="text-xs text-azulGrisaceo mb-2">
-                    <strong className="text-azulOscuro">Resuelve:</strong> Tareas complejas, análisis, asistencia interna
-                  </p>
-                  <div className="space-y-1 mb-2">
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
-                      <span>Diagnóstico del caso</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
-                      <span>Diseño de solución con IA / LLM</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
-                      <span>Integración con backend</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-purple-600 mt-0.5 shrink-0">✓</span>
-                      <span>Control y seguridad</span>
-                    </div>
-                  </div>
-                  <div className="rounded bg-purple-100 border border-purple-200 p-2 mb-2">
-                    <p className="text-xs text-purple-900 font-semibold leading-tight mb-1">
-                      <strong>Resultado:</strong> Uso real de IA, no demo.
-                    </p>
-                    <p className="text-xs text-purple-800">
-                      <strong>Tiempo:</strong> 30-45 días
-                    </p>
-                  </div>
-                  <a
-                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20IA%20Aplicada.%20¿Me%20pueden%20ayudar?"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
-                  >
-                    Cotizar por WhatsApp
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            {/* Pack 5: Acompañamiento Tecnológico */}
-            <article className="group relative rounded-lg sm:rounded-xl border-2 border-red-600 bg-gradient-to-br from-red-50 to-white p-3 sm:p-4 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 overflow-hidden">
-              <div className="flex items-center justify-between mb-2">
-                <span className="px-2 py-0.5 rounded-full bg-red-600 text-white text-xs font-extrabold">
-                  Tranquilidad
-                </span>
-              </div>
-              <h3 className="text-sm sm:text-base font-extrabold text-azulOscuro mb-1.5 leading-tight">
-                Pack Acompañamiento Tecnológico
-              </h3>
-              
-              <div className="max-h-0 group-hover:max-h-[600px] transition-all duration-300 overflow-hidden">
-                <div className="pt-2">
-                  <p className="text-xs text-azulGrisaceo mb-1.5">
-                    <strong className="text-azulOscuro">Ideal para:</strong> Empresas sin área TI
-                  </p>
-                  <p className="text-xs text-azulGrisaceo mb-2">
-                    <strong className="text-azulOscuro">Resuelve:</strong> Desorden, malas decisiones técnicas
-                  </p>
-                  <div className="space-y-1 mb-2">
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-red-600 mt-0.5 shrink-0">✓</span>
-                      <span>Soporte mensual</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-red-600 mt-0.5 shrink-0">✓</span>
-                      <span>Revisión de sistemas</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-red-600 mt-0.5 shrink-0">✓</span>
-                      <span>Asesoría técnica</span>
-                    </div>
-                    <div className="flex items-start gap-1.5 text-xs text-azulGrisaceo">
-                      <span className="text-red-600 mt-0.5 shrink-0">✓</span>
-                      <span>Mejoras continuas</span>
-                    </div>
-                  </div>
-                  <div className="rounded bg-red-100 border border-red-200 p-2 mb-2">
-                    <p className="text-xs text-red-900 font-semibold leading-tight mb-1">
-                      <strong>Resultado:</strong> Tranquilidad y orden tecnológico.
-                    </p>
-                    <p className="text-xs text-red-800">
-                      <strong>Tiempo:</strong> Servicio mensual
-                    </p>
-                  </div>
-                  <a
-                    href="https://wa.me/56975204813?text=Hola!%20Quiero%20cotizar%20el%20Pack%20Acompañamiento%20Tecnológico.%20¿Me%20pueden%20ayudar?"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-red-600 via-red-700 to-red-800 px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:shadow-md transition touch-manipulation"
-                  >
-                    Cotizar por WhatsApp
-                  </a>
-                </div>
-              </div>
-            </article>
-          </div>
-
         </div>
       </section>
 
@@ -900,9 +584,10 @@ export default function Home() {
       {/* CTA FINAL */}
       <section className="bg-white py-8 sm:py-10">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="rounded-2xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 sm:p-8 text-center">
-            <p className="text-white/90 mb-4 text-sm sm:text-base">Coyhaique · Respuesta en menos de 24 h.</p>
-            <Link to="/contacto" className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 transition">
+          <div className="rounded-2xl bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-8 sm:p-10 text-center">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">¿Empezamos?</h2>
+            <p className="text-white/80 mb-6 text-sm">Coyhaique · Respuesta en menos de 24 h.</p>
+            <Link to="/contacto" className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-base font-extrabold text-blue-700 shadow-lg hover:bg-white/90 transition">
               Cotiza tu proyecto
             </Link>
           </div>

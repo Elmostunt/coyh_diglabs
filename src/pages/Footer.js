@@ -1,10 +1,17 @@
 // pages/Footer.jsx
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Footer() {
+  const { pathname } = useLocation();
+  const isDatos = pathname === '/datos';
+
   return (
-    <footer className="bg-gradient-to-r from-blue-950 via-blue-900 to-blue-800 text-white">
+    <footer className={`text-white ${
+      isDatos
+        ? 'bg-gradient-to-r from-green-950 via-green-900 to-green-800'
+        : 'bg-gradient-to-r from-blue-950 via-blue-900 to-blue-800'
+    }`}>
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 py-8 sm:py-12">
         <div className="grid gap-8 sm:gap-10 md:grid-cols-4">
           {/* Sobre */}
@@ -30,7 +37,8 @@ export default function Footer() {
             <h4 className="mb-3 sm:mb-4 font-extrabold text-sm sm:text-base">Enlaces</h4>
             <ul className="space-y-1.5 sm:space-y-2 text-white/80">
               <li><Link className="hover:text-white transition touch-manipulation block py-0.5" to="/">Inicio</Link></li>
-              <li><Link className="hover:text-white transition touch-manipulation block py-0.5" to="/servicios">Servicios</Link></li>
+              <li><Link className="hover:text-white transition touch-manipulation block py-0.5" to="/software">Software</Link></li>
+              <li><Link className="hover:text-white transition touch-manipulation block py-0.5" to="/datos">Datos</Link></li>
               <li><Link className="hover:text-white transition touch-manipulation block py-0.5" to="/nosotros">Nosotros</Link></li>
               <li><Link className="hover:text-white transition touch-manipulation block py-0.5" to="/contacto">Contacto</Link></li>
               <li>
@@ -84,12 +92,12 @@ export default function Footer() {
       </div>
 
       {/* CTA FOOTER */}
-      <div className="border-t border-white/10 bg-blue-900/50">
+      <div className={`border-t border-white/10 ${isDatos ? 'bg-green-900/50' : 'bg-blue-900/50'}`}>
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 py-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-sm text-white/90">¿Proyecto en mente?</p>
-            <Link to="/contacto" className="rounded-full bg-white px-5 py-2 text-sm font-extrabold text-blue-700 hover:bg-white/90 transition">
-              Cotiza
+            <Link to="/contacto" className={`rounded-full bg-white px-5 py-2 text-sm font-extrabold hover:bg-white/90 transition ${isDatos ? 'text-green-700' : 'text-blue-700'}`}>
+              Cotiza tu proyecto
             </Link>
           </div>
         </div>
