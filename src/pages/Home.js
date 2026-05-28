@@ -92,7 +92,7 @@ const TECHS = [
   { name: "Node.js",      slug: "nodedotjs" },
   { name: "TypeScript",   slug: "typescript" },
   { name: "Python",       slug: "python" },
-  { name: "AWS",          slug: "amazonaws" },
+  { name: "AWS",          slug: null },
   { name: "Google Cloud", slug: "googlecloud" },
   { name: "Docker",       slug: "docker" },
   { name: "Kubernetes",   slug: "kubernetes" },
@@ -383,11 +383,18 @@ export default function Home() {
           <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
             {TECHS.map((tech) => (
               <div key={tech.name} className="group flex flex-col items-center gap-2">
-                <img
-                  src={`https://cdn.simpleicons.org/${tech.slug}`}
-                  alt={tech.name}
-                  className="h-7 w-7 object-contain grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 dark:invert dark:grayscale dark:opacity-30 dark:group-hover:opacity-70 transition-all duration-300 select-none"
-                />
+                {tech.slug ? (
+                  <img
+                    src={`https://cdn.simpleicons.org/${tech.slug}`}
+                    alt={tech.name}
+                    onError={(e) => { e.target.replaceWith(Object.assign(document.createElement('span'), { className: 'h-7 flex items-center text-[11px] font-black text-slate-400', textContent: tech.name })); }}
+                    className="h-7 w-7 object-contain grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 dark:invert dark:grayscale dark:opacity-30 dark:group-hover:opacity-70 transition-all duration-300 select-none"
+                  />
+                ) : (
+                  <span className="h-7 flex items-center text-[11px] font-black text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors duration-200 select-none">
+                    {tech.name}
+                  </span>
+                )}
                 <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors duration-200">
                   {tech.name}
                 </span>
