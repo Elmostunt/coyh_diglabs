@@ -11,8 +11,8 @@ const useSEO = (title, description) => {
 };
 
 const TeamCard = ({ name, role, img, linkedin, email }) => (
-  <article className="group bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-    <div className="aspect-square overflow-hidden bg-slate-50">
+  <article className="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+    <div className="aspect-square overflow-hidden bg-slate-50 dark:bg-slate-700">
       <img
         src={img}
         alt={name}
@@ -21,8 +21,8 @@ const TeamCard = ({ name, role, img, linkedin, email }) => (
       />
     </div>
     <div className="p-5">
-      <h3 className="text-base font-bold text-slate-950 mb-0.5">{name}</h3>
-      <p className="text-sm text-slate-500 mb-4">{role}</p>
+      <h3 className="text-base font-bold text-slate-950 dark:text-white mb-0.5">{name}</h3>
+      <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">{role}</p>
       <div className="flex gap-2">
         {linkedin && (
           <a
@@ -30,7 +30,7 @@ const TeamCard = ({ name, role, img, linkedin, email }) => (
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${name} LinkedIn`}
-            className="h-9 w-9 grid place-items-center rounded-full bg-slate-50 border border-slate-200 text-slate-500 hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all duration-200"
+            className="h-9 w-9 grid place-items-center rounded-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all duration-200"
           >
             <svg viewBox="0 0 448 512" className="h-3.5 w-3.5 fill-current">
               <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 1 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
@@ -41,7 +41,7 @@ const TeamCard = ({ name, role, img, linkedin, email }) => (
           <a
             href={`mailto:${email}`}
             aria-label={`${name} email`}
-            className="h-9 w-9 grid place-items-center rounded-full bg-slate-50 border border-slate-200 text-slate-500 hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all duration-200"
+            className="h-9 w-9 grid place-items-center rounded-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all duration-200"
           >
             <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -103,7 +103,7 @@ const Nosotros = () => {
   const team = useMemo(() => [
     {
       name: "Guillermo Cárcamo Díaz",
-      role: "Fundador & Arquitecto de Software y Datos",
+      role: "Fundador · Ing. de Ejecución en Informática",
       img: "https://storage.googleapis.com/surdigilabs_images/nosotros/guillermo.png",
     },
     {
@@ -143,18 +143,18 @@ const Nosotros = () => {
     <div className="w-full">
 
       {/* ── HERO ── */}
-      <section className="bg-white py-16 sm:py-20 border-b border-slate-100">
+      <section className="bg-white dark:bg-slate-900 py-16 sm:py-20 border-b border-slate-100 dark:border-slate-700">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="mb-5 flex items-center gap-3">
             <span className="h-px w-8 bg-blue-600 inline-block" />
-            <span className="text-sm font-medium text-slate-500">Coyhaique · Patagonia</span>
+            <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Coyhaique · Patagonia</span>
           </div>
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             <div>
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-950 leading-tight tracking-tight">
+              <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-950 dark:text-white leading-tight tracking-tight">
                 Somos Sur Digital Labs. Hacemos tecnología que funciona.
               </h1>
-              <p className="mt-4 text-lg text-slate-600 leading-relaxed">
+              <p className="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
                 Un equipo técnico en Coyhaique — sin agencias grandes, sin intermediarios. Proyectos reales, plazos reales, comunicación directa.
               </p>
               <div className="mt-7 flex flex-col sm:flex-row gap-3">
@@ -166,7 +166,7 @@ const Nosotros = () => {
                 </Link>
                 <Link
                   to="/software"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-slate-700 hover:border-slate-300 transition-colors duration-200"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-600 px-6 py-3 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-500 transition-colors duration-200"
                 >
                   Ver servicios →
                 </Link>
@@ -174,19 +174,19 @@ const Nosotros = () => {
             </div>
 
             {/* Para quiénes — integrado en el hero */}
-            <div className="bg-slate-50 rounded-2xl border border-slate-100 p-6">
-              <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-widest mb-5">
+            <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6">
+              <h2 className="text-sm font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-5">
                 Para quiénes trabajamos
               </h2>
               <ul className="space-y-0">
                 {PARA_QUIENES.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 py-3 border-b border-slate-200 last:border-0">
+                  <li key={i} className="flex items-start gap-3 py-3 border-b border-slate-200 dark:border-slate-600 last:border-0">
                     <span className="h-5 w-5 rounded-full bg-blue-50 text-blue-600 grid place-items-center shrink-0 mt-0.5">
                       <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
                     </span>
-                    <p className="text-sm text-slate-600 leading-relaxed">{item}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{item}</p>
                   </li>
                 ))}
               </ul>
@@ -196,22 +196,22 @@ const Nosotros = () => {
       </section>
 
       {/* ── PROYECTOS ── */}
-      <section className="bg-slate-50 py-14 sm:py-16">
+      <section className="bg-slate-50 dark:bg-slate-800 py-14 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="max-w-xl mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950">Proyectos representativos</h2>
-            <p className="mt-2 text-sm text-slate-500">Casos reales descritos de forma anonimizada.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white">Proyectos representativos</h2>
+            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Casos reales descritos de forma anonimizada.</p>
           </div>
           <div className="space-y-4">
             {proyectos.map((proyecto, i) => (
-              <article key={i} className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
+              <article key={i} className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 shadow-sm">
                 <div className="flex items-start gap-4">
-                  <span className="text-3xl font-black text-slate-100 leading-none shrink-0 select-none w-10 text-right">
+                  <span className="text-3xl font-black text-slate-100 dark:text-slate-700 leading-none shrink-0 select-none w-10 text-right">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <div className="flex-1">
-                    <h3 className="text-base font-bold text-slate-950 mb-2">{proyecto.titulo}</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed mb-3">{proyecto.desc}</p>
+                    <h3 className="text-base font-bold text-slate-950 dark:text-white mb-2">{proyecto.titulo}</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">{proyecto.desc}</p>
                     <div className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0" />
                       <p className="text-sm font-medium text-emerald-700">{proyecto.resultado}</p>
@@ -225,26 +225,26 @@ const Nosotros = () => {
       </section>
 
       {/* ── PROCESO ── */}
-      <section className="bg-white py-14 sm:py-16">
+      <section className="bg-white dark:bg-slate-900 py-14 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="max-w-xl mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950">Cómo trabajamos</h2>
-            <p className="mt-2 text-sm text-slate-500">Un proceso claro desde el primer contacto.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white">Cómo trabajamos</h2>
+            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Un proceso claro desde el primer contacto.</p>
           </div>
           <div className="grid gap-0 max-w-2xl">
             {proceso.map((item, i) => (
               <div key={item.paso} className="flex gap-6 pb-8 last:pb-0">
                 <div className="flex flex-col items-center">
-                  <span className="text-4xl font-black text-slate-100 leading-none select-none">
+                  <span className="text-4xl font-black text-slate-100 dark:text-slate-700 leading-none select-none">
                     {item.paso}
                   </span>
                   {i < proceso.length - 1 && (
-                    <div className="w-px flex-1 bg-slate-100 mt-2" />
+                    <div className="w-px flex-1 bg-slate-100 dark:bg-slate-700 mt-2" />
                   )}
                 </div>
                 <div className="pt-1">
-                  <h3 className="text-base font-semibold text-slate-950 mb-1">{item.titulo}</h3>
-                  <p className="text-sm text-slate-500">{item.desc}</p>
+                  <h3 className="text-base font-semibold text-slate-950 dark:text-white mb-1">{item.titulo}</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -253,29 +253,29 @@ const Nosotros = () => {
       </section>
 
       {/* ── TALENTO REGIONAL (sección destacada) ── */}
-      <section className="bg-blue-600 py-12 sm:py-14">
+      <section className="bg-slate-950 dark:bg-slate-800 py-12 sm:py-14">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
                 Apostamos por el talento de aquí
               </h2>
-              <p className="text-blue-100 leading-relaxed">
+              <p className="text-slate-300 leading-relaxed">
                 Trabajamos con estudiantes y profesionales en formación de la región, siempre con supervisión senior. El resultado final cumple estándar profesional — eso no se negocia.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <div className="flex-1 bg-white/10 rounded-xl p-4 border border-white/20">
-                <div className="text-2xl font-black text-white mb-1">+6 años</div>
-                <div className="text-sm text-blue-200">Experiencia en proyectos</div>
+              <div className="flex-1 bg-white/5 rounded-xl p-4 border border-white/10">
+                <div className="text-2xl font-black text-white mb-1">+8 años</div>
+                <div className="text-sm text-slate-400">Experiencia en proyectos</div>
               </div>
-              <div className="flex-1 bg-white/10 rounded-xl p-4 border border-white/20">
+              <div className="flex-1 bg-white/5 rounded-xl p-4 border border-white/10">
                 <div className="text-2xl font-black text-white mb-1">7–14 días</div>
-                <div className="text-sm text-blue-200">Primera entrega</div>
+                <div className="text-sm text-slate-400">Primera entrega</div>
               </div>
-              <div className="flex-1 bg-white/10 rounded-xl p-4 border border-white/20">
+              <div className="flex-1 bg-white/5 rounded-xl p-4 border border-white/10">
                 <div className="text-2xl font-black text-white mb-1">Seguridad</div>
-                <div className="text-sm text-blue-200">Desde el día 1</div>
+                <div className="text-sm text-slate-400">Desde el día 1</div>
               </div>
             </div>
           </div>
@@ -283,15 +283,15 @@ const Nosotros = () => {
       </section>
 
       {/* ── EQUIPO ── */}
-      <section className="bg-white py-14 sm:py-16">
+      <section className="bg-white dark:bg-slate-900 py-14 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 mb-3">Equipo</h2>
-              <p className="text-slate-600 leading-relaxed mb-2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white mb-3">Equipo</h2>
+              <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-2">
                 Equipo pequeño, criterio grande. Cada proyecto lo lleva una persona senior de principio a fin — no pasa por cinco manos antes de llegar a ti.
               </p>
-              <p className="text-sm text-slate-400">
+              <p className="text-sm text-slate-400 dark:text-slate-500">
                 Y sí, Memo es real y está en cada reunión.
               </p>
             </div>
@@ -305,19 +305,19 @@ const Nosotros = () => {
       </section>
 
       {/* ── VALORES ── */}
-      <section className="bg-slate-50 py-14 sm:py-16">
+      <section className="bg-slate-50 dark:bg-slate-800 py-14 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950">Valores</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white">Valores</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {VALUES.map((v) => (
-              <article key={v.title} className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
+              <article key={v.title} className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 shadow-sm">
                 <div className={`h-10 w-10 rounded-xl ${v.bg} ${v.color} grid place-items-center mb-4`}>
                   {v.icon}
                 </div>
-                <h3 className="text-base font-bold text-slate-950 mb-1">{v.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{v.desc}</p>
+                <h3 className="text-base font-bold text-slate-950 dark:text-white mb-1">{v.title}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{v.desc}</p>
               </article>
             ))}
           </div>
@@ -325,7 +325,7 @@ const Nosotros = () => {
       </section>
 
       {/* ── CTA ── */}
-      <section className="bg-white py-12 sm:py-16">
+      <section className="bg-white dark:bg-slate-900 py-12 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="bg-slate-950 rounded-2xl sm:rounded-3xl px-8 py-12 sm:px-12 sm:py-14 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">

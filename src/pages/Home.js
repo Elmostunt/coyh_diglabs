@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const CALENDLY_URL = "https://calendly.com/surdigitallabs/30min";
 
 const STATS = [
-  { kpi: "+6 años", label: "Entregando proyectos" },
+  { kpi: "+8 años", label: "en la industria del software" },
   { kpi: "7–14 días", label: "Primera entrega funcional" },
   { kpi: "< 24 h", label: "Tiempo de respuesta" },
 ];
@@ -57,7 +57,7 @@ const VERTICALES = [
     categoria: "Turismo & Gastronomía",
     titulo: "Reservas online, menús digitales y operación sin papel",
     desc: "Hostales, restaurantes y tours que trabajan mientras duermes.",
-    img: "https://picsum.photos/seed/patagonia-tur/600/900",
+    img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=900&fit=crop&q=80",
     to: "/software",
   },
   {
@@ -65,7 +65,7 @@ const VERTICALES = [
     categoria: "Comercio & Retail",
     titulo: "Tu tienda abierta 24/7, desde Coyhaique para todo Chile",
     desc: "E-commerce, catálogo, pagos y gestión de pedidos integrados.",
-    img: "https://picsum.photos/seed/commerce-retail/600/900",
+    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=900&fit=crop&q=80",
     to: "/software",
   },
   {
@@ -73,7 +73,7 @@ const VERTICALES = [
     categoria: "Salud & Bienestar",
     titulo: "Citas online, fichas digitales y seguimiento de pacientes",
     desc: "Para clínicas, consultorios y centros de bienestar.",
-    img: "https://picsum.photos/seed/health-clinic/600/900",
+    img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=900&fit=crop&q=80",
     to: "/software",
   },
   {
@@ -81,14 +81,21 @@ const VERTICALES = [
     categoria: "Industria & Logística",
     titulo: "Trazabilidad, rutas y operaciones en tiempo real",
     desc: "Visibilidad total del proceso, sin hojas de cálculo.",
-    img: "https://picsum.photos/seed/industry-log/600/900",
+    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=900&fit=crop&q=80",
     to: "/datos",
   },
 ];
 
 const TECHS = [
-  "React", "Next.js", "Node.js", "TypeScript", "Python",
-  "AWS", "Google Cloud", "Docker", "Kubernetes",
+  { name: "React",        slug: "react" },
+  { name: "Next.js",      slug: "nextdotjs" },
+  { name: "Node.js",      slug: "nodedotjs" },
+  { name: "TypeScript",   slug: "typescript" },
+  { name: "Python",       slug: "python" },
+  { name: "AWS",          slug: "amazonaws" },
+  { name: "Google Cloud", slug: "googlecloud" },
+  { name: "Docker",       slug: "docker" },
+  { name: "Kubernetes",   slug: "kubernetes" },
 ];
 
 const CHART_BARS = [4, 6, 5, 7, 6, 8, 7, 9, 8, 10];
@@ -201,16 +208,9 @@ function HeroIllustration() {
             <span className="h-2 w-2 rounded-full bg-emerald-500" />
             <span className="text-xs font-semibold text-slate-700">Sistemas en línea</span>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="text-center">
-              <div className="text-xs font-black text-slate-900">+6 años</div>
-              <div className="text-[9px] text-slate-400">experiencia</div>
-            </div>
-            <div className="w-px h-5 bg-slate-100" />
-            <div className="text-center">
-              <div className="text-xs font-black text-slate-900">7–14 días</div>
-              <div className="text-[9px] text-slate-400">primera entrega</div>
-            </div>
+          <div className="flex items-center gap-3">
+            <span className="text-[10px] font-semibold text-slate-400 bg-slate-50 border border-slate-100 rounded-full px-2 py-0.5">GCP Certified</span>
+            <span className="text-[10px] font-semibold text-slate-400 bg-slate-50 border border-slate-100 rounded-full px-2 py-0.5">CI/CD activo</span>
           </div>
         </div>
 
@@ -230,34 +230,34 @@ export default function Home() {
     <div className="w-full">
 
       {/* ── HERO ── */}
-      <section className="bg-white py-16 sm:py-20 lg:py-24">
+      <section className="bg-white dark:bg-slate-900 py-16 sm:py-20 lg:py-24">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="mb-6 flex items-center gap-3">
             <span className="h-px w-8 bg-blue-600 inline-block" />
-            <span className="text-sm font-medium text-slate-500 tracking-wide">
+            <span className="text-sm font-medium text-slate-500 dark:text-slate-400 tracking-wide">
               Coyhaique · Patagonia, Chile
             </span>
           </div>
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-slate-950 leading-[1.1] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-slate-950 dark:text-white leading-[1.1] tracking-tight">
                 Construimos{" "}
                 <span className="text-blue-600">software</span>{" "}
                 que tu equipo puede operar sin depender de nosotros.
               </h1>
-              <p className="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-lg">
+              <p className="mt-5 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-lg">
                 Somos un equipo técnico en Coyhaique. Trabajamos con pymes y empresas que necesitan más que una página web.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-3">
                 <Link
                   to="/contacto"
-                  className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800 transition-colors duration-200"
+                  className="inline-flex items-center justify-center rounded-full bg-slate-950 dark:bg-white px-6 py-3 text-sm font-semibold text-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors duration-200"
                 >
                   Cotiza tu proyecto
                 </Link>
                 <Link
                   to="/nosotros"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-slate-700 hover:border-slate-300 hover:text-slate-900 transition-colors duration-200"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-600 px-6 py-3 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
                 >
                   Ver cómo trabajamos
                 </Link>
@@ -269,13 +269,13 @@ export default function Home() {
       </section>
 
       {/* ── STATS ── */}
-      <section className="border-y border-slate-100 bg-slate-50 py-8">
+      <section className="border-y border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 py-8">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="grid grid-cols-3 gap-4 divide-x divide-slate-200">
+          <div className="grid grid-cols-3 gap-4 divide-x divide-slate-200 dark:divide-slate-600">
             {STATS.map((s) => (
               <div key={s.kpi} className="text-center px-4">
-                <div className="text-2xl sm:text-3xl font-black text-slate-950">{s.kpi}</div>
-                <div className="text-xs sm:text-sm text-slate-500 mt-1">{s.label}</div>
+                <div className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-white">{s.kpi}</div>
+                <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">{s.label}</div>
               </div>
             ))}
           </div>
@@ -283,27 +283,27 @@ export default function Home() {
       </section>
 
       {/* ── SERVICIOS ── */}
-      <section className="bg-white py-14 sm:py-16">
+      <section className="bg-white dark:bg-slate-900 py-14 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="max-w-xl mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950">Lo que hacemos</h2>
-            <p className="mt-2 text-sm text-slate-500">Todo por el mismo equipo, de principio a fin.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white">Lo que hacemos</h2>
+            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Todo por el mismo equipo, de principio a fin.</p>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
             {SERVICIOS.map((s, i) => (
               <Link
                 key={i}
                 to={s.to}
-                className="group bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col"
+                className="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col"
               >
                 <div className="p-6 flex-1">
                   <div className={`h-10 w-10 rounded-xl ${s.iconBg} ${s.iconColor} grid place-items-center mb-4`}>
                     {s.icon}
                   </div>
-                  <h3 className="text-base font-bold text-slate-950 mb-0.5">{s.title}</h3>
+                  <h3 className="text-base font-bold text-slate-950 dark:text-white mb-0.5">{s.title}</h3>
                   <p className={`text-xs font-semibold ${s.taglineColor} mb-3`}>{s.tagline}</p>
-                  <p className="text-sm text-slate-600 leading-relaxed">{s.desc}</p>
-                  <div className="mt-4 flex items-center gap-1 text-sm font-semibold text-slate-400 group-hover:text-slate-700 transition-colors duration-200">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{s.desc}</p>
+                  <div className="mt-4 flex items-center gap-1 text-sm font-semibold text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors duration-200">
                     Ver servicios
                     <svg className="h-4 w-4 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -318,11 +318,11 @@ export default function Home() {
       </section>
 
       {/* ── VERTICALES POR INDUSTRIA ── */}
-      <section className="bg-slate-50 py-14 sm:py-16">
+      <section className="bg-slate-50 dark:bg-slate-800 py-14 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="max-w-xl mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950">Soluciones para tu industria</h2>
-            <p className="mt-2 text-sm text-slate-500">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white">Soluciones para tu industria</h2>
+            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
               Llevamos tecnología profesional a los sectores que mueven la Patagonia.
             </p>
           </div>
@@ -375,28 +375,32 @@ export default function Home() {
       </section>
 
       {/* ── TECH STRIP ── */}
-      <section className="border-y border-slate-100 bg-white py-10 sm:py-12">
+      <section className="border-y border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-900 py-10 sm:py-12">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-slate-400 mb-8">
+          <p className="text-center text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-8">
             Las herramientas que usamos a diario
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
             {TECHS.map((tech) => (
-              <span
-                key={tech}
-                className="text-sm font-semibold text-slate-400 hover:text-slate-600 transition-colors duration-200 cursor-default"
-              >
-                {tech}
-              </span>
+              <div key={tech.name} className="group flex flex-col items-center gap-2">
+                <img
+                  src={`https://cdn.simpleicons.org/${tech.slug}`}
+                  alt={tech.name}
+                  className="h-7 w-7 object-contain grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 dark:invert dark:grayscale dark:opacity-30 dark:group-hover:opacity-70 transition-all duration-300 select-none"
+                />
+                <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors duration-200">
+                  {tech.name}
+                </span>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* ── CTA ── */}
-      <section className="bg-white py-12 sm:py-16">
+      <section className="bg-white dark:bg-slate-900 py-12 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="bg-slate-950 rounded-2xl sm:rounded-3xl px-8 py-12 sm:px-12 sm:py-14 text-center">
+          <div className="bg-slate-950 dark:ring-1 dark:ring-white/10 rounded-2xl sm:rounded-3xl px-8 py-12 sm:px-12 sm:py-14 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">¿Empezamos?</h2>
             <p className="text-slate-400 mb-8 text-sm">Coyhaique · Respuesta en menos de 24 h.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

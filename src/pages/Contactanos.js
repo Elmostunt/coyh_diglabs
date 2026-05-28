@@ -85,17 +85,17 @@ const Contactanos = () => {
     <div className="w-full">
 
       {/* ── HERO ── */}
-      <section className="bg-white py-16 sm:py-20 border-b border-slate-100">
+      <section className="bg-white dark:bg-slate-900 py-16 sm:py-20 border-b border-slate-100 dark:border-slate-700">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="mb-5 flex items-center gap-3">
             <span className="h-px w-8 bg-blue-600 inline-block" />
-            <span className="text-sm font-medium text-slate-500">Contacto</span>
+            <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Contacto</span>
           </div>
           <div className="max-w-xl">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-950 leading-tight tracking-tight">
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-950 dark:text-white leading-tight tracking-tight">
               Cuéntanos tu proyecto.
             </h1>
-            <p className="mt-4 text-lg text-slate-600 leading-relaxed">
+            <p className="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               Sin compromiso. Evaluamos tu caso y te respondemos en menos de 24 h.
             </p>
           </div>
@@ -103,13 +103,13 @@ const Contactanos = () => {
       </section>
 
       {/* ── FORM + INFO ── */}
-      <section className="bg-slate-50 py-14 sm:py-16">
+      <section className="bg-slate-50 dark:bg-slate-800 py-14 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="grid gap-8 lg:grid-cols-2">
 
             {/* Formulario */}
-            <div className="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm">
-              <h2 className="text-xl font-bold text-slate-950 mb-6">Escríbenos</h2>
+            <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 sm:p-8 shadow-sm">
+              <h2 className="text-xl font-bold text-slate-950 dark:text-white mb-6">Escríbenos</h2>
 
               {submitStatus === "success" && (
                 <div className="mb-6 rounded-xl bg-emerald-50 border border-emerald-100 p-4 flex items-start gap-3">
@@ -140,7 +140,7 @@ const Contactanos = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="nombre" className="block text-sm font-medium text-slate-700 mb-1.5">
+                  <label htmlFor="nombre" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                     Nombre completo *
                   </label>
                   <input
@@ -151,12 +151,12 @@ const Contactanos = () => {
                     onChange={handleChange}
                     required
                     placeholder="Tu nombre"
-                    className="w-full h-11 rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200"
+                    className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 text-sm text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="empresa" className="block text-sm font-medium text-slate-700 mb-1.5">
+                  <label htmlFor="empresa" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                     Empresa u organización
                   </label>
                   <input
@@ -166,12 +166,12 @@ const Contactanos = () => {
                     value={formData.empresa}
                     onChange={handleChange}
                     placeholder="Nombre de tu empresa (opcional)"
-                    className="w-full h-11 rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200"
+                    className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 text-sm text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1.5">
+                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                     Email *
                   </label>
                   <input
@@ -182,12 +182,12 @@ const Contactanos = () => {
                     onChange={handleChange}
                     required
                     placeholder="tu@email.com"
-                    className="w-full h-11 rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200"
+                    className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 text-sm text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="mensaje" className="block text-sm font-medium text-slate-700 mb-1.5">
+                  <label htmlFor="mensaje" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                     Mensaje *
                   </label>
                   <textarea
@@ -198,7 +198,7 @@ const Contactanos = () => {
                     required
                     rows={5}
                     placeholder="Cuéntanos sobre tu proyecto o consulta..."
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200 resize-none"
+                    className="w-full rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3 text-sm text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200 resize-none"
                   />
                 </div>
 
@@ -216,22 +216,22 @@ const Contactanos = () => {
             <div className="space-y-5">
 
               {/* Datos de contacto */}
-              <div className="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm">
-                <h2 className="text-xl font-bold text-slate-950 mb-6">Información de contacto</h2>
+              <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 sm:p-8 shadow-sm">
+                <h2 className="text-xl font-bold text-slate-950 dark:text-white mb-6">Información de contacto</h2>
                 <ul className="space-y-5">
                   {CONTACT_INFO.map((item) => (
                     <li key={item.label} className="flex items-center gap-4">
-                      <div className="h-9 w-9 rounded-xl bg-slate-50 border border-slate-100 text-slate-500 grid place-items-center shrink-0">
+                      <div className="h-9 w-9 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-100 dark:border-slate-600 text-slate-500 dark:text-slate-400 grid place-items-center shrink-0">
                         {item.icon}
                       </div>
                       <div>
-                        <p className="text-xs text-slate-400 font-medium mb-0.5">{item.label}</p>
+                        <p className="text-xs text-slate-400 dark:text-slate-500 font-medium mb-0.5">{item.label}</p>
                         {item.href ? (
-                          <a href={item.href} className="text-sm font-medium text-slate-950 hover:text-blue-600 transition-colors duration-200">
+                          <a href={item.href} className="text-sm font-medium text-slate-950 dark:text-white hover:text-blue-600 transition-colors duration-200">
                             {item.value}
                           </a>
                         ) : (
-                          <p className="text-sm font-medium text-slate-950">{item.value}</p>
+                          <p className="text-sm font-medium text-slate-950 dark:text-white">{item.value}</p>
                         )}
                       </div>
                     </li>
@@ -240,14 +240,14 @@ const Contactanos = () => {
               </div>
 
               {/* Contacto directo */}
-              <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
-                <h3 className="text-base font-semibold text-slate-950 mb-4">Contacto directo</h3>
+              <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 shadow-sm">
+                <h3 className="text-base font-semibold text-slate-950 dark:text-white mb-4">Contacto directo</h3>
                 <div className="space-y-2.5">
                   <a
                     href={CALENDLY}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between rounded-xl bg-slate-50 border border-slate-100 px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-950 transition-colors duration-200"
+                    className="flex items-center justify-between rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-slate-950 dark:hover:text-white transition-colors duration-200"
                   >
                     <span className="flex items-center gap-2.5">
                       <svg className="h-4 w-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -255,7 +255,7 @@ const Contactanos = () => {
                       </svg>
                       Agenda una llamada de 30 min
                     </span>
-                    <svg className="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-4 w-4 text-slate-400 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </a>
@@ -263,7 +263,7 @@ const Contactanos = () => {
                     href={WA_GENERAL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between rounded-xl bg-slate-50 border border-slate-100 px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-950 transition-colors duration-200"
+                    className="flex items-center justify-between rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-slate-950 dark:hover:text-white transition-colors duration-200"
                   >
                     <span className="flex items-center gap-2.5">
                       <svg className="h-4 w-4 text-emerald-600" viewBox="0 0 24 24" fill="currentColor">
@@ -271,16 +271,16 @@ const Contactanos = () => {
                       </svg>
                       WhatsApp — respuesta rápida
                     </span>
-                    <svg className="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <svg className="h-4 w-4 text-slate-400 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7" />
                     </svg>
                   </a>
                 </div>
               </div>
 
               {/* Horario */}
-              <div className="bg-slate-50 rounded-xl border border-slate-100 px-5 py-4">
-                <p className="text-xs text-slate-500 text-center">
+              <div className="bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 px-5 py-4">
+                <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
                   Lun–Vie 9:00–18:00 · Sáb 10:00–14:00 · Respuesta en menos de 24 h
                 </p>
               </div>

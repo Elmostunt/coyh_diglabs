@@ -122,7 +122,7 @@ const SERVICIOS = [
 function SoftwareMockup() {
   return (
     <div className="relative select-none">
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50/40" />
+      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50/40 dark:from-blue-950/40 dark:via-slate-800/40 dark:to-indigo-950/20" />
       <div className="relative p-6 sm:p-8">
 
         {/* Browser frame */}
@@ -217,24 +217,24 @@ export default function ServiciosSoftware() {
     <div className="w-full">
 
       {/* ── HERO ── */}
-      <section className="bg-white py-16 sm:py-20 border-b border-slate-100">
+      <section className="bg-white dark:bg-slate-900 py-16 sm:py-20 border-b border-slate-100 dark:border-slate-700">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="mb-5 flex items-center gap-3">
             <span className="h-px w-8 bg-blue-600 inline-block" />
-            <span className="text-sm font-medium text-slate-500">Software & Desarrollo</span>
+            <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Software & Desarrollo</span>
           </div>
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-950 leading-tight tracking-tight">
+              <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-950 dark:text-white leading-tight tracking-tight">
                 Software que funciona. Y que puedes mantener sin llamarnos cada semana.
               </h1>
-              <p className="mt-4 text-lg text-slate-600 leading-relaxed">
+              <p className="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
                 Web, apps, cloud y automatización. Con plazos claros, documentación real y sin dependencias artificiales.
               </p>
               <div className="mt-7 flex flex-col sm:flex-row gap-3">
                 <Link
                   to="/contacto"
-                  className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800 transition-colors duration-200"
+                  className="inline-flex items-center justify-center rounded-full bg-slate-950 dark:bg-white px-6 py-3 text-sm font-semibold text-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors duration-200"
                 >
                   Cotiza tu proyecto
                 </Link>
@@ -242,7 +242,7 @@ export default function ServiciosSoftware() {
                   href={CALENDLY}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-slate-700 hover:border-slate-300 hover:text-slate-900 transition-colors duration-200"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-600 px-6 py-3 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
                 >
                   Agenda una llamada
                 </a>
@@ -254,11 +254,11 @@ export default function ServiciosSoftware() {
       </section>
 
       {/* ── PACKS ── */}
-      <section className="bg-slate-50 py-14 sm:py-16">
+      <section className="bg-slate-50 dark:bg-slate-800 py-14 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950">Packs de Software</h2>
-            <p className="mt-2 text-sm text-slate-500 max-w-lg mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white">Packs de Software</h2>
+            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400 max-w-lg mx-auto">
               Alcance, tiempo y resultado definidos desde el inicio — sin sorpresas.
             </p>
           </div>
@@ -266,7 +266,7 @@ export default function ServiciosSoftware() {
             {PACKS.map((pack) => {
               const s = PACK_STYLES[pack.color];
               return (
-                <article key={pack.titulo} className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-all duration-200">
+                <article key={pack.titulo} className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-all duration-200">
                   <div className={`h-1 ${s.accent}`} />
                   <div className="p-5 flex-1 flex flex-col">
                     <div className="flex items-center justify-between mb-4">
@@ -274,28 +274,28 @@ export default function ServiciosSoftware() {
                         {pack.badge}
                       </span>
                       {pack.popular && (
-                        <span className="text-xs text-slate-400 font-medium">Más solicitado</span>
+                        <span className="text-xs text-slate-400 dark:text-slate-500 font-medium">Más solicitado</span>
                       )}
                     </div>
-                    <h3 className="text-sm font-bold text-slate-950 mb-1 leading-tight">{pack.titulo}</h3>
-                    <p className="text-xs text-slate-400 mb-4">{pack.ideal}</p>
+                    <h3 className="text-sm font-bold text-slate-950 dark:text-white mb-1 leading-tight">{pack.titulo}</h3>
+                    <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">{pack.ideal}</p>
                     <ul className="space-y-2 mb-5 flex-1">
                       {pack.items.map((item) => (
-                        <li key={item} className="flex items-start gap-2 text-xs text-slate-600">
+                        <li key={item} className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-300">
                           <span className={`h-1.5 w-1.5 rounded-full ${s.dot} mt-1 shrink-0`} />
                           {item}
                         </li>
                       ))}
                     </ul>
-                    <div className="rounded-xl bg-slate-50 border border-slate-100 p-3 mb-4">
-                      <p className="text-xs text-slate-400 mb-0.5">{pack.tiempo}</p>
-                      <p className="text-xs font-semibold text-slate-700">{pack.resultado}</p>
+                    <div className="rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-100 dark:border-slate-600 p-3 mb-4">
+                      <p className="text-xs text-slate-400 dark:text-slate-500 mb-0.5">{pack.tiempo}</p>
+                      <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">{pack.resultado}</p>
                     </div>
                     <a
                       href={pack.wa}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block text-center rounded-full bg-slate-950 py-2.5 text-xs font-semibold text-white hover:bg-slate-800 transition-colors duration-200"
+                      className="block text-center rounded-full bg-slate-950 dark:bg-white py-2.5 text-xs font-semibold text-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors duration-200"
                     >
                       Cotizar por WhatsApp
                     </a>
@@ -308,20 +308,20 @@ export default function ServiciosSoftware() {
       </section>
 
       {/* ── ÁREAS ── */}
-      <section className="bg-white py-14 sm:py-16">
+      <section className="bg-white dark:bg-slate-900 py-14 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="max-w-xl mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950">Cómo lo hacemos</h2>
-            <p className="mt-2 text-sm text-slate-500">Las capacidades que aplicamos en cada proyecto</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white">Cómo lo hacemos</h2>
+            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Las capacidades que aplicamos en cada proyecto</p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {AREAS.map((a) => (
-              <article key={a.titulo} className="bg-white rounded-2xl border border-slate-100 p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+              <article key={a.titulo} className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                 <div className={`h-10 w-10 rounded-xl ${a.bg} ${a.color} grid place-items-center mb-4`}>
                   {a.icon}
                 </div>
-                <h3 className="text-sm font-semibold text-slate-950 mb-1.5 leading-tight">{a.titulo}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">{a.desc}</p>
+                <h3 className="text-sm font-semibold text-slate-950 dark:text-white mb-1.5 leading-tight">{a.titulo}</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{a.desc}</p>
               </article>
             ))}
           </div>
@@ -329,25 +329,25 @@ export default function ServiciosSoftware() {
       </section>
 
       {/* ── SERVICIOS INDIVIDUALES ── */}
-      <section className="bg-slate-50 py-14 sm:py-16">
+      <section className="bg-slate-50 dark:bg-slate-800 py-14 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="max-w-xl mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950">Catálogo de servicios</h2>
-            <p className="mt-2 text-sm text-slate-500">Todo el alcance del área de Software & Desarrollo</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white">Catálogo de servicios</h2>
+            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Todo el alcance del área de Software & Desarrollo</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {SERVICIOS.map((s) => (
               <article
                 key={s.nombre}
-                className="bg-white rounded-xl border border-slate-100 p-4 shadow-sm hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
+                className="bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 p-4 shadow-sm hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
               >
                 <div className="h-8 w-8 rounded-lg bg-blue-50 text-blue-600 grid place-items-center mb-3">
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d={s.icon} />
                   </svg>
                 </div>
-                <h3 className="text-sm font-semibold text-slate-950 mb-1 leading-tight">{s.nombre}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">{s.desc}</p>
+                <h3 className="text-sm font-semibold text-slate-950 dark:text-white mb-1 leading-tight">{s.nombre}</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{s.desc}</p>
               </article>
             ))}
           </div>
@@ -363,11 +363,11 @@ export default function ServiciosSoftware() {
       </section>
 
       {/* ── SDLABCAR ── */}
-      <section className="bg-white py-6 border-y border-slate-100">
+      <section className="bg-white dark:bg-slate-900 py-6 border-y border-slate-100 dark:border-slate-700">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <p className="text-sm text-slate-600">
-              <span className="font-semibold text-slate-950">SDLabCar</span> — sistema de rentacar adaptado al proceso de cada empresa.
+            <p className="text-sm text-slate-600 dark:text-slate-300">
+              <span className="font-semibold text-slate-950 dark:text-white">SDLabCar</span> — sistema de rentacar adaptado al proceso de cada empresa.
             </p>
             <a
               href={WA('Hola! Quiero información sobre SDLabCar (sistema de rentacar).')}
@@ -382,7 +382,7 @@ export default function ServiciosSoftware() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="bg-white py-12 sm:py-16">
+      <section className="bg-white dark:bg-slate-900 py-12 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="bg-slate-950 rounded-2xl sm:rounded-3xl px-8 py-12 sm:px-12 sm:py-14 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
