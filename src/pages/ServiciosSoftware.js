@@ -123,68 +123,11 @@ const SERVICIOS = [
   { nombre: 'Seguridad',                desc: 'Revisión OWASP, cifrado de datos sensibles y hardening. Seguridad pensada desde el diseño.', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
 ];
 
-const TESTIMONIALS = [
-  {
-    quote: 'Nos entregaron un sitio web que de verdad funciona. No es un template. Y la atención fue increíble — respondieron cada duda en 24 horas.',
-    author: 'Roberto Silva',
-    position: 'Gerente de Operaciones',
-    company: 'Transporte & Logística ROS'
-  },
-  {
-    quote: 'El sistema que nos hicieron automatizó tareas que hacíamos manual. Ahora el equipo tiene tiempo para cosas que de verdad generan valor.',
-    author: 'María González',
-    position: 'Directora de Administración',
-    company: 'Servicios Empresariales Chile'
-  },
-  {
-    quote: 'Conocen la nube. No es gente que vende humo. El proyecto en AWS quedó bien pensado y hoy mantenerlo es tranquilo.',
-    author: 'Carlos Mendoza',
-    position: 'CTO',
-    company: 'TechStart Patagonia'
-  }
-];
+// TODO: Agregar testimonios reales de clientes cuando estén disponibles
+const TESTIMONIALS = [];
 
-const CASE_STUDIES = [
-  {
-    title: 'Sistema de gestión de rentacar automatizado',
-    company: 'Empresa de rentacar regional',
-    industry: 'Transporte & Logística',
-    challenge: 'Gestión manual de reservas, papelerío y facturas. Pérdida de tiempo y errores frecuentes.',
-    solution: 'Sistema web personalizado con gestión de flota, automatización de reservas y facturación integrada en GCP.',
-    results: [
-      { metric: '-8h/semana', label: 'Tiempo administrativo' },
-      { metric: '+60%', label: 'Más reservas/mes' },
-      { metric: '99.9%', label: 'Uptime' }
-    ],
-    duration: '90 días'
-  },
-  {
-    title: 'Pipeline de datos para inteligencia comercial',
-    company: 'Retail regional con múltiples sucursales',
-    industry: 'Retail & Distribución',
-    challenge: 'Datos dispersos en múltiples sistemas. Sin reportes de verdad para tomar decisiones.',
-    solution: 'Pipeline ETL con BigQuery, dashboards automáticos y alertas de negocio en tiempo real.',
-    results: [
-      { metric: '4 dashboards', label: 'Activos 24/7' },
-      { metric: '+35%', label: 'Decisiones data-driven' },
-      { metric: '< 2h', label: 'Reportes automáticos' }
-    ],
-    duration: '45 días'
-  },
-  {
-    title: 'Migración y refactor de app legada',
-    company: 'Empresa de servicios B2B',
-    industry: 'Servicios Profesionales',
-    challenge: 'App vieja, lenta, difícil de mantener. Monolito sin tests.',
-    solution: 'Refactor a microservicios con React frontend, Node.js backend, tests automáticos y CD en Cloud Run.',
-    results: [
-      { metric: '70%', label: 'Más rápida' },
-      { metric: '3 equipos', label: 'Pueden trabajar en paralelo' },
-      { metric: '< 5 min', label: 'Deploy automatizado' }
-    ],
-    duration: '120 días'
-  }
-];
+// TODO: Agregar casos de éxito reales cuando estén disponibles
+const CASE_STUDIES = [];
 
 const FAQ_ITEMS = [
   {
