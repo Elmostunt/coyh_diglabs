@@ -1,10 +1,8 @@
 steps:
-  # Paso 1: instalar dependencias
+  # Paso 1: instalar dependencias (puppeteer descarga su propio Chromium ~170MB)
   - name: 'node:22'
     entrypoint: npm
     args: ['install']
-    env:
-      - 'PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true'
 
   # Paso 2: build React
   - name: 'node:22'
@@ -15,17 +13,10 @@ steps:
       - 'REACT_APP_EMAILJS_TEMPLATE_ID=template_pnabaae'
       - 'REACT_APP_EMAILJS_PUBLIC_KEY=wz2btEynCC939gKaJ'
 
-  # Paso 3: pre-renderizar rutas con react-snap + chromium del sistema
+  # Paso 3: pre-renderizar 7 rutas con react-snap
   - name: 'node:22'
-    entrypoint: bash
-    args:
-      - '-c'
-      - |
-        apt-get update -qq && apt-get install -y -qq chromium
-        npm run prerender
-    env:
-      - 'PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true'
-      - 'PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium'
+    entrypoint: npm
+    args: ['run', 'prerender']
 
   # Paso 4: deploy a App Engine
   - name: 'gcr.io/cloud-builders/gcloud'
