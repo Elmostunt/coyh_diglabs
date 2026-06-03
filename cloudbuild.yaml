@@ -35,6 +35,7 @@ steps:
       - app.yaml
       - --project=memos-tablet
       - --quiet
+    timeout: '600s'
 
 logsBucket: 'gs://logs-sdlabs'
-timeout: "900s"
+timeout: "1200s"
