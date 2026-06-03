@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useSEO } from '../hooks/useSEO';
 
 const BLOG_POSTS = [
   {
@@ -172,11 +173,12 @@ Datos confiables, actualizados automáticamente, listos para análisis.
 ];
 
 export default function Blog() {
-  useEffect(() => {
-    document.title = "Blog — Sur Digital Labs";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', 'Artículos sobre software, datos y automatización. Guías prácticas y casos reales desde Sur Digital Labs.');
-  }, []);
+  useSEO({
+    title: 'Blog de Tecnología y Software | Sur Digital Labs',
+    description: 'Artículos prácticos sobre software, datos y automatización para empresas en Chile. Guías reales desde el equipo de Sur Digital Labs.',
+    path: '/blog',
+    ogImage: '/og-home.jpg',
+  });
 
   return (
     <div className="w-full">

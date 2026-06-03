@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSEO } from '../hooks/useSEO';
 import Testimonials from '../components/Testimonials';
 import CaseStudies from '../components/CaseStudies';
 import FAQ from '../components/FAQ';
@@ -244,11 +245,23 @@ function SoftwareMockup() {
 }
 
 export default function ServiciosSoftware() {
-  useEffect(() => {
-    document.title = 'Software & Desarrollo — Sur Digital Labs Coyhaique';
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', 'Desarrollo web, apps móviles, APIs, cloud, DevOps y automatización en Coyhaique. Software a medida para pymes y empresas de la Patagonia.');
-  }, []);
+  useSEO({
+    title: 'Desarrollo Web y Software a Medida Chile | Sur Digital Labs',
+    description: 'Creamos apps web, software a medida, APIs y sistemas cloud para PYMEs en Chile. Primera entrega en 7–14 días. Desde Coyhaique, Patagonia.',
+    path: '/software',
+    ogImage: '/og-software.jpg',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'Desarrollo de Software a Medida',
+      description: 'Aplicaciones web, software a medida, APIs y sistemas cloud para PYMEs en Chile.',
+      provider: { '@type': 'Organization', name: 'Sur Digital Labs', url: 'https://www.surdigitallabs.cl' },
+      areaServed: { '@type': 'Country', name: 'Chile' },
+      serviceType: 'Software Development',
+      url: 'https://www.surdigitallabs.cl/software',
+    },
+    faqs: FAQ_ITEMS,
+  });
 
   return (
     <div className="w-full">

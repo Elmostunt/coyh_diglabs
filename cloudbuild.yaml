@@ -1,15 +1,34 @@
 steps:
-  - name: gcr.io/cloud-builders/npm
-    args: ["install"]
+  # Paso 1: instalar dependencias
+  - name: 'node:22'
+    entrypoint: npm
+    args: ['install']
+    env:
+      - 'PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true'
 
-  - name: gcr.io/cloud-builders/npm
-    args: ["run", "build"]
+  # Paso 2: build React
+  - name: 'node:22'
+    entrypoint: npm
+    args: ['run', 'build']
     env:
       - 'REACT_APP_EMAILJS_SERVICE_ID=service_n63g82y'
       - 'REACT_APP_EMAILJS_TEMPLATE_ID=template_pnabaae'
       - 'REACT_APP_EMAILJS_PUBLIC_KEY=wz2btEynCC939gKaJ'
 
-  - name: gcr.io/cloud-builders/gcloud
+  # Paso 3: pre-renderizar rutas con react-snap + chromium del sistema
+  - name: 'node:22'
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        apt-get update -qq && apt-get install -y -qq chromium
+        npm run prerender
+    env:
+      - 'PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true'
+      - 'PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium'
+
+  # Paso 4: deploy a App Engine
+  - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - app
       - deploy
@@ -17,7 +36,5 @@ steps:
       - --project=memos-tablet
       - --quiet
 
-# Bucket de logs (si el trigger te obliga por el service_account)
 logsBucket: 'gs://logs-sdlabs'
-
-timeout: "600s"
+timeout: "900s"

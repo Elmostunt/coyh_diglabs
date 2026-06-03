@@ -1,6 +1,7 @@
 // src/pages/Home.js
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { useSEO } from '../hooks/useSEO';
 
 const CALENDLY_URL = "https://calendly.com/surdigitallabs/30min";
 
@@ -220,11 +221,12 @@ function HeroIllustration() {
 }
 
 export default function Home() {
-  useEffect(() => {
-    document.title = "Sur Digital Labs - Software, datos y automatización en Coyhaique, Patagonia";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Socio tecnológico en Coyhaique, Patagonia: software a medida, datos y automatización para pymes y empresas regionales.");
-  }, []);
+  useSEO({
+    title: 'Software a Medida, Cloud y Datos | Sur Digital Labs Chile',
+    description: 'Software a medida, cloud (GCP/AWS) y datos para PYMEs en Chile. Arquitectura sólida, entrega en 7–14 días. Desde Coyhaique, Patagonia.',
+    path: '/',
+    ogImage: '/og-home.jpg',
+  });
 
   return (
     <div className="w-full">

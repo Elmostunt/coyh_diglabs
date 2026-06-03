@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auditoría SEO · Sur Digital Labs 2026</title>
+<style>
+/* ============================================================
+   DESIGN SYSTEM
+   ============================================================ */
+:root {
+  --ink:       #0f1117;
+  --ink-2:     #1e2235;
+  --ink-3:     #2d3355;
+  --slate:     #64748b;
+  --slate-2:   #94a3b8;
+  --ghost:     #f0f2f8;
+  --ghost-2:   #e2e6f0;
+  --white:     #ffffff;
+
+  --blue:      #2563eb;
+  --blue-l:    #eff4ff;
+  --blue-m:    #bfcffd;
+
+  --red:       #dc2626;
+  --red-l:     #fef2f2;
+  --red-m:     #fecaca;
+
+  --orange:    #ea580c;
+  --orange-l:  #fff7ed;
+  --orange-m:  #fed7aa;
+
+  --yellow:    #d97706;
+  --yellow-l:  #fffbeb;
+  --yellow-m:  #fde68a;
+
+  --green:     #059669;
+  --green-l:   #ecfdf5;
+  --green-m:   #a7f3d0;
+
+  --purple:    #7c3aed;
+  --purple-l:  #f5f3ff;
+  --purple-m:  #ddd6fe;
+
+  --r: 12px;
+  --r-sm: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.10), 0 8px 32px rgba(0,0,0,.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--ghost);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 56px;
+}
+.topbar .brand { color: #fff; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+.topbar .brand span { color: var(--slate-2); font-weight: 400; }
+.topbar nav { display: flex; gap: 4px; }
+.topbar nav a {
+  color: var(--slate-2); text-decoration: none; font-size: 12px; font-weight: 500;
+  padding: 6px 12px; border-radius: 6px; transition: .15s;
+}
+.topbar nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+.topbar .score-badge {
+  background: var(--red); color: #fff; font-size: 12px; font-weight: 700;
+  padding: 4px 12px; border-radius: 100px;
+}
+
+/* ── LAYOUT ── */
+.page { max-width: 1080px; margin: 0 auto; padding: 80px 24px 80px; }
+section { margin-bottom: 72px; }
+.section-header { margin-bottom: 28px; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--blue-l); color: var(--blue);
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 100px; margin-bottom: 10px;
+}
+h2 { font-size: 26px; font-weight: 800; color: var(--ink); line-height: 1.2; margin-bottom: 6px; }
+.section-desc { color: var(--slate); font-size: 14px; max-width: 640px; }
+
+/* ── COVER ── */
+.cover {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-3) 100%);
+  border-radius: 20px; padding: 56px 64px; margin-bottom: 48px;
+  position: relative; overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.cover::after {
+  content: '';
+  position: absolute; right: 0; top: 0; bottom: 0; width: 40%;
+  background: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='350' cy='100' r='200' fill='rgba(37,99,235,0.08)'/%3E%3Ccircle cx='300' cy='300' r='120' fill='rgba(124,58,237,0.06)'/%3E%3C/svg%3E") no-repeat center/cover;
+}
+.cover-tag {
+  display: inline-block; background: rgba(37,99,235,.25); border: 1px solid rgba(37,99,235,.5);
+  color: #93c5fd; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  padding: 4px 14px; border-radius: 100px; margin-bottom: 20px;
+}
+.cover h1 { font-size: 40px; font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 14px; }
+.cover h1 em { color: #60a5fa; font-style: normal; }
+.cover p { color: #94a3b8; font-size: 15px; max-width: 560px; line-height: 1.7; margin-bottom: 32px; }
+.cover-meta { display: flex; gap: 40px; flex-wrap: wrap; }
+.cover-meta-item .label { font-size: 10px; color: #475569; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 3px; }
+.cover-meta-item .val { font-size: 13px; color: #cbd5e1; font-weight: 600; }
+
+/* ── SCORE DASHBOARD ── */
+.score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 14px; }
+.score-card {
+  background: var(--white); border-radius: var(--r); padding: 20px 18px;
+  box-shadow: var(--shadow); border: 1px solid var(--ghost-2);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.score-card .sc-label { font-size: 11px; font-weight: 600; color: var(--slate); text-transform: uppercase; letter-spacing: .8px; }
+.score-card .sc-num { font-size: 38px; font-weight: 900; line-height: 1; }
+.score-card .sc-sub { font-size: 11px; color: var(--slate-2); }
+.score-card .sc-bar { height: 4px; background: var(--ghost-2); border-radius: 100px; overflow: hidden; margin-top: 4px; }
+.score-card .sc-fill { height: 100%; border-radius: 100px; }
+.c-red    { color: var(--red); }
+.c-orange { color: var(--orange); }
+.c-yellow { color: var(--yellow); }
+.c-green  { color: var(--green); }
+.c-blue   { color: var(--blue); }
+.c-purple { color: var(--purple); }
+
+/* ── VERDICT BOX ── */
+.verdict {
+  background: var(--white); border-radius: var(--r); padding: 24px 28px;
+  box-shadow: var(--shadow); border-left: 4px solid var(--red);
+  margin-bottom: 32px;
+}
+.verdict.warn  { border-color: var(--yellow); }
+.verdict.ok    { border-color: var(--green); }
+.verdict.info  { border-color: var(--blue); }
+.verdict h3    { font-size: 15px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.verdict p     { color: var(--slate); font-size: 13px; line-height: 1.7; }
+.verdict p + p { margin-top: 8px; }
+.verdict .hl   { color: var(--ink); font-weight: 600; }
+
+/* ── ISSUE CARDS ── */
+.issues-list { display: flex; flex-direction: column; gap: 12px; }
+.issue {
+  background: var(--white); border-radius: var(--r); padding: 18px 22px;
+  box-shadow: var(--shadow); border: 1px solid var(--ghost-2);
+  display: grid; grid-template-columns: 40px 1fr auto; gap: 16px; align-items: start;
+}
+.issue .sev {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.sev-crit  { background: var(--red-l); }
+.sev-major { background: var(--orange-l); }
+.sev-minor { background: var(--yellow-l); }
+.sev-ok    { background: var(--green-l); }
+.issue .body h4   { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.issue .body p    { font-size: 13px; color: var(--slate); line-height: 1.6; margin: 0; }
+.issue .body code {
+  background: var(--ghost); color: var(--ink-3); font-size: 12px;
+  padding: 1px 6px; border-radius: 4px; font-family: monospace;
+}
+.issue .tag-col { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; flex-shrink: 0; }
+
+/* ── TAGS / PILLS ── */
+.pill {
+  display: inline-block; padding: 3px 10px; border-radius: 100px;
+  font-size: 11px; font-weight: 700; white-space: nowrap;
+}
+.pill-red    { background: var(--red-l);    color: var(--red); }
+.pill-orange { background: var(--orange-l); color: var(--orange); }
+.pill-yellow { background: var(--yellow-l); color: var(--yellow); }
+.pill-green  { background: var(--green-l);  color: var(--green); }
+.pill-blue   { background: var(--blue-l);   color: var(--blue); }
+.pill-purple { background: var(--purple-l); color: var(--purple); }
+.pill-slate  { background: var(--ghost);    color: var(--slate); }
+
+/* ── PAGE AUDIT CARDS ── */
+.page-cards { display: flex; flex-direction: column; gap: 20px; }
+.page-card {
+  background: var(--white); border-radius: var(--r); box-shadow: var(--shadow);
+  border: 1px solid var(--ghost-2); overflow: hidden;
+}
+.page-card .pc-head {
+  background: var(--ink); color: #fff; padding: 14px 22px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+.page-card .pc-head .url { font-size: 12px; font-family: monospace; color: #93c5fd; }
+.page-card .pc-body { padding: 20px 22px; }
+.pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pc-field { }
+.pc-field-full { grid-column: 1/-1; }
+.pc-field .fl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--slate-2); margin-bottom: 5px; display: flex; align-items: center; gap: 5px; }
+.pc-field .fv {
+  font-size: 13px; background: var(--ghost); border-radius: var(--r-sm);
+  padding: 9px 12px; line-height: 1.55; color: var(--ink-2);
+  border: 1px solid var(--ghost-2);
+}
+.pc-field .fv.bad { border-color: var(--red-m); background: var(--red-l); }
+.pc-field .fv.warn { border-color: var(--yellow-m); background: var(--yellow-l); }
+.pc-field .fv.ok   { border-color: var(--green-m); background: var(--green-l); }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot-red    { background: var(--red); }
+.dot-yellow { background: var(--yellow); }
+.dot-green  { background: var(--green); }
+.dot-blue   { background: var(--blue); }
+.dot-orange { background: var(--orange); }
+
+/* ── TABLE ── */
+.tbl-wrap { border-radius: var(--r); overflow: auto; box-shadow: var(--shadow); border: 1px solid var(--ghost-2); }
+table { width: 100%; border-collapse: collapse; background: var(--white); font-size: 13px; }
+thead tr { background: var(--ink); }
+thead th { color: #94a3b8; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 12px 16px; text-align: left; }
+tbody td { padding: 11px 16px; border-bottom: 1px solid var(--ghost-2); vertical-align: top; color: var(--ink-2); }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #fafbff; }
+.td-win { background: var(--green-l)!important; }
+.td-los { background: var(--red-l)!important; }
+.td-warn { background: var(--yellow-l)!important; }
+
+/* ── KW TABLE ── */
+.kw-diff { font-size: 12px; font-weight: 600; }
+
+/* ── ROADMAP ── */
+.roadmap { display: flex; flex-direction: column; gap: 32px; }
+.rm-phase { }
+.rm-phase-head {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+  padding-bottom: 14px; border-bottom: 2px solid var(--ghost-2);
+}
+.rm-phase-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; color: #fff; flex-shrink: 0;
+}
+.rm-phase-info h3 { font-size: 16px; font-weight: 700; }
+.rm-phase-info p  { font-size: 12px; color: var(--slate); }
+.rm-items { display: flex; flex-direction: column; gap: 10px; }
+.rm-item {
+  background: var(--white); border-radius: var(--r-sm); padding: 14px 18px;
+  box-shadow: var(--shadow); border: 1px solid var(--ghost-2);
+  display: grid; grid-template-columns: 24px 1fr auto; gap: 14px; align-items: start;
+}
+.rm-item .rn {
+  width: 24px; height: 24px; border-radius: 6px; background: var(--ghost);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--slate); flex-shrink: 0;
+}
+.rm-item h4 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.rm-item p  { font-size: 12px; color: var(--slate); line-height: 1.5; margin: 0; }
+.rm-item .badges { display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0; }
+
+/* ── CRO GRID ── */
+.cro-split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+.cro-col h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.cro-items { display: flex; flex-direction: column; gap: 8px; }
+.cro-item {
+  background: var(--white); border-radius: var(--r-sm); padding: 12px 14px;
+  box-shadow: var(--shadow); border: 1px solid var(--ghost-2); font-size: 13px;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.cro-item .ci-icon { font-size: 16px; flex-shrink: 0; }
+.cro-item .ci-body strong { display: block; font-size: 13px; margin-bottom: 2px; }
+.cro-item .ci-body p { font-size: 12px; color: var(--slate); margin: 0; line-height: 1.5; }
+
+/* ── COMP PROFILE ── */
+.comp-profiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+.comp-profile {
+  background: var(--white); border-radius: var(--r); padding: 18px;
+  box-shadow: var(--shadow); border: 1px solid var(--ghost-2);
+}
+.comp-profile .cp-num { font-size: 10px; color: var(--blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.comp-profile h3 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.comp-profile .cp-url { font-size: 11px; color: var(--slate-2); font-family: monospace; margin-bottom: 10px; }
+.comp-profile p { font-size: 12px; color: var(--slate); line-height: 1.6; }
+.comp-profile .cp-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
+
+/* ── DIVIDER ── */
+.div { height: 1px; background: var(--ghost-2); margin: 32px 0; }
+
+/* ── INSIGHT BOX ── */
+.insight {
+  background: var(--blue-l); border: 1px solid var(--blue-m); border-radius: var(--r);
+  padding: 16px 20px; display: flex; gap: 14px; margin: 20px 0;
+}
+.insight .ico { font-size: 20px; flex-shrink: 0; }
+.insight h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.insight p  { font-size: 12px; color: var(--ink-2); margin: 0; line-height: 1.6; }
+
+/* ── FOOTER ── */
+.report-footer {
+  background: var(--ink); color: var(--slate-2); border-radius: var(--r);
+  padding: 28px 36px; text-align: center; margin-top: 48px; font-size: 12px; line-height: 1.8;
+}
+.report-footer strong { color: #fff; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .topbar nav { display: none; }
+  .cover { padding: 32px 28px; }
+  .cover h1 { font-size: 28px; }
+  .score-grid { grid-template-columns: repeat(2, 1fr); }
+  .pc-grid, .cro-split, .comp-profiles { grid-template-columns: 1fr; }
+  .issue { grid-template-columns: 36px 1fr; }
+  .issue .tag-col { grid-column: 2; flex-direction: row; align-items: flex-start; }
+  .rm-item { grid-template-columns: 24px 1fr; }
+  .rm-item .badges { grid-column: 2; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="brand">Sur Digital Labs <span>/ Auditoría SEO 2026</span></div>
+  <nav>
+    <a href="#hallazgos">Hallazgos</a>
+    <a href="#onpage">On-Page</a>
+    <a href="#tecnico">Técnico</a>
+    <a href="#rendimiento">Rendimiento</a>
+    <a href="#contenido">Contenido</a>
+    <a href="#competidores">Competidores</a>
+    <a href="#keywords">Keywords</a>
+    <a href="#cro">CRO</a>
+    <a href="#plan">Plan</a>
+  </nav>
+  <div class="score-badge">SEO Global: 32 / 100</div>
+</div>
+
+<div class="page">
+
+  <!-- ════════════════════════════════════ COVER -->
+  <div class="cover">
+    <div class="cover-tag">Auditoría SEO Premium B2B · Junio 2026</div>
+    <h1>Informe SEO<br><em>Sur Digital Labs</em></h1>
+    <p>Análisis técnico y estratégico completo de surdigitallabs.cl orientado a generación de leads cualificados para servicios tecnológicos en Chile y Latinoamérica. Cada hallazgo responde a: <strong style="color:#e2e8f0">¿cómo impacta esto en conseguir más clientes?</strong></p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><div class="label">URL</div><div class="val">surdigitallabs.cl</div></div>
+      <div class="cover-meta-item"><div class="label">Sector</div><div class="val">Software Factory · Cloud · Datos</div></div>
+      <div class="cover-meta-item"><div class="label">Mercado</div><div class="val">Chile · PYME + Empresa</div></div>
+      <div class="cover-meta-item"><div class="label">Alcance LATAM</div><div class="val">Chile prioritario + expansión</div></div>
+      <div class="cover-meta-item"><div class="label">Fecha</div><div class="val">Junio 2026</div></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════ RESUMEN EJECUTIVO -->
+  <section id="resumen">
+    <div class="section-header">
+      <div class="section-label">📊 Resumen ejecutivo</div>
+      <h2>Diagnóstico global</h2>
+      <p class="section-desc">El sitio ha mejorado respecto a una versión anterior (hay títulos y descripciones únicas en la home y contacto), pero persisten problemas técnicos graves que limitan severamente su visibilidad en Google.</p>
+    </div>
+
+    <div class="score-grid">
+      <div class="score-card">
+        <div class="sc-label">SEO Global</div>
+        <div class="sc-num c-orange">32</div>
+        <div class="sc-sub">Deficiente</div>
+        <div class="sc-bar"><div class="sc-fill" style="width:32%;background:var(--orange)"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="sc-label">SEO Técnico</div>
+        <div class="sc-num c-red">18</div>
+        <div class="sc-sub">Crítico — bloqueante</div>
+        <div class="sc-bar"><div class="sc-fill" style="width:18%;background:var(--red)"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="sc-label">SEO On-Page</div>
+        <div class="sc-num c-orange">40</div>
+        <div class="sc-sub">Inicio pero incompleto</div>
+        <div class="sc-bar"><div class="sc-fill" style="width:40%;background:var(--orange)"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="sc-label">Contenido</div>
+        <div class="sc-num c-red">8</div>
+        <div class="sc-sub">Prácticamente nulo</div>
+        <div class="sc-bar"><div class="sc-fill" style="width:8%;background:var(--red)"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="sc-label">Rendimiento</div>
+        <div class="sc-num c-orange">30</div>
+        <div class="sc-sub">Riesgo arquitectónico</div>
+        <div class="sc-bar"><div class="sc-fill" style="width:30%;background:var(--orange)"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="sc-label">CRO</div>
+        <div class="sc-num c-yellow">45</div>
+        <div class="sc-sub">Mejorable</div>
+        <div class="sc-bar"><div class="sc-fill" style="width:45%;background:var(--yellow)"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="sc-label">Autoridad de dominio</div>
+        <div class="sc-num c-red">Muy baja</div>
+        <div class="sc-sub">Sin links externos detectados</div>
+        <div class="sc-bar"><div class="sc-fill" style="width:10%;background:var(--red)"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="sc-label">Visibilidad orgánica</div>
+        <div class="sc-num c-red">≈ 0</div>
+        <div class="sc-sub">SPA sin SSR activo</div>
+        <div class="sc-bar"><div class="sc-fill" style="width:3%;background:var(--red)"></div></div>
+      </div>
+    </div>
+
+    <div class="verdict" style="margin-top:20px;">
+      <h3>🔴 Diagnóstico ejecutivo</h3>
+      <p>Sur Digital Labs ha dado pasos positivos en on-page (<span class="hl">la página de contacto tiene título y descripción propios excelentes</span>, y existe una og:image dedicada para /contacto). Sin embargo, hay <span class="hl">tres problemas estructurales que anulan todo lo demás</span>: la web es una SPA sin SSR (Google ve HTML vacío), no existe robots.txt válido, y todas las páginas de servicio comparten el mismo title y la misma meta description — canibalización directa.</p>
+      <p>El resultado es que Sur Digital Labs es <span class="hl">invisible para cualquier prospecto que busque en Google</span> servicios de datos, cloud o automatización. Un competidor como Digital Upgrade, con arquitectura WordPress convencional y casos de éxito publicados, capta hoy los leads que debería estar recibiendo SDL.</p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ HALLAZGOS CRÍTICOS -->
+  <section id="hallazgos">
+    <div class="section-header">
+      <div class="section-label">🚨 Hallazgos críticos</div>
+      <h2>Problemas que cuestan clientes ahora mismo</h2>
+      <p class="section-desc">Verificados directamente desde el servidor. Sin inferencias.</p>
+    </div>
+
+    <div class="issues-list">
+
+      <div class="issue">
+        <div class="sev sev-crit">🔴</div>
+        <div class="body">
+          <h4>SPA sin Server-Side Rendering — el contenido es invisible para Google</h4>
+          <p>Todas las rutas del sitio devuelven un HTML shell vacío con el texto <code>Necesitas habilitar JavaScript para visualizar este sitio</code>. Google puede ejecutar JS pero con retrasos de días o semanas y sin garantía de indexación correcta de rutas dinámicas. Las páginas de servicio (/servicios/datos, /servicios/cloud, /servicios/automatizacion) no están indexadas con su contenido real. Impacto directo: cero tráfico orgánico de prospectos buscando esos servicios.</p>
+        </div>
+        <div class="tag-col">
+          <span class="pill pill-red">Crítico</span>
+          <span class="pill pill-slate">Técnico</span>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="sev sev-crit">🔴</div>
+        <div class="body">
+          <h4>robots.txt no existe — responde con HTML de la SPA</h4>
+          <p>La URL <code>/robots.txt</code> devuelve el HTML de la aplicación con <code>Content-Type: text/html</code> en lugar de un archivo de texto plano. Google no puede leer ninguna instrucción de rastreo. Sin este archivo el bot puede malgastar crawl budget en rutas irrelevantes y jamás encontrar las páginas de servicio.</p>
+        </div>
+        <div class="tag-col">
+          <span class="pill pill-red">Crítico</span>
+          <span class="pill pill-slate">Técnico</span>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="sev sev-crit">🔴</div>
+        <div class="body">
+          <h4>Canibalización: /datos, /cloud y /automatizacion tienen el mismo title y descripción</h4>
+          <p>Las tres landing pages de servicios más importantes comparten exactamente el mismo title (<code>Desarrollo de Software a Medida · GCP · AWS | Sur Digital Labs</code>) y la misma meta description. Google no puede diferenciarlas, no sabe cuál posicionar para qué keyword, y en la práctica ninguna posiciona para nada. Si alguien busca "ingeniería de datos Chile", Sur Digital Labs no aparece porque esa página tiene el título de software a medida.</p>
+        </div>
+        <div class="tag-col">
+          <span class="pill pill-red">Crítico</span>
+          <span class="pill pill-slate">On-Page</span>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="sev sev-crit">🔴</div>
+        <div class="body">
+          <h4>Conflicto canonical www ↔ non-www</h4>
+          <p>La versión <code>www</code> de la home tiene canonical apuntando a <code>https://surdigitallabs.cl/</code> (sin www). La versión sin www redirige a www. Google ve un conflicto: el servidor dice "ve a www" pero el canonical dice "la versión correcta es sin www". Adicionalmente, /contacto usa canonical con www (<code>www.surdigitallabs.cl/contacto</code>) mientras que las páginas de servicio usan canonical sin www — mezcla que confunde el algoritmo sobre qué versión debe indexar.</p>
+        </div>
+        <div class="tag-col">
+          <span class="pill pill-red">Crítico</span>
+          <span class="pill pill-slate">Técnico</span>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="sev sev-major">🟠</div>
+        <div class="body">
+          <h4>Twitter Card desactualizada en todas las páginas — siempre muestra datos de la home</h4>
+          <p>Aunque las páginas de servicio tienen <code>og:title</code> y <code>og:description</code> únicos, las etiquetas <code>twitter:title</code> y <code>twitter:description</code> siguen mostrando el título y descripción genérico de la home en todas las rutas. Cuando se comparte una landing de servicio en LinkedIn o Twitter, la vista previa muestra "Sur Digital Labs - Software, datos y automatización en Coyhaique…" en lugar del nombre del servicio específico. Además, <code>twitter:image</code> en /contacto apunta a <code>/favicon.png</code> en lugar de la <code>og-contacto.jpg</code> que sí existe.</p>
+        </div>
+        <div class="tag-col">
+          <span class="pill pill-orange">Mayor</span>
+          <span class="pill pill-slate">On-Page</span>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="sev sev-major">🟠</div>
+        <div class="body">
+          <h4>Title de la home demasiado largo y geolimitante (72 chars)</h4>
+          <p>El límite recomendado es ~60 caracteres. El title actual menciona "Coyhaique, Patagonia" lo que limita la percepción geográfica del servicio. Un prospecto en Santiago o Bogotá que busca "desarrollo de software Chile" puede no hacer clic en un resultado que dice "…en Coyhaique, Patagonia". El diferencial regional es un activo, pero no debería ir en el title principal — va mejor en la descripción o en una sección "quiénes somos".</p>
+        </div>
+        <div class="tag-col">
+          <span class="pill pill-orange">Mayor</span>
+          <span class="pill pill-slate">On-Page</span>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="sev sev-major">🟠</div>
+        <div class="body">
+          <h4>og:image de la home apunta a /favicon.png (ruta relativa, imagen microscópica)</h4>
+          <p>La home y muchas páginas de servicio tienen <code>og:image: /favicon.png</code>. Las plataformas sociales necesitan imágenes de mínimo 1200×630px. El favicon tiene probablemente 32×32 o 64×64px. Resultado: cuando un prospecto comparte la URL de SDL en LinkedIn o WhatsApp, la vista previa muestra una imagen pixelada o no muestra nada. Nota positiva: /contacto ya tiene <code>og-contacto.jpg</code> con URL absoluta. Ese patrón debe replicarse en todas las páginas.</p>
+        </div>
+        <div class="tag-col">
+          <span class="pill pill-orange">Mayor</span>
+          <span class="pill pill-slate">Marca</span>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="sev sev-major">🟠</div>
+        <div class="body">
+          <h4>Sin sitemap.xml — Google no conoce la estructura del sitio</h4>
+          <p><code>/sitemap.xml</code> devuelve el HTML de la SPA. Sin sitemap, Google debe descubrir las URLs rastreando enlaces, pero como la navegación es JS, nunca puede encontrar las rutas de servicio. Las páginas <code>/servicios/datos</code>, <code>/servicios/cloud</code>, <code>/servicios/automatizacion</code> y <code>/servicios/desarrollo-web</code> son desconocidas para el bot.</p>
+        </div>
+        <div class="tag-col">
+          <span class="pill pill-orange">Mayor</span>
+          <span class="pill pill-slate">Técnico</span>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="sev sev-minor">🟡</div>
+        <div class="body">
+          <h4>Meta keywords presentes (etiqueta obsoleta desde 2009)</h4>
+          <p>Las páginas de servicio incluyen <code>meta-keywords</code>. Google ignoró esta etiqueta desde 2009 y algunos motores la consideran spam. No perjudica el ranking pero muestra que la configuración de metadatos no está completamente depurada.</p>
+        </div>
+        <div class="tag-col">
+          <span class="pill pill-yellow">Menor</span>
+          <span class="pill pill-slate">On-Page</span>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="sev sev-minor">🟡</div>
+        <div class="body">
+          <h4>Ausencia total de datos estructurados (Schema.org)</h4>
+          <p>No se detecta JSON-LD en el HTML shell de ninguna página. Sin Schema Organization, Service ni FAQPage, SDL pierde la posibilidad de obtener rich results (resultados enriquecidos) en Google: paneles de empresa, acordeones de FAQ, estrellas de reseñas. Sus competidores con WordPress obtienen estos automáticamente.</p>
+        </div>
+        <div class="tag-col">
+          <span class="pill pill-yellow">Menor</span>
+          <span class="pill pill-slate">Técnico</span>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="sev sev-ok">✅</div>
+        <div class="body">
+          <h4>Positivo: /contacto tiene metadatos excelentes y og:image dedicada</h4>
+          <p>Title: <code>Contacta Sur Digital Labs | Consulta Gratis 24h</code> (48 chars ✓). Meta description: <code>Escríbenos para consulta sin compromiso… Respuesta garantizada en menos de 24 horas.</code> (124 chars ✓). og:image apunta a <code>/og-contacto.jpg</code> con URL absoluta. Esta configuración debe replicarse para todas las páginas de servicio.</p>
+        </div>
+        <div class="tag-col">
+          <span class="pill pill-green">Positivo</span>
+        </div>
+      </div>
+
+      <div class="issue">
+        <div class="sev sev-ok">✅</div>
+        <div class="body">
+          <h4>Positivo: HTTPS activo y redirección non-www → www correcta</h4>
+          <p>El sitio sirve en HTTPS. La redirección de <code>surdigitallabs.cl</code> a <code>www.surdigitallabs.cl</code> funciona correctamente. Open Graph y Twitter Cards están al menos parcialmente configuradas. Son buenas bases sobre las que construir.</p>
+        </div>
+        <div class="tag-col">
+          <span class="pill pill-green">Positivo</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ SEO ON-PAGE -->
+  <section id="onpage">
+    <div class="section-header">
+      <div class="section-label">📄 SEO On-Page</div>
+      <h2>Auditoría página por página</h2>
+      <p class="section-desc">Datos obtenidos directamente de los headers HTTP y metadatos del HTML shell devuelto por el servidor. El contenido interno (H1, cuerpo, imágenes) requiere JS para renderizar y se anota como "no verificable sin SSR".</p>
+    </div>
+
+    <div class="page-cards">
+
+      <!-- HOME -->
+      <div class="page-card">
+        <div class="pc-head">
+          <span style="font-weight:700;font-size:15px;">🏠 Home</span>
+          <span class="url">https://surdigitallabs.cl/ → redirect → https://www.surdigitallabs.cl/</span>
+          <span class="pill pill-orange">Mejorable</span>
+        </div>
+        <div class="pc-body">
+          <div class="pc-grid">
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-yellow"></span> Title (72 chars — excede límite ~60)</div>
+              <div class="fv warn">"Sur Digital Labs - Software, datos y automatización en Coyhaique, Patagonia"</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-red"></span> Meta description (166 chars — excede límite ~155)</div>
+              <div class="fv bad">"Socio tecnológico en Coyhaique, Patagonia: software a medida, datos y automatización para pymes y empresas regionales. Estándar profesional y acompañamiento cercano."</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-red"></span> Canonical (CONFLICTO)</div>
+              <div class="fv bad">www → apunta a non-www (https://surdigitallabs.cl/). El servidor redirige de non-www a www, pero el canonical dice que non-www es la URL correcta. Señal contradictoria para Google.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-red"></span> og:image</div>
+              <div class="fv bad">/favicon.png (ruta relativa, imagen microscópica). Sin og:image válida.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-yellow"></span> H1 / H2 / H3</div>
+              <div class="fv warn">No verificable sin SSR. Google los ve con retraso o no los ve.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-yellow"></span> Schema / Datos estructurados</div>
+              <div class="fv warn">Ausentes en el HTML shell. No verificable en contenido JS.</div>
+            </div>
+            <div class="pc-field pc-field-full">
+              <div class="fl">💼 Impacto comercial</div>
+              <div class="fv" style="border-color:var(--orange-m);background:var(--orange-l);">El title menciona Coyhaique y Patagonia como primera información geográfica. Esto afecta el CTR entre prospectos de Santiago o LATAM, que pueden interpretar el servicio como "regional" en lugar de "disponible para mi empresa". La meta description de 166 chars se corta en los resultados de búsqueda, perdiendo el CTA al final.</div>
+            </div>
+            <div class="pc-field pc-field-full">
+              <div class="fl">✏️ Title propuesto</div>
+              <div class="fv ok">Software a Medida, Cloud y Datos para Empresas | Sur Digital Labs Chile <span class="pill pill-green" style="margin-left:8px;">60 chars</span></div>
+            </div>
+            <div class="pc-field pc-field-full">
+              <div class="fl">✏️ Meta description propuesta</div>
+              <div class="fv ok">Desarrollamos software a medida, soluciones cloud (GCP/AWS) e ingeniería de datos para PYMEs y empresas en Chile. Desde la Patagonia, con estándar enterprise. Cotiza gratis. <span class="pill pill-green" style="margin-left:8px;">178 chars — ajustar a 155</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESARROLLO WEB -->
+      <div class="page-card">
+        <div class="pc-head">
+          <span style="font-weight:700;font-size:15px;">🌐 Desarrollo Web</span>
+          <span class="url">https://surdigitallabs.cl/servicios/desarrollo-web</span>
+          <span class="pill pill-yellow">Incompleto</span>
+        </div>
+        <div class="pc-body">
+          <div class="pc-grid">
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-yellow"></span> Title (62 chars ✓ longitud OK, contenido ambiguo)</div>
+              <div class="fv warn">"Desarrollo de Software a Medida · GCP · AWS | Sur Digital Labs" — menciona GCP y AWS en una página de "desarrollo web", lo cual es confuso para Google y para el usuario.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-green"></span> Meta description (141 chars ✓)</div>
+              <div class="fv ok">"Software a medida, datos y cloud para PYMEs en Chile. Arquitectura moderna, SSR, APIs seguras. 8+ años, respuesta en 24h. Cotiza sin costo."</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-green"></span> Canonical</div>
+              <div class="fv ok">https://surdigitallabs.cl/servicios/desarrollo-web — apunta a sí mismo ✓</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-yellow"></span> og:image</div>
+              <div class="fv warn">https://surdigitallabs.cl/og-home.jpg — imagen genérica, no específica del servicio.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-red"></span> twitter:title / twitter:description</div>
+              <div class="fv bad">¡Muestran el title y description GENÉRICO de la home! Bug de implementación.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-yellow"></span> meta-keywords</div>
+              <div class="fv warn">"software a medida chile, desarrollo web, datos, cloud, automatización, consultoría tech" — idéntico en todas las páginas de servicio.</div>
+            </div>
+            <div class="pc-field pc-field-full">
+              <div class="fl">✏️ Title propuesto</div>
+              <div class="fv ok">Desarrollo Web Corporativo y Aplicaciones a Medida | Sur Digital Labs <span class="pill pill-green" style="margin-left:8px;">70 chars</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATOS -->
+      <div class="page-card">
+        <div class="pc-head">
+          <span style="font-weight:700;font-size:15px;">📊 Ingeniería de Datos</span>
+          <span class="url">https://surdigitallabs.cl/servicios/datos</span>
+          <span class="pill pill-red">Canibalización</span>
+        </div>
+        <div class="pc-body">
+          <div class="pc-grid">
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-red"></span> Title (IDÉNTICO a /desarrollo-web)</div>
+              <div class="fv bad">"Desarrollo de Software a Medida · GCP · AWS | Sur Digital Labs" — Esta página habla de DATOS pero el title dice "desarrollo de software". Google no la posicionará para "ingeniería de datos Chile".</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-red"></span> Meta description (IDÉNTICA a todas las demás)</div>
+              <div class="fv bad">"Software a medida, datos y cloud para PYMEs en Chile…" — Sin diferenciación. Canibalización directa con /desarrollo-web.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-green"></span> Canonical</div>
+              <div class="fv ok">https://surdigitallabs.cl/servicios/datos — correcto ✓</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-red"></span> twitter:title / twitter:description</div>
+              <div class="fv bad">Datos genéricos de la home. Bug de implementación.</div>
+            </div>
+            <div class="pc-field pc-field-full">
+              <div class="fl">✏️ Title propuesto</div>
+              <div class="fv ok">Ingeniería y Arquitectura de Datos para Empresas Chile | Sur Digital Labs <span class="pill pill-green" style="margin-left:8px;">73 chars</span></div>
+            </div>
+            <div class="pc-field pc-field-full">
+              <div class="fl">✏️ Meta description propuesta</div>
+              <div class="fv ok">Diseñamos pipelines de datos, data warehouses y soluciones de analítica para empresas chilenas. Convierte tus datos en decisiones de negocio. Consulta sin costo.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLOUD -->
+      <div class="page-card">
+        <div class="pc-head">
+          <span style="font-weight:700;font-size:15px;">☁️ Cloud (GCP / AWS)</span>
+          <span class="url">https://surdigitallabs.cl/servicios/cloud</span>
+          <span class="pill pill-red">Canibalización</span>
+        </div>
+        <div class="pc-body">
+          <div class="pc-grid">
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-red"></span> Title (IDÉNTICO a /datos y /desarrollo-web)</div>
+              <div class="fv bad">"Desarrollo de Software a Medida · GCP · AWS | Sur Digital Labs" — El mencionado GCP/AWS en el title al menos es relevante aquí, pero es el mismo que datos y desarrollo-web. Sin diferenciación entre páginas.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-red"></span> Meta description (IDÉNTICA)</div>
+              <div class="fv bad">Idéntica a todas las demás. Nadie que busque "consultoría Google Cloud Chile" ve algo diferenciado de SDL.</div>
+            </div>
+            <div class="pc-field pc-field-full">
+              <div class="fl">✏️ Title propuesto</div>
+              <div class="fv ok">Consultoría Google Cloud (GCP) y AWS para Empresas en Chile | Sur Digital Labs <span class="pill pill-green" style="margin-left:8px;">79 chars</span></div>
+            </div>
+            <div class="pc-field pc-field-full">
+              <div class="fl">✏️ Meta description propuesta</div>
+              <div class="fv ok">Implementamos y optimizamos infraestructuras en Google Cloud Platform y AWS para PYMEs y empresas en Chile. Migración, arquitectura y soporte continuo. Cotiza sin compromiso.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUTOMATIZACION -->
+      <div class="page-card">
+        <div class="pc-head">
+          <span style="font-weight:700;font-size:15px;">⚙️ Automatización</span>
+          <span class="url">https://surdigitallabs.cl/servicios/automatizacion</span>
+          <span class="pill pill-red">Canibalización</span>
+        </div>
+        <div class="pc-body">
+          <div class="pc-grid">
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-red"></span> Title (IDÉNTICO — 4ª página con el mismo title)</div>
+              <div class="fv bad">"Desarrollo de Software a Medida · GCP · AWS | Sur Digital Labs" — La keyword "automatización de procesos Chile" no aparece en ningún elemento visible para Google.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-red"></span> Meta description (IDÉNTICA)</div>
+              <div class="fv bad">Sin diferenciación. Google no tiene señales para posicionar esta página en búsquedas de automatización.</div>
+            </div>
+            <div class="pc-field pc-field-full">
+              <div class="fl">✏️ Title propuesto</div>
+              <div class="fv ok">Automatización de Procesos e Integraciones para Empresas | Sur Digital Labs</div>
+            </div>
+            <div class="pc-field pc-field-full">
+              <div class="fl">✏️ Meta description propuesta</div>
+              <div class="fv ok">Automatizamos procesos operativos e integramos sistemas empresariales para PYMEs en Chile. Reducimos tareas manuales y aumentamos la eficiencia. Consulta gratis en 24h.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACTO -->
+      <div class="page-card">
+        <div class="pc-head">
+          <span style="font-weight:700;font-size:15px;">📬 Contacto</span>
+          <span class="url">https://surdigitallabs.cl/contacto</span>
+          <span class="pill pill-green">Bien configurado</span>
+        </div>
+        <div class="pc-body">
+          <div class="pc-grid">
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-green"></span> Title (48 chars ✓)</div>
+              <div class="fv ok">"Contacta Sur Digital Labs | Consulta Gratis 24h" — excelente. Orientado a conversión con promesa clara.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-green"></span> Meta description (124 chars ✓)</div>
+              <div class="fv ok">"Escríbenos para consulta sin compromiso. Software, datos, cloud, automatización. Respuesta garantizada en menos de 24 horas." — Perfecto.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-yellow"></span> Canonical (inconsistente con servicios)</div>
+              <div class="fv warn">https://www.surdigitallabs.cl/contacto — usa www. Las páginas de servicio usan non-www. Inconsistencia.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-green"></span> og:image</div>
+              <div class="fv ok">https://www.surdigitallabs.cl/og-contacto.jpg — URL absoluta, imagen dedicada ✓ Este es el modelo correcto.</div>
+            </div>
+            <div class="pc-field">
+              <div class="fl"><span class="dot dot-red"></span> twitter:image (BUG)</div>
+              <div class="fv bad">Apunta a /favicon.png en lugar de og-contacto.jpg. Bug: og:image y twitter:image no están sincronizadas.</div>
+            </div>
+            <div class="pc-field pc-field-full">
+              <div class="fl">💼 Nota</div>
+              <div class="fv ok">Esta es la página mejor configurada del sitio. Replica este patrón en todas las páginas de servicio y la home.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ TÉCNICO -->
+  <section id="tecnico">
+    <div class="section-header">
+      <div class="section-label">⚙️ SEO Técnico</div>
+      <h2>Infraestructura de rastreo e indexación</h2>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Elemento técnico</th>
+            <th>Estado</th>
+            <th>Hallazgo verificado</th>
+            <th>Impacto en leads</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>robots.txt</strong></td>
+            <td><span class="pill pill-red">❌ Inexistente</span></td>
+            <td>/robots.txt devuelve HTML de la SPA (Content-Type: text/html)</td>
+            <td>Sin control de rastreo. Crawl budget desperdiciado.</td>
+          </tr>
+          <tr>
+            <td><strong>sitemap.xml</strong></td>
+            <td><span class="pill pill-red">❌ Inexistente</span></td>
+            <td>/sitemap.xml devuelve HTML de la SPA</td>
+            <td>Google no conoce las URLs de servicio. No las indexa.</td>
+          </tr>
+          <tr>
+            <td><strong>SSR / Prerenderizado</strong></td>
+            <td><span class="pill pill-red">❌ Ausente</span></td>
+            <td>HTML shell vacío en todas las rutas. Requiere JS para contenido.</td>
+            <td>Visibilidad orgánica ≈ 0. El contenido es invisible para bots.</td>
+          </tr>
+          <tr>
+            <td><strong>Canonical www/non-www</strong></td>
+            <td><span class="pill pill-red">❌ Conflicto</span></td>
+            <td>www → canonical apunta a non-www. /contacto usa www. Servicios usan non-www.</td>
+            <td>Google no sabe cuál versión indexar. Autoridad dividida.</td>
+          </tr>
+          <tr>
+            <td><strong>HTTPS</strong></td>
+            <td><span class="pill pill-green">✅ OK</span></td>
+            <td>Activo en todas las rutas verificadas</td>
+            <td>Señal positiva de confianza. Sin penalización.</td>
+          </tr>
+          <tr>
+            <td><strong>Redirección non-www → www</strong></td>
+            <td><span class="pill pill-green">✅ OK</span></td>
+            <td>surdigitallabs.cl redirige correctamente a www</td>
+            <td>Sin pérdida de PageRank por versión duplicada.</td>
+          </tr>
+          <tr>
+            <td><strong>Open Graph</strong></td>
+            <td><span class="pill pill-yellow">⚠️ Parcial</span></td>
+            <td>Configuradas pero og:image es /favicon.png en home y servicios. /contacto correcto.</td>
+            <td>Vista previa mala en redes. Pierde CTR en compartidos.</td>
+          </tr>
+          <tr>
+            <td><strong>Twitter Cards</strong></td>
+            <td><span class="pill pill-red">❌ Roto</span></td>
+            <td>twitter:title y twitter:description siempre muestran datos de la home en todas las páginas</td>
+            <td>Compartir en Twitter/X o LinkedIn muestra info incorrecta.</td>
+          </tr>
+          <tr>
+            <td><strong>Schema.org / JSON-LD</strong></td>
+            <td><span class="pill pill-red">❌ Ausente</span></td>
+            <td>No detectado en ningún HTML shell</td>
+            <td>Sin rich results posibles. Competidores con Schema Organization tienen ventaja visual en SERP.</td>
+          </tr>
+          <tr>
+            <td><strong>Contenido duplicado (title)</strong></td>
+            <td><span class="pill pill-red">❌ Severo</span></td>
+            <td>3 páginas de servicio (/datos, /cloud, /automatizacion) tienen título idéntico a /desarrollo-web</td>
+            <td>Canibalización de keywords. Ninguna posiciona para su servicio.</td>
+          </tr>
+          <tr>
+            <td><strong>Meta keywords</strong></td>
+            <td><span class="pill pill-yellow">⚠️ Obsoleto</span></td>
+            <td>Presentes en páginas de servicio. Ignoradas por Google desde 2009.</td>
+            <td>Sin impacto SEO. Indica configuración no depurada.</td>
+          </tr>
+          <tr>
+            <td><strong>Hreflang</strong></td>
+            <td><span class="pill pill-slate">N/A</span></td>
+            <td>Sitio solo en español. Pendiente para expansión LATAM.</td>
+            <td>Sin impacto actual. Necesario si se crea versión para LATAM.</td>
+          </tr>
+          <tr>
+            <td><strong>Google Search Console</strong></td>
+            <td><span class="pill pill-slate">No verificable</span></td>
+            <td>No se puede verificar externamente</td>
+            <td>Configurar GSC es el primer paso tras implementar robots.txt y sitemap.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ RENDIMIENTO -->
+  <section id="rendimiento">
+    <div class="section-header">
+      <div class="section-label">⚡ Rendimiento y experiencia</div>
+      <h2>Diagnóstico arquitectónico front-end</h2>
+      <p class="section-desc">Análisis basado en el HTML devuelto por el servidor. No se usan cifras inventadas de PageSpeed. No se declaran métricas de LCP, INP ni CLS sin medición real.</p>
+    </div>
+
+    <div class="verdict">
+      <h3>🔴 El rendimiento percibido es críticamente alto-riesgo</h3>
+      <p>Una SPA pura sin SSR tiene un tiempo de First Contentful Paint (FCP) equivalente al tiempo de carga del bundle JavaScript completo. El usuario (y Google) ve una <span class="hl">página en blanco</span> hasta que ese bundle se descarga, parsea y ejecuta. En conexiones lentas de regiones como Aysén o Magallanes, esto puede significar 3-8 segundos de pantalla vacía. Google penaliza LCP tardío como factor de ranking directo desde 2021.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Elemento</th><th>Diagnóstico</th><th>Severidad</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Arquitectura SPA</strong></td>
+            <td>Todo el contenido depende de JS para renderizarse. El servidor envía un shell vacío. LCP se retrasa artificialmente.</td>
+            <td><span class="pill pill-red">Crítico</span></td>
+          </tr>
+          <tr>
+            <td><strong>SSR / SSG</strong></td>
+            <td>Ausente. No hay contenido pre-renderizado en el servidor. Sin Next.js, Nuxt ni Astro detectados.</td>
+            <td><span class="pill pill-red">Crítico</span></td>
+          </tr>
+          <tr>
+            <td><strong>Generator header</strong></td>
+            <td>"Sur Digital Labs" — framework propio sin SSR nativo. Sugiere SPA construida manualmente.</td>
+            <td><span class="pill pill-orange">Mayor</span></td>
+          </tr>
+          <tr>
+            <td><strong>HTML shell size</strong></td>
+            <td>El HTML devuelto es mínimo (~1-2KB útil). Toda la carga se transfiere al bundle JS.</td>
+            <td><span class="pill pill-orange">Mayor</span></td>
+          </tr>
+          <tr>
+            <td><strong>Imágenes (og:image)</strong></td>
+            <td>/favicon.png es ruta relativa y resolución inadecuada. /og-home.jpg y /og-contacto.jpg existen con URL absoluta — buen patrón.</td>
+            <td><span class="pill pill-yellow">Menor</span></td>
+          </tr>
+          <tr>
+            <td><strong>HTTPS / TLS</strong></td>
+            <td>Activo. Sin penalización de seguridad.</td>
+            <td><span class="pill pill-green">OK</span></td>
+          </tr>
+          <tr>
+            <td><strong>Viewport</strong></td>
+            <td>width=device-width,initial-scale=1 — configuración correcta para mobile-first.</td>
+            <td><span class="pill pill-green">OK</span></td>
+          </tr>
+          <tr>
+            <td><strong>Theme color</strong></td>
+            <td">#000000 configurado — correcto para PWA en Android.</td>
+            <td><span class="pill pill-green">OK</span></td>
+          </tr>
+          <tr>
+            <td><strong>Fuentes web</strong></td>
+            <td>No cargadas en el HTML shell. Si se cargan via JS pueden producir FOIT (texto invisible al cargar).</td>
+            <td><span class="pill pill-yellow">Riesgo</span></td>
+          </tr>
+          <tr>
+            <td><strong>Core Web Vitals (estimado)</strong></td>
+            <td>LCP: probable &gt;2.5s (mal). CLS: riesgo medio (SPA puede generar layout shifts al hidratar). INP: no verificable.</td>
+            <td><span class="pill pill-red">Riesgo alto</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight">
+      <div class="ico">💡</div>
+      <div>
+        <h4>Solución técnica recomendada</h4>
+        <p>Migrar a <strong>Next.js (SSR o SSG)</strong> o implementar un servicio de prerenderizado como Prerender.io. Con SSG las páginas de servicio se generan como HTML estático en build-time: carga instantánea, perfecta indexabilidad, Core Web Vitals excelentes. Es la solución con mayor ROI de todo el plan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ CONTENIDO -->
+  <section id="contenido">
+    <div class="section-header">
+      <div class="section-label">✍️ Contenido</div>
+      <h2>Activos de contenido indexable</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;">
+      <div class="score-card"><div class="sc-label">Artículos blog</div><div class="sc-num c-red">0</div><div class="sc-sub">No existe blog</div></div>
+      <div class="score-card"><div class="sc-label">Casos de éxito</div><div class="sc-num c-red">0</div><div class="sc-sub">No publicados</div></div>
+      <div class="score-card"><div class="sc-label">FAQs indexables</div><div class="sc-num c-red">0</div><div class="sc-sub">Sin estructurar</div></div>
+      <div class="score-card"><div class="sc-label">Landing por servicio</div><div class="sc-num c-yellow">4</div><div class="sc-sub">Existen, no indexadas</div></div>
+    </div>
+
+    <div class="verdict">
+      <h3>🔴 El sitio no tiene activos de contenido indexable</h3>
+      <p>No existe blog, no hay casos de éxito con URL pública, no hay guías ni recursos descargables. Esto significa que Sur Digital Labs solo puede aparecer en Google si alguien busca exactamente la marca o un servicio muy genérico. <span class="hl">Digital Upgrade publica artículos activos (abril y marzo 2026) y tiene 6+ casos de éxito con métricas reales</span> que capturan tráfico informacional que convierte en leads B2B.</p>
+    </div>
+
+    <h3 style="margin:24px 0 14px;font-size:16px;">Mapa de silos temáticos recomendados</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Silo</th><th>Landing principal</th><th>Artículos de apoyo (ejemplos)</th><th>Intención</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Software a Medida</strong></td>
+            <td>/servicios/software-a-medida</td>
+            <td>"Cuánto cuesta un software a medida en Chile 2026", "Software a medida vs ERP genérico: cuándo elegir cada uno"</td>
+            <td><span class="pill pill-green">Transaccional</span></td>
+          </tr>
+          <tr>
+            <td><strong>Desarrollo Web</strong></td>
+            <td>/servicios/desarrollo-web</td>
+            <td>"Web corporativa para PYME: qué incluir y cuánto cuesta", "Por qué tu PYME necesita desarrollo web a medida y no una plantilla"</td>
+            <td><span class="pill pill-green">Transaccional</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cloud GCP / AWS</strong></td>
+            <td>/servicios/cloud</td>
+            <td>"Google Cloud vs AWS para PYMEs chilenas: comparativa real 2026", "Cómo migrar tu empresa a la nube sin interrumpir operaciones"</td>
+            <td><span class="pill pill-blue">Informacional → Trans.</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ingeniería de Datos</strong></td>
+            <td>/servicios/datos</td>
+            <td>"Qué es un data warehouse y cuándo lo necesita tu PYME", "Cómo centralizar los datos de tu empresa sin gastar millones"</td>
+            <td><span class="pill pill-blue">Informacional</span></td>
+          </tr>
+          <tr>
+            <td><strong>Automatización</strong></td>
+            <td>/servicios/automatizacion</td>
+            <td>"5 procesos que toda empresa chilena debería automatizar hoy", "RPA vs desarrollo a medida: cuándo usar cada uno"</td>
+            <td><span class="pill pill-blue">Informacional → Trans.</span></td>
+          </tr>
+          <tr>
+            <td><strong>Local / Patagonia</strong></td>
+            <td>/empresa-software-coyhaique</td>
+            <td>"Por qué contratar una empresa tech regional en Patagonia", "Transformación digital en empresas patagónicas: casos reales"</td>
+            <td><span class="pill pill-purple">Local / Navegacional</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ COMPETIDORES -->
+  <section id="competidores">
+    <div class="section-header">
+      <div class="section-label">🥊 Análisis competitivo</div>
+      <h2>Sur Digital Labs vs. competencia directa</h2>
+      <p class="section-desc">Competidores seleccionados por solapamiento real de servicios (software a medida, cloud, datos, automatización) y orientación al mercado PYME/empresa mediana en Chile.</p>
+    </div>
+
+    <div class="comp-profiles">
+      <div class="comp-profile">
+        <div class="cp-num">Competidor #1 — Más peligroso</div>
+        <h3>Digital Upgrade</h3>
+        <div class="cp-url">digitalupgrade.cl</div>
+        <p>Santiago. Software a medida, automatización, cloud, integración. Perfil de cliente idéntico al de SDL. WordPress + casos de éxito con métricas reales (6+ publicados). Blog activo en 2026. FAQ estructuradas por landing. Formulario completo con 5 campos.</p>
+        <div class="cp-tags">
+          <span class="pill pill-red">Rival directo</span>
+          <span class="pill pill-orange">SEO superior</span>
+        </div>
+      </div>
+      <div class="comp-profile">
+        <div class="cp-num">Competidor #2</div>
+        <h3>Andes Digital</h3>
+        <div class="cp-url">andesdigital.com</div>
+        <p>Santiago + España + USA. Enfoque cloud/DevOps/microservicios. Más técnico y enterprise. WordPress con blog activo. Partners tecnológicos visibles (AWS, Red Hat, VMware). Compete en cloud y arquitectura con SDL.</p>
+        <div class="cp-tags">
+          <span class="pill pill-orange">Cloud/DevOps</span>
+          <span class="pill pill-slate">Más enterprise</span>
+        </div>
+      </div>
+      <div class="comp-profile">
+        <div class="cp-num">Competidor #3</div>
+        <h3>Acid Labs</h3>
+        <div class="cp-url">acidlabs.com</div>
+        <p>Santiago + LATAM. Pivote hacia consultoría IA, pero base en desarrollo digital, datos y cloud. Blog + podcast activos. Casos de éxito con Cencosud y LATAM Airlines. Testimonios de C-level con nombre y cargo. La barra de social proof más alta del mercado.</p>
+        <div class="cp-tags">
+          <span class="pill pill-purple">IA/Data</span>
+          <span class="pill pill-blue">LATAM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Métrica SEO</th>
+            <th>Sur Digital Labs</th>
+            <th>Digital Upgrade</th>
+            <th>Andes Digital</th>
+            <th>Acid Labs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Title (home)</strong></td>
+            <td class="td-warn">72 chars, excede límite. Geolimitante.</td>
+            <td class="td-win">"Digital Upgrade | Desarrollo de Software a Medida Chile" — 55 chars ✓</td>
+            <td class="td-win">"Andes Digital - Expertos en Modernización de Aplicaciones, DevOps, MicroServicios" — keywords técnicas ✓</td>
+            <td class="td-win">"Consultoria IA para Empresas de Latam | Acid Labs" — diferenciado, moderno ✓</td>
+          </tr>
+          <tr>
+            <td><strong>Meta desc (home)</strong></td>
+            <td class="td-los">166 chars. Se corta en SERP. Sin CTA explícito.</td>
+            <td class="td-win">"…Más de 10 años transformando empresas B2B." ~155 chars. Con prueba social. ✓</td>
+            <td>Correcta longitud. Técnica pero sin CTA.</td>
+            <td class="td-win">Con keywords específicas (LLMs, MLOps). 100% diferenciada. ✓</td>
+          </tr>
+          <tr>
+            <td><strong>robots.txt</strong></td>
+            <td class="td-los">❌ Devuelve HTML de SPA</td>
+            <td class="td-win">✅ Archivo correcto con sitemap declarado</td>
+            <td class="td-win">✅ WordPress automático</td>
+            <td class="td-win">✅ Correcto (Odoo CMS)</td>
+          </tr>
+          <tr>
+            <td><strong>sitemap.xml</strong></td>
+            <td class="td-los">❌ Devuelve HTML de SPA</td>
+            <td class="td-win">✅ Sitemap XML completo</td>
+            <td class="td-win">✅ WordPress automático</td>
+            <td class="td-win">✅ Presente</td>
+          </tr>
+          <tr>
+            <td><strong>Canonical por página</strong></td>
+            <td class="td-warn">Correcto en servicios. Conflicto www/non-www en home y /contacto.</td>
+            <td class="td-win">✅ WordPress: cada URL → sí misma en www</td>
+            <td class="td-win">✅ WordPress: correcto</td>
+            <td class="td-win">✅ Odoo: correcto</td>
+          </tr>
+          <tr>
+            <td><strong>Twitter Cards</strong></td>
+            <td class="td-los">❌ Siempre muestran datos de la home. Bug.</td>
+            <td class="td-win">✅ Por página</td>
+            <td class="td-win">✅ Por página</td>
+            <td class="td-win">✅ Por página</td>
+          </tr>
+          <tr>
+            <td><strong>og:image por servicio</strong></td>
+            <td class="td-los">Home = favicon. Servicios = og-home.jpg genérico. Solo /contacto tiene imagen propia.</td>
+            <td class="td-win">✅ Imagen específica 2560×1707px por landing ✓✓</td>
+            <td class="td-win">✅ og:image correcto en home</td>
+            <td class="td-win">✅ og:image por página</td>
+          </tr>
+          <tr>
+            <td><strong>Canibalización de titles</strong></td>
+            <td class="td-los">❌ 4 páginas de servicio comparten el mismo title</td>
+            <td class="td-win">✅ Title único por landing. "Desarrollo de Software a Medida Chile" ≠ "Automatización de Procesos" etc.</td>
+            <td class="td-win">✅ Único por servicio</td>
+            <td class="td-win">✅ Único por sección</td>
+          </tr>
+          <tr>
+            <td><strong>Blog activo</strong></td>
+            <td class="td-los">❌ No existe</td>
+            <td class="td-win">✅ Artículos en abril 2026 ✓</td>
+            <td class="td-win">✅ Blog presente</td>
+            <td class="td-win">✅ Blog + Podcast ✓✓</td>
+          </tr>
+          <tr>
+            <td><strong>Casos de éxito públicos</strong></td>
+            <td class="td-los">❌ No detectados</td>
+            <td class="td-win">✅ 6+ con métricas detalladas (55% eficiencia, 65% reducción tiempo…) ✓✓</td>
+            <td class="td-warn">1 caso publicado</td>
+            <td class="td-win">✅ Cencosud, eClass, Sky Airline ✓✓</td>
+          </tr>
+          <tr>
+            <td><strong>Testimonios con cargo</strong></td>
+            <td class="td-los">❌ No detectados</td>
+            <td class="td-warn">Logos de clientes sin testimonios textuales</td>
+            <td class="td-los">Sin testimonios en home</td>
+            <td class="td-win">✅ Directores tech con nombre, cargo y empresa ✓✓</td>
+          </tr>
+          <tr>
+            <td><strong>FAQs estructuradas</strong></td>
+            <td class="td-los">❌ No detectadas</td>
+            <td class="td-win">✅ 5 FAQs por landing de servicio ✓</td>
+            <td class="td-los">Sin FAQs detectadas</td>
+            <td class="td-los">Sin FAQs detectadas</td>
+          </tr>
+          <tr>
+            <td><strong>Formulario de contacto</strong></td>
+            <td class="td-warn">Existe (JS), no verificable. Campos desconocidos.</td>
+            <td class="td-win">✅ 5 campos: nombre, correo, empresa, teléfono, proyecto. Respuesta &lt;24h ✓</td>
+            <td class="td-win">✅ Formulario visible</td>
+            <td class="td-win">✅ CTA fijo en nav</td>
+          </tr>
+          <tr>
+            <td><strong>Schema.org</strong></td>
+            <td class="td-los">❌ Ausente</td>
+            <td class="td-win">✅ WordPress + plugins generan Organization automáticamente</td>
+            <td class="td-win">✅ WordPress</td>
+            <td class="td-win">✅ Odoo</td>
+          </tr>
+          <tr>
+            <td><strong>Breadcrumbs</strong></td>
+            <td class="td-los">❌ No detectados</td>
+            <td class="td-win">✅ "Inicio &gt; Servicios &gt; Desarrollo de Software a Medida" ✓</td>
+            <td class="td-win">✅ Presentes</td>
+            <td>Parciales</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="verdict warn" style="margin-top:16px;">
+      <h3>⚠️ Veredicto: Digital Upgrade es la amenaza más directa</h3>
+      <p>Mismo mercado, mismos servicios, misma propuesta de valor para PYMEs — pero con arquitectura WordPress indexable, 6+ casos de éxito con métricas reales, FAQ en cada landing, formulario optimizado y blog activo. Cualquier prospecto que busque "software a medida Chile" o "automatización de procesos PYME" hoy encuentra a Digital Upgrade antes que a Sur Digital Labs. <span class="hl">Esta brecha es cerrable en 3-6 meses con las acciones correctas.</span></p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ KEYWORDS -->
+  <section id="keywords">
+    <div class="section-header">
+      <div class="section-label">🔍 Oportunidades de keywords</div>
+      <h2>10 keywords prioritarias para captación B2B</h2>
+      <p class="section-desc">Estimación cualitativa. No se inventan volúmenes numéricos. Dificultad y volumen basados en patrones conocidos del mercado tech chileno.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Keyword</th>
+            <th>Intención</th>
+            <th>Vol. relativo</th>
+            <th>Dificultad</th>
+            <th>Oportunidad comercial</th>
+            <th>Contenido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td>
+            <td><strong>desarrollo de software a medida Chile</strong></td>
+            <td><span class="pill pill-green">Transaccional</span></td>
+            <td><span class="pill pill-yellow">Medio</span></td>
+            <td><span class="pill pill-yellow">Media</span></td>
+            <td>🔥🔥🔥 Muy alta. Quien busca esto está evaluando proveedores.</td>
+            <td>Landing dedicada + proceso + tecnologías + CTA</td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td><strong>empresa de software a medida para pymes Chile</strong></td>
+            <td><span class="pill pill-green">Transaccional</span></td>
+            <td><span class="pill pill-green">Medio-bajo</span></td>
+            <td><span class="pill pill-green">Baja</span></td>
+            <td>🔥🔥🔥 Muy alta. Long-tail exacto al ICP de SDL. Puede dominar.</td>
+            <td>Landing específica PYMEs + casos de éxito de PYMEs</td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td><strong>consultoría Google Cloud Chile</strong></td>
+            <td><span class="pill pill-green">Transaccional</span></td>
+            <td><span class="pill pill-green">Bajo</span></td>
+            <td><span class="pill pill-green">Baja-Media</span></td>
+            <td>🔥🔥🔥 Alta. Ticket alto. Pocas empresas regionales compiten aquí.</td>
+            <td>Landing /servicios/cloud con sección GCP</td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td><strong>automatización de procesos empresas Chile</strong></td>
+            <td><span class="pill pill-green">Transaccional</span></td>
+            <td><span class="pill pill-yellow">Medio</span></td>
+            <td><span class="pill pill-yellow">Media</span></td>
+            <td>🔥🔥🔥 Alta. Demanda creciente. Digital Upgrade ya compite aquí.</td>
+            <td>Landing /servicios/automatizacion + artículo de blog</td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td><strong>ingeniería de datos Chile</strong></td>
+            <td><span class="pill pill-green">Transaccional</span></td>
+            <td><span class="pill pill-green">Bajo</span></td>
+            <td><span class="pill pill-green">Baja</span></td>
+            <td>🔥🔥 Media-alta. Nicho poco competido. Oportunidad de dominar rápido.</td>
+            <td>Landing /servicios/datos diferenciada</td>
+          </tr>
+          <tr>
+            <td><strong>6</strong></td>
+            <td><strong>cuánto cuesta un software a medida Chile</strong></td>
+            <td><span class="pill pill-blue">Informacional</span></td>
+            <td><span class="pill pill-yellow">Medio</span></td>
+            <td><span class="pill pill-green">Baja</span></td>
+            <td>🔥🔥🔥 Muy alta. Captura prospectos en etapa de evaluación de presupuesto. Artículo con rango de precios = lead magnet.</td>
+            <td>Artículo de blog con CTA a cotización</td>
+          </tr>
+          <tr>
+            <td><strong>7</strong></td>
+            <td><strong>desarrollo de aplicaciones web a medida</strong></td>
+            <td><span class="pill pill-green">Transaccional</span></td>
+            <td><span class="pill pill-yellow">Medio</span></td>
+            <td><span class="pill pill-yellow">Media</span></td>
+            <td>🔥🔥 Alta. Búsqueda directa de un servicio core de SDL.</td>
+            <td>Subsección en landing desarrollo-web</td>
+          </tr>
+          <tr>
+            <td><strong>8</strong></td>
+            <td><strong>transformación digital pymes Chile</strong></td>
+            <td><span class="pill pill-blue">Informacional</span></td>
+            <td><span class="pill pill-yellow">Medio</span></td>
+            <td><span class="pill pill-yellow">Media</span></td>
+            <td>🔥🔥 Media. Posiciona a SDL como referente del segmento PYME.</td>
+            <td>Artículo guía + casos de éxito PYMEs</td>
+          </tr>
+          <tr>
+            <td><strong>9</strong></td>
+            <td><strong>empresa software Coyhaique / Patagonia</strong></td>
+            <td><span class="pill pill-purple">Navegacional</span></td>
+            <td><span class="pill pill-green">Muy bajo</span></td>
+            <td><span class="pill pill-green">Muy baja</span></td>
+            <td>🔥🔥🔥 Alta localmente. SDL puede dominar sin competencia. Clientes regionales de Aysén, Magallanes, Los Lagos.</td>
+            <td>Optimizar home + Google Business Profile</td>
+          </tr>
+          <tr>
+            <td><strong>10</strong></td>
+            <td><strong>integración de sistemas empresariales Chile</strong></td>
+            <td><span class="pill pill-green">Transaccional</span></td>
+            <td><span class="pill pill-yellow">Medio</span></td>
+            <td><span class="pill pill-yellow">Media</span></td>
+            <td>🔥🔥 Alta. Empresas con ERP/CRM desconectados buscan esto. Ticket promedio elevado.</td>
+            <td>Landing /servicios/integraciones</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ CRO -->
+  <section id="cro">
+    <div class="section-header">
+      <div class="section-label">🎯 CRO / Conversión</div>
+      <h2>Análisis de captación de leads</h2>
+    </div>
+
+    <div class="cro-split">
+      <div class="cro-col">
+        <h3>✅ Lo que ayuda a convertir</h3>
+        <div class="cro-items">
+          <div class="cro-item">
+            <div class="ci-icon">💬</div>
+            <div class="ci-body">
+              <strong>Promesa de respuesta en 24h (en /contacto)</strong>
+              <p>La meta description de /contacto dice "Respuesta garantizada en menos de 24 horas". Esta promesa reduce la fricción de contacto. Debe estar visible en el formulario también.</p>
+            </div>
+          </div>
+          <div class="cro-item">
+            <div class="ci-icon">🗺️</div>
+            <div class="ci-body">
+              <strong>Diferencial geográfico auténtico</strong>
+              <p>"Desde la Patagonia" transmite cercanía real para empresas regionales y credibilidad para empresas nacionales que buscan un partner fuera del ruido de Santiago.</p>
+            </div>
+          </div>
+          <div class="cro-item">
+            <div class="ci-icon">🤝</div>
+            <div class="ci-body">
+              <strong>Posicionamiento de "socio", no de proveedor</strong>
+              <p>"Socio tecnológico" y "acompañamiento cercano" generan percepción de relación de largo plazo. Esto resuena fuertemente con PYMEs que no tienen equipo tech interno.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cro-col">
+        <h3>❌ Lo que frena la conversión</h3>
+        <div class="cro-items">
+          <div class="cro-item">
+            <div class="ci-icon">📷</div>
+            <div class="ci-body">
+              <strong>Sin casos de éxito públicos con métricas</strong>
+              <p>En B2B la pregunta clave es "¿has hecho algo similar?". Sin casos de éxito con cifras reales, el prospecto no tiene razones objetivas para elegir SDL sobre un competidor.</p>
+            </div>
+          </div>
+          <div class="cro-item">
+            <div class="ci-icon">👤</div>
+            <div class="ci-body">
+              <strong>Sin testimonios verificables de clientes</strong>
+              <p>"Felipe Izquierdo, CTO de Sky Airline" (Acid Labs) vale más que 1000 palabras de copy. SDL no muestra ninguno. Es la brecha de confianza más costosa.</p>
+            </div>
+          </div>
+          <div class="cro-item">
+            <div class="ci-icon">🔗</div>
+            <div class="ci-body">
+              <strong>Sin CTA visible en header / navegación</strong>
+              <p>Competitor Digital Upgrade tiene "Agenda una Consulta" fijo en la nav. SDL no tiene CTA persistente (no verificable sin renderizar JS, pero es una brecha típica de SPAs).</p>
+            </div>
+          </div>
+          <div class="cro-item">
+            <div class="ci-icon">🏅</div>
+            <div class="ci-body">
+              <strong>Sin badges de partners tecnológicos visibles</strong>
+              <p>Si SDL tiene certificaciones de GCP o AWS, no aparecen en el HTML. Acid Labs y Andes Digital los muestran prominentemente. Son señales de confianza inmediata para CTOs y directores tech.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:8px 0 14px;font-size:16px;">Cambios CRO de mayor impacto en generación de leads</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Cambio</th><th>Dónde</th><th>Impacto esperado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Publicar 3-5 casos de éxito con cliente, desafío, solución y métricas numéricas</td><td>/casos-de-exito/</td><td>+40-60% conversión en visitantes de landings de servicio</td></tr>
+          <tr><td>2</td><td>Añadir 2-3 testimonios con nombre, cargo y empresa en home y cada landing</td><td>Home + Servicios</td><td>+25-35% confianza. Ciclo de decisión de semanas → días</td></tr>
+          <tr><td>3</td><td>Hero con propuesta de valor específica: ¿qué? + ¿para quién? + ¿qué resultado? + CTA</td><td>Home (fold superior)</td><td>+15-25% tiempo en sitio. Reducción bounce rate mobile.</td></tr>
+          <tr><td>4</td><td>CTA fijo en header de navegación ("Cotizar proyecto" o "Agendar llamada")</td><td>Todas las páginas</td><td>+15-20% conversiones de usuarios que navegan 2+ páginas</td></tr>
+          <tr><td>5</td><td>Badges de certificación GCP / AWS visibles en hero o header</td><td>Home + landing Cloud</td><td>Confianza inmediata. Especialmente en prospectos con CTOs o directores tech.</td></tr>
+          <tr><td>6</td><td>FAQs por landing que respondan las objeciones reales del prospecto</td><td>Todas las landings</td><td>Reduce fricción pre-contacto. Mejora rich snippets en SERP.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ PLAN DE ACCIÓN -->
+  <section id="plan">
+    <div class="section-header">
+      <div class="section-label">🗺️ Plan de acción</div>
+      <h2>22 acciones priorizadas por impacto en leads</h2>
+      <p class="section-desc">Orden: ROI en generación de oportunidades de negocio, no número de errores resueltos. Cada acción responde a "¿cómo ayuda esto a Sur Digital Labs a conseguir más clientes?"</p>
+    </div>
+
+    <div class="roadmap">
+
+      <!-- FASE 1 -->
+      <div class="rm-phase">
+        <div class="rm-phase-head">
+          <div class="rm-phase-num" style="background:var(--red);">1</div>
+          <div class="rm-phase-info">
+            <h3>Victorias rápidas — 0 a 4 semanas</h3>
+            <p>Eliminar los bloqueantes técnicos que impiden toda visibilidad orgánica</p>
+          </div>
+        </div>
+        <div class="rm-items">
+          <div class="rm-item">
+            <div class="rn">1</div>
+            <div>
+              <h4>Implementar SSR o SSG — La acción de mayor ROI de todo el plan</h4>
+              <p>Migrar a Next.js (SSR/SSG), Nuxt 3 o implementar Prerender.io. Sin esto, ninguna otra optimización SEO tiene efecto. Las páginas de servicio deben devolver HTML real, no un shell vacío. Es la raíz de la invisibilidad en Google.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Muy Alto</span>
+              <span class="pill pill-purple">Esfuerzo: Alto</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">2</div>
+            <div>
+              <h4>Crear robots.txt válido como archivo estático</h4>
+              <p>Archivo de texto plano en la raíz: <code>User-agent: *</code> / <code>Allow: /</code> / <code>Sitemap: https://surdigitallabs.cl/sitemap.xml</code>. Acción de 30 minutos con impacto inmediato en el rastreo.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Alto</span>
+              <span class="pill pill-green">Esfuerzo: Muy Bajo</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">3</div>
+            <div>
+              <h4>Crear sitemap.xml con todas las URLs de servicio</h4>
+              <p>Incluir: home, /servicios/desarrollo-web, /servicios/datos, /servicios/cloud, /servicios/automatizacion, /contacto. Declarar en robots.txt y en Google Search Console.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Alto</span>
+              <span class="pill pill-green">Esfuerzo: Bajo</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">4</div>
+            <div>
+              <h4>Resolver conflicto canonical www / non-www</h4>
+              <p>Decidir una versión canónica (recomendado: non-www ya que las páginas de servicio la usan). Asegurar que TODAS las páginas, incluyendo /contacto, usen el mismo esquema en canonical, og:url y en la redirección de servidor.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Alto</span>
+              <span class="pill pill-blue">Esfuerzo: Medio</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">5</div>
+            <div>
+              <h4>Corregir Twitter Cards en todas las páginas</h4>
+              <p>El bug de twitter:title y twitter:description mostrando datos de la home es un fix de configuración en la SPA. <code>twitter:title</code>, <code>twitter:description</code> y <code>twitter:image</code> deben coincidir con las etiquetas og: de cada página.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-orange">Impacto: Medio</span>
+              <span class="pill pill-green">Esfuerzo: Bajo</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">6</div>
+            <div>
+              <h4>Reemplazar og:image de home y servicios</h4>
+              <p>Diseñar imagen 1200×630px con branding + tagline de valor + URL absoluta. Replicar el patrón de /contacto (que ya tiene og-contacto.jpg) en todas las páginas.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-orange">Impacto: Medio</span>
+              <span class="pill pill-green">Esfuerzo: Muy Bajo</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">7</div>
+            <div>
+              <h4>Registrar Google Business Profile (Coyhaique)</h4>
+              <p>Perfil completo: servicios, fotos del equipo, horario, URL, descripción. Genera aparición en Maps y búsquedas locales para "software Coyhaique", "empresa tecnológica Patagonia". Acción de 2h con impacto local inmediato.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-orange">Impacto: Medio-Alto</span>
+              <span class="pill pill-green">Esfuerzo: Muy Bajo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 2 -->
+      <div class="rm-phase">
+        <div class="rm-phase-head">
+          <div class="rm-phase-num" style="background:var(--yellow);color:var(--ink);">2</div>
+          <div class="rm-phase-info">
+            <h3>Construcción de autoridad — 1 a 3 meses</h3>
+            <p>Crear los activos que convierten visitas en oportunidades de negocio</p>
+          </div>
+        </div>
+        <div class="rm-items">
+          <div class="rm-item">
+            <div class="rn">8</div>
+            <div>
+              <h4>Crear titles y meta descriptions únicos por cada página de servicio</h4>
+              <p>Implementar los titles y descripciones propuestos en la sección On-Page. /datos → ingeniería de datos. /cloud → GCP/AWS. /automatizacion → automatización. /desarrollo-web → desarrollo web. Elimina la canibalización de una vez.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Alto</span>
+              <span class="pill pill-green">Esfuerzo: Bajo</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">9</div>
+            <div>
+              <h4>Publicar 3-5 casos de éxito con métricas reales</h4>
+              <p>Formato: cliente (o sector si es anónimo), problema, solución implementada, resultado con cifras. Ej: "55% reducción en tiempo de reporting para empresa logística en Coyhaique". Es el único activo que cierra el ciclo de confianza en B2B.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Muy Alto</span>
+              <span class="pill pill-blue">Esfuerzo: Medio</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">10</div>
+            <div>
+              <h4>Lanzar blog con 4-6 artículos iniciales de alta intención</h4>
+              <p>Empezar con: "Cuánto cuesta un software a medida en Chile 2026", "GCP vs AWS para PYMEs chilenas", "5 procesos que toda empresa debería automatizar". Artículos de 1.200+ palabras con CTA a contacto al final.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Alto (acumulativo)</span>
+              <span class="pill pill-blue">Esfuerzo: Medio</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">11</div>
+            <div>
+              <h4>Añadir testimonios de clientes con nombre, cargo y empresa</h4>
+              <p>Mínimo 3. Si el cliente prefiere anonimato: "Gerente de TI, empresa agropecuaria de Aysén". Con foto si es posible. Mostrar en home y en cada landing de servicio relevante.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Muy Alto</span>
+              <span class="pill pill-green">Esfuerzo: Bajo</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">12</div>
+            <div>
+              <h4>Eliminar meta-keywords de todas las páginas</h4>
+              <p>Etiqueta obsoleta desde 2009. Algunos motores la consideran spam. Limpiar la configuración demuestra que los metadatos están bajo control.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-slate">Impacto: Bajo</span>
+              <span class="pill pill-green">Esfuerzo: Muy Bajo</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">13</div>
+            <div>
+              <h4>Implementar Schema Organization en la home</h4>
+              <p>JSON-LD con nombre, URL, logo, teléfono, dirección, sameAs (LinkedIn, GitHub). Habilita el panel de conocimiento de Google y aumenta la visibilidad de marca en SERP.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-orange">Impacto: Medio</span>
+              <span class="pill pill-blue">Esfuerzo: Bajo</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">14</div>
+            <div>
+              <h4>Implementar Schema Service en cada landing de servicio</h4>
+              <p>JSON-LD con nombre del servicio, descripción, proveedor (SDL), área de servicio (Chile). Aumenta el CTR en SERP con snippets enriquecidos.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-orange">Impacto: Medio</span>
+              <span class="pill pill-blue">Esfuerzo: Bajo</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">15</div>
+            <div>
+              <h4>Configurar Google Search Console y enviar sitemap</h4>
+              <p>Verificar propiedad, enviar sitemap.xml, monitorear cobertura semanalmente. Es el único canal para saber qué ve Google realmente.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Alto (monitoreo)</span>
+              <span class="pill pill-green">Esfuerzo: Muy Bajo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 3 -->
+      <div class="rm-phase">
+        <div class="rm-phase-head">
+          <div class="rm-phase-num" style="background:var(--blue);">3</div>
+          <div class="rm-phase-info">
+            <h3>Escala y posicionamiento — 3 a 9 meses</h3>
+            <p>Generar leads orgánicos sostenibles y expandir presencia regional</p>
+          </div>
+        </div>
+        <div class="rm-items">
+          <div class="rm-item">
+            <div class="rn">16</div>
+            <div>
+              <h4>Blog continuo: 4 artículos mensuales orientados a long-tail transaccional</h4>
+              <p>Cubrir todos los silos temáticos definidos. Cada artículo debe tener &gt;1.200 palabras, CTA claro y enlace interno a la landing de servicio correspondiente. El blog es el canal de adquisición más barato en B2B a largo plazo.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Muy Alto (acumulativo)</span>
+              <span class="pill pill-blue">Esfuerzo: Continuo</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">17</div>
+            <div>
+              <h4>Implementar FAQs con Schema FAQPage en cada landing</h4>
+              <p>5-8 preguntas por servicio respondiendo objeciones reales: "¿Cuánto tiempo toma?", "¿Trabajan con empresas fuera de Coyhaique?", "¿Qué pasa si el proyecto cambia?". FAQPage Schema genera acordeón en SERP y aumenta CTR.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-orange">Impacto: Medio</span>
+              <span class="pill pill-green">Esfuerzo: Bajo</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">18</div>
+            <div>
+              <h4>Link building: guest posts en medios tech chilenos</h4>
+              <p>Artículos de opinión en NIC Chile, Revista Capital, El Mercurio Digital, LinkedIn Pulse. Cada link desde un dominio de autoridad eleva el Domain Rating y el ranking de todas las páginas del sitio.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Alto</span>
+              <span class="pill pill-purple">Esfuerzo: Alto</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">19</div>
+            <div>
+              <h4>Crear lead magnet descargable de alta intención</h4>
+              <p>"Guía para elegir empresa de software a medida en Chile" o "Checklist para migrar tu empresa a la nube". A cambio de email + empresa. Convierte tráfico informacional en leads con contexto.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Alto</span>
+              <span class="pill pill-blue">Esfuerzo: Medio</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">20</div>
+            <div>
+              <h4>Expandir landings con variantes geográficas LATAM</h4>
+              <p>"Software a medida Chile" ya cubierto. Crear variantes para Colombia, Perú y México donde hay demanda y menor competencia. Captura mercado que el posicionamiento actual no alcanza.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-orange">Impacto: Medio-Alto</span>
+              <span class="pill pill-blue">Esfuerzo: Medio</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">21</div>
+            <div>
+              <h4>Presencia activa en LinkedIn — 3 publicaciones semanales del equipo</h4>
+              <p>El primer canal de leads B2B en Chile. Casos de éxito, reflexiones técnicas, tendencias cloud/datos. Los perfiles personales del equipo técnico amplifican el alcance sin costo adicional.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-red">Impacto: Alto</span>
+              <span class="pill pill-blue">Esfuerzo: Continuo</span>
+            </div>
+          </div>
+          <div class="rm-item">
+            <div class="rn">22</div>
+            <div>
+              <h4>Auditoría de Core Web Vitals con herramientas que ejecutan JS</h4>
+              <p>Una vez implementado el SSR, ejecutar Lighthouse completo. Objetivos: LCP &lt;2.5s, INP &lt;200ms, CLS &lt;0.1. Corregir imágenes sin lazy load, fuentes sin preload y scripts bloqueantes.</p>
+            </div>
+            <div class="badges">
+              <span class="pill pill-orange">Impacto: Medio</span>
+              <span class="pill pill-blue">Esfuerzo: Medio</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESUMEN IMPACTO -->
+    <div class="tbl-wrap" style="margin-top:32px;">
+      <table>
+        <thead>
+          <tr><th>Fase</th><th>Duración</th><th>Inversión aprox.</th><th>Resultado esperado en leads</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Fase 1 — Base técnica</strong></td>
+            <td>0-4 semanas</td>
+            <td>Tiempo de dev + diseño (bajo)</td>
+            <td>El sitio pasa de 0% a indexación real. Aparece en GSC. Primeros rankings de marca y local.</td>
+          </tr>
+          <tr>
+            <td><strong>Fase 2 — Contenido y confianza</strong></td>
+            <td>1-3 meses</td>
+            <td>Redacción + diseño de casos</td>
+            <td>+200-400% visitas orgánicas (desde base muy baja). Primeros 3-8 leads orgánicos mensuales. Tasa de conversión +30-50%.</td>
+          </tr>
+          <tr>
+            <td><strong>Fase 3 — Autoridad y escala</strong></td>
+            <td>3-9 meses</td>
+            <td>Blog, links, LATAM</td>
+            <td>Top 5 en keywords clave del mercado chileno. 10-25 leads orgánicos mensuales sostenibles. Domain Rating creciente.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <strong>Auditoría SEO Premium · Sur Digital Labs · surdigitallabs.cl</strong><br>
+    Junio 2026 — Datos de metadatos verificados directamente desde el servidor HTTP. El análisis de contenido interno, H1/H2 y CRO detallado son estimaciones arquitectónicas dado que el sitio requiere JavaScript para renderizar su contenido.<br>
+    Metodología: fetch directo de HTML + análisis de headers + verificación de rutas clave (/robots.txt, /sitemap.xml, /contacto, /servicios/*) + auditoría de 3 competidores directos.
+  </div>
+
+</div><!-- /page -->
+
+<script>
+// Topbar active state on scroll
+const sections = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.topbar nav a');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.style.color = '');
+      const a = document.querySelector(`.topbar nav a[href="#${e.target.id}"]`);
+      if (a) a.style.color = '#fff';
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import FAQ from '../components/FAQ';
+import { useSEO } from '../hooks/useSEO';
 
 const CALENDLY = "https://calendly.com/surdigitallabs/30min";
 const WA_GENERAL = "https://wa.me/56975204813?text=" + encodeURIComponent("Hola! Me gustaría cotizar un proyecto. ¿Pueden ayudarme?");
@@ -67,11 +68,13 @@ const Contactanos = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  useEffect(() => {
-    document.title = "Contacto — Sur Digital Labs Coyhaique";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', 'Contacta con Sur Digital Labs en Coyhaique, Patagonia. Cotiza tu proyecto de software o datos. Respuesta en menos de 24 h.');
-  }, []);
+  useSEO({
+    title: 'Contacta Sur Digital Labs | Consulta Gratis en 24h',
+    description: 'Escríbenos para consulta sin compromiso. Software, datos, cloud y automatización. Respuesta garantizada en menos de 24 horas.',
+    path: '/contacto',
+    ogImage: '/og-contacto.jpg',
+    faqs: FAQ_CONTACTO,
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;

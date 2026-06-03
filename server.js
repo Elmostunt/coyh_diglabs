@@ -9,57 +9,45 @@ const PORT = process.env.PORT || 8080;
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'build'), { maxAge: '1d' }));
 
-// Metadatos por ruta para SEO — OPTIMIZADOS PARA CTR Y KEYWORDS
+const BASE_URL = 'https://www.surdigitallabs.cl';
+
+// Metadatos por ruta — sincronizados con useSEO hook (src/hooks/useSEO.js)
 const pageMetadata = {
   '/': {
-    title: 'Desarrollo de Software a Medida · GCP · AWS | Sur Digital Labs',
-    description: 'Software a medida, datos y cloud para PYMEs en Chile. Arquitectura moderna, SSR, APIs seguras. 8+ años, respuesta en 24h. Cotiza sin costo.',
+    title: 'Software a Medida, Cloud y Datos | Sur Digital Labs Chile',
+    description: 'Software a medida, cloud (GCP/AWS) y datos para PYMEs en Chile. Arquitectura sólida, entrega en 7–14 días. Desde Coyhaique, Patagonia.',
     ogImage: '/og-home.jpg',
-    twitterImage: '/og-home.jpg',
-    keywords: 'software a medida chile, desarrollo web, datos, cloud, automatización, consultoría tech'
   },
   '/software': {
-    title: 'Servicios de Software para PYMEs | Desarrollo Web a Medida Chile',
-    description: 'Apps y sitios web a medida. Arquitectura moderna, UX optimizada. Proyectos en retail, fintech, manufactura. 7-14 días. Contáctanos.',
+    title: 'Desarrollo Web y Software a Medida Chile | Sur Digital Labs',
+    description: 'Creamos apps web, software a medida, APIs y sistemas cloud para PYMEs en Chile. Primera entrega en 7–14 días. Desde Coyhaique, Patagonia.',
     ogImage: '/og-software.jpg',
-    twitterImage: '/og-software.jpg',
-    keywords: 'desarrollo software a medida chile, desarrollo web pymes, apps personalizadas'
   },
   '/datos': {
-    title: 'Ingeniería de Datos y BI | GCP AWS Python | Sur Digital Labs',
-    description: 'Pipelines ETL, dashboards BI, análisis avanzado. De datos dispersos a decisiones claras. GCP, AWS, Python. Consulta gratis ahora.',
+    title: 'Datos, Analytics y ML para PYMEs en Chile | Sur Digital Labs',
+    description: 'Pipelines ETL, dashboards analíticos y modelos ML para PYMEs en Chile. Convierte datos dispersos en decisiones claras. Consulta gratis.',
     ogImage: '/og-datos.jpg',
-    twitterImage: '/og-datos.jpg',
-    keywords: 'ingeniería de datos chile, business intelligence, gcp aws, pipelines datos'
   },
   '/nosotros': {
     title: 'Sobre Sur Digital Labs | Equipo Tech en Coyhaique, Patagonia',
-    description: '8+ años de software en Patagonia. Equipo especializado, acompañamiento cercano. PYMEs de Chile y Latinoamérica confían en nosotros.',
+    description: 'Somos Sur Digital Labs: equipo tecnológico en Coyhaique, Aysén. 8+ años en software, datos y cloud para empresas en Chile.',
     ogImage: '/og-nosotros.jpg',
-    twitterImage: '/og-nosotros.jpg',
-    keywords: 'sur digital labs, consultora software, patagonia tech, equipo desarrollo'
   },
   '/empleos': {
-    title: 'Ofertas de Empleo | Trabaja en Sur Digital Labs',
-    description: 'Únete a nuestro equipo. Posiciones en desarrollo, datos y cloud. Trabajo remoto, beneficios, crecimiento profesional. Envía tu candidatura.',
+    title: 'Empleos y Prácticas en Sur Digital Labs Coyhaique',
+    description: 'Únete al equipo de Sur Digital Labs en Coyhaique, Aysén. Buscamos practicantes en Frontend y Backend. Trabajo desafiante desde la Patagonia.',
     ogImage: '/og-empleos.jpg',
-    twitterImage: '/og-empleos.jpg',
-    keywords: 'empleos desarrollo software, trabajos tech chile, ofertas empleo, remoto'
   },
   '/contacto': {
-    title: 'Contacto | Sur Digital Labs | Consulta Gratis 24h',
-    description: 'Cuéntanos tu proyecto. Software, datos, cloud, automatización. Evaluamos sin compromiso. Respuesta en menos de 24 horas. Escríbenos.',
+    title: 'Contacta Sur Digital Labs | Consulta Gratis en 24h',
+    description: 'Escríbenos para consulta sin compromiso. Software, datos, cloud y automatización. Respuesta garantizada en menos de 24 horas.',
     ogImage: '/og-contacto.jpg',
-    twitterImage: '/og-contacto.jpg',
-    keywords: 'contacto, presupuesto software, consultoría tech, desarrollo a medida'
   },
   '/blog': {
-    title: 'Blog de Software, Datos y Automatización | Sur Digital Labs',
-    description: 'Artículos técnicos, guías prácticas, tutoriales. Aprende sobre desarrollo web, data engineering, cloud. Por Guillermo Cárcamo.',
+    title: 'Blog de Tecnología y Software | Sur Digital Labs',
+    description: 'Artículos prácticos sobre software, datos y automatización para empresas en Chile. Guías reales desde el equipo de Sur Digital Labs.',
     ogImage: '/og-home.jpg',
-    twitterImage: '/og-home.jpg',
-    keywords: 'blog software, desarrollo web, data engineering, automatización, tutorials'
-  }
+  },
 };
 
 // Función para inyectar metadatos en el HTML
@@ -92,35 +80,30 @@ function injectMetadata(html, route) {
 
   // Reemplaza og:image
   if (modified.includes('property="og:image"')) {
-    modified = modified.replace(/(<meta property="og:image"[^>]*content=")([^"]*)(")/g, `$1https://surdigitallabs.cl${metadata.ogImage}$3`);
+    modified = modified.replace(/(<meta property="og:image"[^>]*content=")([^"]*)(")/g, `$1${BASE_URL}${metadata.ogImage}$3`);
   } else {
-    modified = modified.replace('</head>', `<meta property="og:image" content="https://surdigitallabs.cl${metadata.ogImage}">\n</head>`);
+    modified = modified.replace('</head>', `<meta property="og:image" content="${BASE_URL}${metadata.ogImage}">\n</head>`);
   }
 
   // Reemplaza twitter:image
   if (modified.includes('name="twitter:image"')) {
-    modified = modified.replace(/(<meta name="twitter:image"[^>]*content=")([^"]*)(")/g, `$1https://surdigitallabs.cl${metadata.twitterImage}$3`);
+    modified = modified.replace(/(<meta name="twitter:image"[^>]*content=")([^"]*)(")/g, `$1${BASE_URL}${metadata.ogImage}$3`);
   } else {
-    modified = modified.replace('</head>', `<meta name="twitter:image" content="https://surdigitallabs.cl${metadata.twitterImage}">\n</head>`);
+    modified = modified.replace('</head>', `<meta name="twitter:image" content="${BASE_URL}${metadata.ogImage}">\n</head>`);
   }
 
   // Reemplaza og:url
   if (modified.includes('property="og:url"')) {
-    modified = modified.replace(/(<meta property="og:url"[^>]*content=")([^"]*)(")/g, `$1https://surdigitallabs.cl${route}$3`);
+    modified = modified.replace(/(<meta property="og:url"[^>]*content=")([^"]*)(")/g, `$1${BASE_URL}${route}$3`);
   } else {
-    modified = modified.replace('</head>', `<meta property="og:url" content="https://surdigitallabs.cl${route}">\n</head>`);
+    modified = modified.replace('</head>', `<meta property="og:url" content="${BASE_URL}${route}">\n</head>`);
   }
 
   // Reemplaza canonical
   if (modified.includes('rel="canonical"')) {
-    modified = modified.replace(/(<link rel="canonical"[^>]*href=")([^"]*)(")/g, `$1https://surdigitallabs.cl${route}$3`);
+    modified = modified.replace(/(<link rel="canonical"[^>]*href=")([^"]*)(")/g, `$1${BASE_URL}${route}$3`);
   } else {
-    modified = modified.replace('</head>', `<link rel="canonical" href="https://surdigitallabs.cl${route}">\n</head>`);
-  }
-
-  // Agrega keywords si no existe
-  if (!modified.includes('name="keywords"')) {
-    modified = modified.replace('</head>', `<meta name="keywords" content="${metadata.keywords}">\n</head>`);
+    modified = modified.replace('</head>', `<link rel="canonical" href="${BASE_URL}${route}">\n</head>`);
   }
 
   return modified;
@@ -140,66 +123,21 @@ if (fs.existsSync(templatePath)) {
 // Nota: Las imágenes OG ahora se sirven desde public/ (archivos estáticos generados)
 // No se necesita ruta dinámica aquí
 
-// Ruta para robots.txt
-app.get('/robots.txt', (req, res) => {
-  const robots = `User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /api/
+// robots.txt y sitemap.xml se sirven como archivos estáticos desde build/
+// (express.static definido arriba los sirve antes de llegar aquí)
+// Estas rutas son fallback por si los archivos estáticos no están disponibles.
 
-Sitemap: https://surdigitallabs.cl/sitemap.xml
-`;
-  res.type('text/plain').send(robots);
+app.get('/robots.txt', (req, res) => {
+  const today = new Date().toISOString().split('T')[0];
+  res.type('text/plain').send(`User-agent: *\nAllow: /\n\nSitemap: ${BASE_URL}/sitemap.xml\n`);
 });
 
-// Ruta para sitemap.xml
 app.get('/sitemap.xml', (req, res) => {
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://surdigitallabs.cl/</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://surdigitallabs.cl/software</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://surdigitallabs.cl/datos</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://surdigitallabs.cl/nosotros</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://surdigitallabs.cl/empleos</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://surdigitallabs.cl/contacto</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://surdigitallabs.cl/blog</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-</urlset>`;
-  res.type('application/xml').send(sitemap);
+  const today = new Date().toISOString().split('T')[0];
+  const routes = ['/', '/software', '/datos', '/contacto', '/nosotros', '/blog', '/empleos'];
+  const priorities = { '/': '1.0', '/software': '0.9', '/datos': '0.9', '/contacto': '0.9', '/nosotros': '0.8', '/blog': '0.8', '/empleos': '0.6' };
+  const urls = routes.map(r => `  <url>\n    <loc>${BASE_URL}${r}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priorities[r]}</priority>\n  </url>`).join('\n');
+  res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`);
 });
 
 // Función para generar Schema.org JSON-LD por página
@@ -209,7 +147,7 @@ function generateSchema(route) {
     '@type': 'LocalBusiness',
     'name': 'Sur Digital Labs',
     'description': 'Empresa de desarrollo de software a medida, ingeniería de datos y consultoría cloud',
-    'url': 'https://surdigitallabs.cl',
+    'url': BASE_URL,
     'telephone': '+56975204813',
     'email': 'contacto@surdigitallabs.cl',
     'address': {

@@ -2,14 +2,7 @@
 import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import FAQ from '../components/FAQ';
-
-const useSEO = (title, description) => {
-  useEffect(() => {
-    document.title = title;
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', description);
-  }, [title, description]);
-};
+import { useSEO } from '../hooks/useSEO';
 
 const TeamCard = ({ name, role, img, linkedin, email }) => (
   <article className="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
@@ -119,10 +112,13 @@ const FAQ_NOSOTROS = [
 const Nosotros = () => {
   useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, []);
 
-  useSEO(
-    "Nosotros - Socio tecnológico en Coyhaique, Patagonia | Sur Digital Labs",
-    "Equipo con base en Coyhaique, Aysén: software, datos y automatización con estándar profesional."
-  );
+  useSEO({
+    title: 'Sobre Sur Digital Labs | Equipo Tech en Coyhaique, Patagonia',
+    description: 'Somos Sur Digital Labs: equipo tecnológico en Coyhaique, Aysén. 8+ años en software, datos y cloud para empresas en Chile.',
+    path: '/nosotros',
+    ogImage: '/og-nosotros.jpg',
+    faqs: FAQ_NOSOTROS,
+  });
 
   const team = useMemo(() => [
     {

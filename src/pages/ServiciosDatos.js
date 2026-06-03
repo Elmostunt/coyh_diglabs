@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSEO } from '../hooks/useSEO';
 import FAQ from '../components/FAQ';
 
 const WA = (msg) => 'https://wa.me/56975204813?text=' + encodeURIComponent(msg);
@@ -224,11 +225,23 @@ function DataMockup() {
 }
 
 export default function ServiciosDatos() {
-  useEffect(() => {
-    document.title = 'Datos & Analítica — Sur Digital Labs Coyhaique';
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', 'Dashboards, pipelines de datos, ML e inteligencia artificial en Coyhaique. Ingeniería de datos y analítica avanzada para pymes y empresas de la Patagonia.');
-  }, []);
+  useSEO({
+    title: 'Datos, Analytics y ML para PYMEs en Chile | Sur Digital Labs',
+    description: 'Pipelines ETL, dashboards analíticos y modelos ML para PYMEs en Chile. Convierte datos dispersos en decisiones claras. Consulta gratis.',
+    path: '/datos',
+    ogImage: '/og-datos.jpg',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'Ingeniería de Datos y Analytics',
+      description: 'Pipelines ETL, dashboards analíticos y modelos ML para empresas en Chile.',
+      provider: { '@type': 'Organization', name: 'Sur Digital Labs', url: 'https://www.surdigitallabs.cl' },
+      areaServed: { '@type': 'Country', name: 'Chile' },
+      serviceType: 'Data Engineering',
+      url: 'https://www.surdigitallabs.cl/datos',
+    },
+    faqs: FAQ_DATOS,
+  });
 
   return (
     <div className="w-full">
