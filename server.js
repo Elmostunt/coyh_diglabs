@@ -9,43 +9,43 @@ const PORT = process.env.PORT || 8080;
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'build'), { maxAge: '1d' }));
 
-// Metadatos por ruta para SEO
+// Metadatos por ruta para SEO — OPTIMIZADOS PARA CTR Y KEYWORDS
 const pageMetadata = {
   '/': {
-    title: 'Sur Digital Labs - Software, datos y automatización en Chile',
-    description: 'Desarrollo de software a medida, ingeniería de datos y consultoría cloud para empresas en Chile y Latinoamérica. Especialistas en GCP, AWS, Python y automatización.',
+    title: 'Software, Datos y Cloud | Empresa Chile',
+    description: 'Desarrollo de software a medida, ingeniería de datos y consultoría cloud para PYMEs en Chile. Respuesta en 24h. 8+ años de experiencia.',
     ogImage: '/og-home.jpg',
-    keywords: 'software a medida chile, desarrollo web, datos, cloud, automatización'
+    keywords: 'software a medida chile, desarrollo web, datos, cloud, automatización, consultoría tech'
   },
   '/software': {
-    title: 'Desarrollo de Software a Medida | Sur Digital Labs',
-    description: 'Desarrollo web y apps personalizadas para PYMEs y empresas. Arquitectura moderna, UX/UI optimizada, mantenimiento incluido. Cotiza gratis.',
+    title: 'Desarrollo Web Profesional para PYMEs | Chile',
+    description: 'Apps y sitios web a medida. Arquitectura moderna, UX/UI optimizada. Proyectos en retail, fintech y manufactura. Desde 90 días. Cotiza gratis.',
     ogImage: '/og-software.jpg',
-    keywords: 'desarrollo software chile, desarrollo web a medida, apps personalizadas'
+    keywords: 'desarrollo software a medida chile, desarrollo web pymes, apps personalizadas, desarrollo web profesional'
   },
   '/datos': {
-    title: 'Ingeniería de Datos & Business Intelligence | Sur Digital Labs',
-    description: 'Pipelines de datos, análisis avanzado, dashboards inteligentes. GCP, AWS, Python. Convierte datos en decisiones de negocio.',
+    title: 'Ingeniería de Datos & BI | GCP AWS Python',
+    description: 'Pipelines de datos, dashboards inteligentes y análisis avanzado. De datos caóticos a decisiones claras. GCP, AWS, Python. Consulta sin costo.',
     ogImage: '/og-datos.jpg',
-    keywords: 'ingeniería de datos chile, business intelligence, pipelines datos'
+    keywords: 'ingeniería de datos chile, business intelligence, gcp aws, pipelines datos, analítica empresarial'
   },
   '/nosotros': {
-    title: 'Sobre Sur Digital Labs | Equipo, historia y valores',
-    description: 'Consultora de software desde Coyhaique, Patagonia. 10+ años de experiencia, equipos especializados, acompañamiento cercano.',
+    title: 'Sur Digital Labs | Equipo, Historia, Valores',
+    description: '8+ años desarrollando software en Patagonia. Consultora especializada en tech para PYMEs. Equipo multidisciplinario, acompañamiento cercano.',
     ogImage: '/og-nosotros.jpg',
-    keywords: 'sur digital labs, consultora software, patagonia tech'
+    keywords: 'sur digital labs, consultora software, patagonia tech, equipo desarrollo'
   },
   '/empleos': {
-    title: 'Trabaja con Nosotros | Sur Digital Labs Ofertas de Empleo',
-    description: 'Únete a nuestro equipo. Posiciones disponibles en desarrollo, datos y cloud. Trabajo remoto, beneficios, desarrollo profesional.',
+    title: 'Trabaja en Sur Digital Labs | Ofertas de Empleo Tech',
+    description: 'Únete a nuestro equipo. Posiciones en desarrollo, datos y cloud. Trabajo remoto, beneficios, desarrollo profesional garantizado.',
     ogImage: '/og-empleos.jpg',
-    keywords: 'empleos, trabajos, desarrollo software'
+    keywords: 'empleos desarrollo software, trabajos tech chile, ofertas empleo, remoto'
   },
   '/contacto': {
-    title: 'Contacta con Sur Digital Labs - Consulta Gratis',
-    description: 'Contacta con nosotros para una consulta gratuita. Respuesta en 24h. Desarrollo de software, datos, cloud y automatización.',
+    title: 'Contacta Sur Digital Labs | Consulta Gratis 24h',
+    description: 'Escríbenos para consulta sin compromiso. Software, datos, cloud, automatización. Respuesta garantizada en menos de 24 horas.',
     ogImage: '/og-contacto.jpg',
-    keywords: 'contacto, presupuesto, consultoría'
+    keywords: 'contacto, presupuesto software, consultoría tech, desarrollo a medida'
   }
 };
 
@@ -117,37 +117,8 @@ if (fs.existsSync(templatePath)) {
   process.exit(1);
 }
 
-// Ruta para generar OG images dinámicamente
-app.get('/og-*.jpg', (req, res) => {
-  const filename = req.params[0];
-  const pageMapping = {
-    'home': { title: 'Sur Digital Labs', subtitle: 'Software • Datos • Cloud' },
-    'software': { title: 'Desarrollo de Software', subtitle: 'Apps a medida para tu empresa' },
-    'datos': { title: 'Ingeniería de Datos', subtitle: 'Pipelines, BI y análisis' },
-    'nosotros': { title: 'Sobre Sur Digital Labs', subtitle: 'Equipo y experiencia' },
-    'empleos': { title: 'Trabaja con Nosotros', subtitle: 'Únete a nuestro equipo' },
-    'contacto': { title: 'Contáctanos', subtitle: 'Consulta gratuita en 24h' }
-  };
-
-  const page = pageMapping[filename] || pageMapping['home'];
-
-  // SVG simple como OG image (1200x630)
-  const svg = `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#6c63ff;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#00d4aa;stop-opacity:1" />
-      </linearGradient>
-    </defs>
-    <rect width="1200" height="630" fill="#0a0a0f"/>
-    <rect width="1200" height="630" fill="url(#grad)" opacity="0.1"/>
-    <text x="600" y="280" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white" text-anchor="middle">${page.title}</text>
-    <text x="600" y="380" font-family="Arial, sans-serif" font-size="36" fill="#00d4aa" text-anchor="middle">${page.subtitle}</text>
-    <text x="600" y="570" font-family="Arial, sans-serif" font-size="24" fill="#9999bb" text-anchor="middle">surdigitallabs.cl</text>
-  </svg>`;
-
-  res.type('image/svg+xml').send(svg);
-});
+// Nota: Las imágenes OG ahora se sirven desde public/ (archivos estáticos generados)
+// No se necesita ruta dinámica aquí
 
 // Ruta para robots.txt
 app.get('/robots.txt', (req, res) => {
@@ -205,9 +176,14 @@ app.get('/sitemap.xml', (req, res) => {
   res.type('application/xml').send(sitemap);
 });
 
+// TODO FUTURO: Schema.org JSON-LD será agregado en fase siguiente
+// Por ahora enfocamos en los metadatos básicos (title, description, og:image, canonical)
+// que ya están funcionando correctamente
+
 // SPA Fallback: para cualquier otra ruta, sirve index.html con metadatos inyectados
 app.get('*', (req, res) => {
   const modifiedHtml = injectMetadata(htmlTemplate, req.path);
+  // Schema.org será agregado manualmente en HTML futuro o en componentes React
   res.type('text/html').send(modifiedHtml);
 });
 
