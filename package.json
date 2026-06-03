@@ -30,7 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "node -e \"require('fs').existsSync('build') || require('child_process').execSync('react-scripts build', {stdio:'inherit'})\"",
     "prerender": "react-snap",
     "start:server": "node server.js",
     "build:and:start": "npm run build && npm run start:server",

@@ -5,4 +5,3 @@ entrypoint: node server.js
 
 env_variables:
   NODE_ENV: production
-  GOOGLE_NODE_RUN_SCRIPTS: ""
