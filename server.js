@@ -123,6 +123,24 @@ if (fs.existsSync(templatePath)) {
 // Nota: Las imágenes OG ahora se sirven desde public/ (archivos estáticos generados)
 // No se necesita ruta dinámica aquí
 
+// Redirects 301 para rutas antiguas /servicios/* → nuevas rutas
+// Evita contenido duplicado: el catch-all servía la home con canonical incorrecto
+const SERVICIOS_REDIRECTS = {
+  '/servicios/datos':          '/datos',
+  '/servicios/data':           '/datos',
+  '/servicios/cloud':          '/software',
+  '/servicios/automatizacion': '/software',
+  '/servicios/automatización': '/software',
+  '/servicios/desarrollo-web': '/software',
+  '/servicios/desarrollo':     '/software',
+  '/servicios/software':       '/software',
+  '/servicios':                '/software',
+};
+app.get(['/servicios', '/servicios/*'], (req, res) => {
+  const dest = SERVICIOS_REDIRECTS[req.path] || '/software';
+  res.redirect(301, dest);
+});
+
 // robots.txt y sitemap.xml se sirven como archivos estáticos desde build/
 // (express.static definido arriba los sirve antes de llegar aquí)
 // Estas rutas son fallback por si los archivos estáticos no están disponibles.
