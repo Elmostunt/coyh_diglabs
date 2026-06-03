@@ -45,6 +45,11 @@ export default function Footer() {
                   Automatización
                 </Link>
               </li>
+              <li>
+                <Link className="hover:text-white transition-colors duration-200" to="/blog">
+                  Blog
+                </Link>
+              </li>
             </ul>
           </nav>
 

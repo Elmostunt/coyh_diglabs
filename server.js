@@ -46,6 +46,12 @@ const pageMetadata = {
     description: 'Escríbenos para consulta sin compromiso. Software, datos, cloud, automatización. Respuesta garantizada en menos de 24 horas.',
     ogImage: '/og-contacto.jpg',
     keywords: 'contacto, presupuesto software, consultoría tech, desarrollo a medida'
+  },
+  '/blog': {
+    title: 'Blog — Sur Digital Labs | Artículos sobre Software y Datos',
+    description: 'Guías prácticas, casos reales y aprendizajes sobre software a medida, datos y automatización. Desde Coyhaique, Patagonia.',
+    ogImage: '/og-home.jpg',
+    keywords: 'blog software, desarrollo web, data engineering, automatización, tutorials'
   }
 };
 
@@ -170,6 +176,12 @@ app.get('/sitemap.xml', (req, res) => {
     <loc>https://www.surdigitallabs.cl/contacto</loc>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.surdigitallabs.cl/blog</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>`;

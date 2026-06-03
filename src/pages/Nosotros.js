@@ -1,6 +1,7 @@
 // src/pages/Nosotros.js
 import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
+import FAQ from '../components/FAQ';
 
 const useSEO = (title, description) => {
   useEffect(() => {
@@ -90,6 +91,29 @@ const PARA_QUIENES = [
   "Pymes y empresas que necesitan software real, no plantillas ni soluciones genéricas.",
   "Organizaciones que quieren un partner técnico confiable, no una agencia que desaparece.",
   "Equipos que buscan automatizar procesos con impacto real y medible.",
+];
+
+const FAQ_NOSOTROS = [
+  {
+    q: "¿Cuánto tiempo han estado en el mercado?",
+    a: "Más de 8 años desarrollando software profesional. Comenzamos como desarrolladores freelance y hemos evolucionado a una consultora especializada con proyectos reales en producción.",
+  },
+  {
+    q: "¿Dónde están ubicados? ¿Solo trabajan en Coyhaique?",
+    a: "Tenemos base en Coyhaique, Región de Aysén, pero trabajamos con clientes en todo Chile y Latinoamérica. El trabajo es 100% remoto — la ubicación no es limitante.",
+  },
+  {
+    q: "¿Qué pasa si necesito soporte después de la entrega?",
+    a: "Ofrecemos soporte y mantenimiento continuo. Muchos clientes están con nosotros a largo plazo — desde acompañamiento técnico hasta evoluciones del sistema.",
+  },
+  {
+    q: "¿Cuál es la metodología de trabajo?",
+    a: "Desarrollo iterativo con entregas funcionales cada 1-2 semanas. Entendemos primero, definimos juntos el alcance, construimos con criterio, entregamos con documentación y seguimos disponibles.",
+  },
+  {
+    q: "¿Trabajan con equipos internos o solo agencias?",
+    a: "Trabajamos principalmente con empresas y sus equipos internos. Nos encanta transferencia de conocimiento — el objetivo es que tu equipo sea independiente después.",
+  },
 ];
 
 const Nosotros = () => {
@@ -321,6 +345,13 @@ const Nosotros = () => {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="bg-white dark:bg-slate-900 py-14 sm:py-16">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <FAQ items={FAQ_NOSOTROS} title="Preguntas frecuentes" />
         </div>
       </section>
 

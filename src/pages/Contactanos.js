@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
+import FAQ from '../components/FAQ';
 
 const CALENDLY = "https://calendly.com/surdigitallabs/30min";
 const WA_GENERAL = "https://wa.me/56975204813?text=" + encodeURIComponent("Hola! Me gustaría cotizar un proyecto. ¿Pueden ayudarme?");
@@ -35,6 +36,29 @@ const CONTACT_INFO = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
+  },
+];
+
+const FAQ_CONTACTO = [
+  {
+    q: "¿Cuál es el primer paso para trabajar con ustedes?",
+    a: "Envía un mensaje con tu proyecto o consulta. Te respondemos en menos de 24 horas con una evaluación inicial. Sin compromiso.",
+  },
+  {
+    q: "¿Cuánto cuesta una consultoría inicial?",
+    a: "La evaluación inicial es completamente gratis. Nos encanta entender tu caso primero, sin presiones. Si hay mutual interés, definimos presupuesto y alcance juntos.",
+  },
+  {
+    q: "¿Puedo agendar una llamada directa?",
+    a: "Sí. Usa nuestro calendario (Calendly) para agendar 30 minutos de conversación. O usa WhatsApp si prefieres algo más rápido y directo.",
+  },
+  {
+    q: "¿Qué información necesitan para hacer un presupuesto?",
+    a: "El objetivo del proyecto, usuarios/equipo involucrado, timeline aproximado y presupuesto de referencia si lo tienes. Con eso hacemos una primera propuesta técnica.",
+  },
+  {
+    q: "¿Hacen proyectos muy pequeños o solo grandes?",
+    a: "Trabajamos desde landing pages hasta sistemas complejos. Lo importante es que el proyecto tenga claridad en su objetivo. No hay tamaño mínimo si el caso es interesante.",
   },
 ];
 
@@ -292,6 +316,13 @@ const Contactanos = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="bg-slate-50 dark:bg-slate-800 py-14 sm:py-16">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <FAQ items={FAQ_CONTACTO} title="Preguntas frecuentes" />
         </div>
       </section>
 

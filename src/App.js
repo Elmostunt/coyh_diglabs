@@ -9,6 +9,7 @@ import ServiciosDatos from "./pages/ServiciosDatos";
 import Nosotros from "./pages/Nosotros";
 import Empleos from "./pages/Empleos";
 import Contactanos from "./pages/Contactanos";
+import Blog from "./pages/Blog";
 
 // Aplica el tema antes del primer render para evitar flash
 const stored = localStorage.getItem('theme');
@@ -48,6 +49,7 @@ const App = () => {
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/empleos" element={<Empleos />} />
             <Route path="/contacto" element={<Contactanos />} />
+            <Route path="/blog" element={<Blog />} />
           </Routes>
         </main>
         <Footer />

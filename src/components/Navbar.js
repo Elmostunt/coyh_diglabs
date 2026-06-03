@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { to: '/software', label: 'Software' },
   { to: '/datos', label: 'Datos & IA' },
   { to: '/nosotros', label: 'Nosotros' },
+  { to: '/blog', label: 'Blog' },
   { to: '/contacto', label: 'Contacto' },
 ];
 
