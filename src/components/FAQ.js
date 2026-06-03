@@ -30,7 +30,7 @@ const FAQ = ({ items = [], title = "Preguntas Frecuentes" }) => {
                 className="w-full px-6 py-4 flex items-center justify-between bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors"
               >
                 <span className="font-semibold text-slate-900 dark:text-white text-left">
-                  {faq.question}
+                  {faq.q || faq.question}
                 </span>
                 <span className="text-slate-600 dark:text-slate-400 ml-4 flex-shrink-0">
                   {openIdx === idx ? '−' : '+'}
@@ -40,7 +40,7 @@ const FAQ = ({ items = [], title = "Preguntas Frecuentes" }) => {
               {openIdx === idx && (
                 <div className="px-6 py-4 bg-slate-50 dark:bg-slate-800 border-t border-slate-200 dark:border-slate-600">
                   <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
-                    {faq.answer}
+                    {faq.a || faq.answer}
                   </p>
                 </div>
               )}
