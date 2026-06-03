@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import FAQ from '../components/FAQ';
 
 const WA = (msg) => 'https://wa.me/56975204813?text=' + encodeURIComponent(msg);
 const CALENDLY = 'https://calendly.com/surdigitallabs/30min';
@@ -112,6 +113,29 @@ const DATA_INSIGHTS = [
   { dot: "bg-cyan-500",   text: "Tu mejor mes fue octubre (+18%)" },
   { dot: "bg-violet-500", text: "El canal online creció 34% vs presencial" },
   { dot: "bg-blue-500",   text: "El martes concentra el mayor volumen de ventas" },
+];
+
+const FAQ_DATOS = [
+  {
+    question: '¿Cuánto tiempo toma implementar un pipeline de datos?',
+    answer: 'Depende de la complejidad. Un pipeline simple (ingesta + BigQuery + dashboard) toma 3-4 semanas. Pipelines más complejos con múltiples fuentes y transformaciones pueden tardar 6-12 semanas. Siempre definimos timeline claro al inicio.'
+  },
+  {
+    question: '¿Necesito experiencia en datos para usar los dashboards?',
+    answer: 'No. Diseñamos dashboards para usuarios finales sin experiencia técnica. Las métricas se entienden de un vistazo, sin necesidad de saber SQL o código. El equipo de datos se encarga de mantenerlos actualizados.'
+  },
+  {
+    question: '¿Qué bases de datos soportan?',
+    answer: 'Trabajamos con PostgreSQL, MySQL, SQLServer, MongoDB, BigQuery, Snowflake y muchas otras. Si tu base de datos es diferente, casi siempre podemos integrarla. Asesoramos si necesitas migrar o mejorar tu infraestructura actual.'
+  },
+  {
+    question: '¿Cuál es el costo de mantener un pipeline de datos?',
+    answer: 'Los costos de infraestructura dependen del volumen de datos. Un pipeline pequeño en BigQuery cuesta ~$50-200/mes. Pipelines grandes con múltiples fuentes pueden costar más. Incluimos asesoría para optimizar costos en la nube.'
+  },
+  {
+    question: '¿Pueden integrar datos de múltiples sistemas?',
+    answer: 'Sí. Ese es exactamente lo que hacemos: integramos datos dispersos en un único lugar para análisis unificado. APIs, bases de datos, archivos Excel, sistemas legacy — los conectamos y centralizamos.'
+  }
 ];
 
 function DataMockup() {
@@ -374,6 +398,9 @@ export default function ServiciosDatos() {
           </div>
         </div>
       </section>
+
+      {/* ── FAQ ── */}
+      <FAQ items={FAQ_DATOS} title="Preguntas sobre Datos, BI y Análisis" />
 
       {/* ── CTA ── */}
       <section className="bg-slate-50 dark:bg-slate-800 py-12 sm:py-16">

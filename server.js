@@ -176,14 +176,66 @@ app.get('/sitemap.xml', (req, res) => {
   res.type('application/xml').send(sitemap);
 });
 
-// TODO FUTURO: Schema.org JSON-LD será agregado en fase siguiente
-// Por ahora enfocamos en los metadatos básicos (title, description, og:image, canonical)
-// que ya están funcionando correctamente
+// Función para generar Schema.org JSON-LD por página
+function generateSchema(route) {
+  const baseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    'name': 'Sur Digital Labs',
+    'description': 'Empresa de desarrollo de software a medida, ingeniería de datos y consultoría cloud',
+    'url': 'https://www.surdigitallabs.cl',
+    'telephone': '+56975204813',
+    'email': 'contacto@surdigitallabs.cl',
+    'address': {
+      '@type': 'PostalAddress',
+      'streetAddress': 'Coyhaique',
+      'addressLocality': 'Coyhaique',
+      'addressRegion': 'Región de Aysén',
+      'postalCode': '5800000',
+      'addressCountry': 'CL'
+    },
+    'areaServed': ['CL', 'AR', 'PE', 'CO', 'MX'],
+    'foundingDate': '2016',
+    'sameAs': [
+      'https://linkedin.com/company/sur-digital-labs',
+      'https://www.instagram.com/surdigitallabs'
+    ],
+    'knowsAbout': ['Software Development', 'Data Engineering', 'Cloud Consulting', 'AWS', 'GCP', 'Automation', 'Web Development']
+  };
 
-// SPA Fallback: para cualquier otra ruta, sirve index.html con metadatos inyectados
+  // Agregar service schema por página
+  const serviceSchemas = {
+    '/software': {
+      '@type': 'Service',
+      'name': 'Desarrollo Web y Software a Medida',
+      'provider': { '@type': 'Organization', 'name': 'Sur Digital Labs' },
+      'areaServed': 'CL'
+    },
+    '/datos': {
+      '@type': 'Service',
+      'name': 'Ingeniería de Datos & Business Intelligence',
+      'provider': { '@type': 'Organization', 'name': 'Sur Digital Labs' },
+      'areaServed': 'CL'
+    }
+  };
+
+  if (serviceSchemas[route]) {
+    return JSON.stringify([baseSchema, serviceSchemas[route]]);
+  }
+  return JSON.stringify(baseSchema);
+}
+
+// SPA Fallback: para cualquier otra ruta, sirve index.html con metadatos + schema inyectados
 app.get('*', (req, res) => {
-  const modifiedHtml = injectMetadata(htmlTemplate, req.path);
-  // Schema.org será agregado manualmente en HTML futuro o en componentes React
+  let modifiedHtml = injectMetadata(htmlTemplate, req.path);
+
+  // Inyecta Schema.org JSON-LD
+  const schema = generateSchema(req.path);
+  const schemaTag = `<script type="application/ld+json">${schema}</script>`;
+
+  // Busca el último </head> y reemplaza antes que injectMetadata lo haga
+  modifiedHtml = modifiedHtml.replace('</head>', schemaTag + '\n</head>');
+
   res.type('text/html').send(modifiedHtml);
 });
 

@@ -109,7 +109,13 @@ const Contactanos = () => {
 
             {/* Formulario */}
             <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 sm:p-8 shadow-sm">
-              <h2 className="text-xl font-bold text-slate-950 dark:text-white mb-6">Escríbenos</h2>
+              <div className="flex items-start justify-between mb-6">
+                <h2 className="text-xl font-bold text-slate-950 dark:text-white">Escríbenos</h2>
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1 rounded-full">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400" />
+                  Respuesta en 24h
+                </span>
+              </div>
 
               {submitStatus === "success" && (
                 <div className="mb-6 rounded-xl bg-emerald-50 border border-emerald-100 p-4 flex items-start gap-3">
