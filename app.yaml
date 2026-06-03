@@ -1,35 +1,7 @@
 runtime: nodejs22
-service: default  # opcional
 
-handlers:
-  # Estáticos con caché largo (traen hash en el nombre)
-  - url: /(.*\.(?:css|js|png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|map))
-    static_files: build/\1
-    upload: build/.*\.(?:css|js|png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|map)
-    secure: always
-    http_headers:
-      Cache-Control: public, max-age=31536000, immutable
+env: standard
+entrypoint: node server.js
 
-  # (Si existe) service worker: sin caché para que tome la última versión
-  - url: /service-worker.js
-    static_files: build/service-worker.js
-    upload: build/service-worker.js
-    secure: always
-    http_headers:
-      Cache-Control: no-cache
-
-  # (Si existe) manifest: sin caché
-  - url: /manifest.webmanifest
-    static_files: build/manifest.webmanifest
-    upload: build/manifest.webmanifest
-    secure: always
-    http_headers:
-      Cache-Control: no-cache
-
-  # SPA fallback: index.html sin caché
-  - url: /.*
-    static_files: build/index.html
-    upload: build/index.html
-    secure: always
-    http_headers:
-      Cache-Control: no-cache
+env_variables:
+  NODE_ENV: production
