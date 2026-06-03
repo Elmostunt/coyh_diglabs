@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Testimonials from '../components/Testimonials';
+import CaseStudies from '../components/CaseStudies';
+import FAQ from '../components/FAQ';
+import WhatsAppWidget from '../components/WhatsAppWidget';
 
 const WA = (msg) => 'https://wa.me/56975204813?text=' + encodeURIComponent(msg);
 const CALENDLY = 'https://calendly.com/surdigitallabs/30min';
@@ -117,6 +121,96 @@ const SERVICIOS = [
   { nombre: 'DevOps e Infraestructura', desc: 'Terraform, Docker y CI/CD para que los despliegues sean predecibles y reversibles.', icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z' },
   { nombre: 'Automatización',           desc: 'Scripts Python y flujos automáticos para eliminar tareas que no debería hacer un humano.', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
   { nombre: 'Seguridad',                desc: 'Revisión OWASP, cifrado de datos sensibles y hardening. Seguridad pensada desde el diseño.', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
+];
+
+const TESTIMONIALS = [
+  {
+    quote: 'Nos entregaron un sitio web que de verdad funciona. No es un template. Y la atención fue increíble — respondieron cada duda en 24 horas.',
+    author: 'Roberto Silva',
+    position: 'Gerente de Operaciones',
+    company: 'Transporte & Logística ROS'
+  },
+  {
+    quote: 'El sistema que nos hicieron automatizó tareas que hacíamos manual. Ahora el equipo tiene tiempo para cosas que de verdad generan valor.',
+    author: 'María González',
+    position: 'Directora de Administración',
+    company: 'Servicios Empresariales Chile'
+  },
+  {
+    quote: 'Conocen la nube. No es gente que vende humo. El proyecto en AWS quedó bien pensado y hoy mantenerlo es tranquilo.',
+    author: 'Carlos Mendoza',
+    position: 'CTO',
+    company: 'TechStart Patagonia'
+  }
+];
+
+const CASE_STUDIES = [
+  {
+    title: 'Sistema de gestión de rentacar automatizado',
+    company: 'Empresa de rentacar regional',
+    industry: 'Transporte & Logística',
+    challenge: 'Gestión manual de reservas, papelerío y facturas. Pérdida de tiempo y errores frecuentes.',
+    solution: 'Sistema web personalizado con gestión de flota, automatización de reservas y facturación integrada en GCP.',
+    results: [
+      { metric: '-8h/semana', label: 'Tiempo administrativo' },
+      { metric: '+60%', label: 'Más reservas/mes' },
+      { metric: '99.9%', label: 'Uptime' }
+    ],
+    duration: '90 días'
+  },
+  {
+    title: 'Pipeline de datos para inteligencia comercial',
+    company: 'Retail regional con múltiples sucursales',
+    industry: 'Retail & Distribución',
+    challenge: 'Datos dispersos en múltiples sistemas. Sin reportes de verdad para tomar decisiones.',
+    solution: 'Pipeline ETL con BigQuery, dashboards automáticos y alertas de negocio en tiempo real.',
+    results: [
+      { metric: '4 dashboards', label: 'Activos 24/7' },
+      { metric: '+35%', label: 'Decisiones data-driven' },
+      { metric: '< 2h', label: 'Reportes automáticos' }
+    ],
+    duration: '45 días'
+  },
+  {
+    title: 'Migración y refactor de app legada',
+    company: 'Empresa de servicios B2B',
+    industry: 'Servicios Profesionales',
+    challenge: 'App vieja, lenta, difícil de mantener. Monolito sin tests.',
+    solution: 'Refactor a microservicios con React frontend, Node.js backend, tests automáticos y CD en Cloud Run.',
+    results: [
+      { metric: '70%', label: 'Más rápida' },
+      { metric: '3 equipos', label: 'Pueden trabajar en paralelo' },
+      { metric: '< 5 min', label: 'Deploy automatizado' }
+    ],
+    duration: '120 días'
+  }
+];
+
+const FAQ_ITEMS = [
+  {
+    question: '¿Cuánto cuesta un proyecto de desarrollo web?',
+    answer: 'Depende del alcance. Un sitio corporativo básico comienza en $2.000-3.000 USD. Un e-commerce funcional está entre $5.000-10.000 USD. Software a medida personalizado puede ser mucho más. Podemos cotizar gratis después de una conversación de 30 minutos.'
+  },
+  {
+    question: '¿Cuánto tiempo toma un proyecto típico?',
+    answer: 'Nuestro Pack Web PYME Profesional se entrega en 7-14 días. Proyectos de automatización y backoffice toman 14-21 días. Software a medida completo puede tardar 60-120 días dependiendo de la complejidad. Siempre definimos plazos claros desde el inicio.'
+  },
+  {
+    question: '¿Puedo hacer cambios después de que terminen?',
+    answer: 'Sí. Incluimos un período de ajustes post-entrega. Cambios después de eso tienen costo. Además, ofrecemos Pack Acompañamiento Tecnológico para quienes quieren soporte continuo y mejoras mensuales.'
+  },
+  {
+    question: '¿Trabajan con empresas grandes o solo PYMEs?',
+    answer: 'Trabajamos con ambas. Nuestra fortaleza está en PYMEs y empresas medianas que necesitan soluciones específicas a un costo razonable. Nos encanta enfrentar casos únicos que las agencias grandes no quieren tocar.'
+  },
+  {
+    question: '¿Incluye hosting y dominio?',
+    answer: 'El hosting no está incluido por defecto, pero lo configuramos en tus servidores o en GCP/AWS si lo prefieres. El dominio corre por tu cuenta. Podemos asesorarte en ambos temas.'
+  },
+  {
+    question: '¿Qué diferencia hay entre "a medida" y un template?',
+    answer: 'Los templates son soluciones genéricas rápidas. Lo "a medida" es construido sobre tu proceso real: cómo trabajas, qué necesitas, qué datos tienes. Resultados completamente diferentes. Los templates son útiles si tu caso es estándar; lo a medida es para casos únicos.'
+  }
 ];
 
 function SoftwareMockup() {
@@ -381,6 +475,15 @@ export default function ServiciosSoftware() {
         </div>
       </section>
 
+      {/* ── TESTIMONIOS ── */}
+      <Testimonials testimonials={TESTIMONIALS} />
+
+      {/* ── CASOS DE ÉXITO ── */}
+      <CaseStudies cases={CASE_STUDIES} />
+
+      {/* ── FAQ ── */}
+      <FAQ items={FAQ_ITEMS} title="Preguntas sobre Desarrollo Web & Software" />
+
       {/* ── CTA ── */}
       <section className="bg-white dark:bg-slate-900 py-12 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
@@ -408,6 +511,12 @@ export default function ServiciosSoftware() {
           </div>
         </div>
       </section>
+
+      {/* ── WHATSAPP WIDGET ── */}
+      <WhatsAppWidget
+        phone="56975204813"
+        message="Hola! Quisiera consultar sobre desarrollo web y software a medida para mi empresa."
+      />
 
     </div>
   );
