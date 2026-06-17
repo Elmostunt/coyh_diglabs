@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3006:8080"
+    environment:
+      PORT: 8080
