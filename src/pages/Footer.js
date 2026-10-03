@@ -22,7 +22,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="mt-4 text-sm text-slate-400 leading-relaxed">
-              Tecnología hecha con criterio, desde Coyhaique.
+              Software y datos desde la Patagonia. Tecnología útil para empresas de Aysén y todo Chile.
             </p>
           </div>
 

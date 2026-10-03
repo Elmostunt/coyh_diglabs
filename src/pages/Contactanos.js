@@ -63,8 +63,17 @@ const FAQ_CONTACTO = [
   },
 ];
 
+const NECESIDADES = [
+  "Una página web",
+  "Un sistema o aplicación a medida",
+  "Automatizar un proceso manual",
+  "Datos, dashboards o reportes",
+  "Cloud / asesoría tecnológica",
+  "Aún no lo tengo claro",
+];
+
 const Contactanos = () => {
-  const [formData, setFormData] = useState({ nombre: "", empresa: "", email: "", mensaje: "", website: "" });
+  const [formData, setFormData] = useState({ nombre: "", empresa: "", email: "", necesidad: "", mensaje: "", website: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
@@ -94,13 +103,13 @@ const Contactanos = () => {
           from_name:    formData.nombre,
           from_empresa: formData.empresa || "No indicada",
           from_email:   formData.email,
-          message:      formData.mensaje,
+          message:      (formData.necesidad ? `[Necesita: ${formData.necesidad}]\n\n` : "") + formData.mensaje,
           reply_to:     formData.email,
         },
         { publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY }
       );
       setSubmitStatus("success");
-      setFormData({ nombre: "", empresa: "", email: "", mensaje: "", website: "" });
+      setFormData({ nombre: "", empresa: "", email: "", necesidad: "", mensaje: "", website: "" });
     } catch {
       setSubmitStatus("error");
     } finally {
@@ -120,10 +129,10 @@ const Contactanos = () => {
           </div>
           <div className="max-w-xl">
             <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-950 dark:text-white leading-tight tracking-tight">
-              Cuéntanos tu proyecto.
+              Conversemos sobre tu proyecto.
             </h1>
             <p className="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-              Sin compromiso. Evaluamos tu caso y te respondemos en menos de 24 h.
+              Cuéntanos el problema — no necesitas saber qué tecnología se requiere. Evaluamos tu caso y te respondemos en menos de 24 h, sin compromiso.
             </p>
           </div>
         </div>
@@ -220,8 +229,26 @@ const Contactanos = () => {
                 </div>
 
                 <div>
+                  <label htmlFor="necesidad" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                    ¿Qué necesitas?
+                  </label>
+                  <select
+                    id="necesidad"
+                    name="necesidad"
+                    value={formData.necesidad}
+                    onChange={handleChange}
+                    className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-3.5 text-sm text-slate-950 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200"
+                  >
+                    <option value="">Selecciona una opción (opcional)</option>
+                    {NECESIDADES.map((n) => (
+                      <option key={n} value={n}>{n}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
                   <label htmlFor="mensaje" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
-                    Mensaje *
+                    Cuéntanos brevemente el problema *
                   </label>
                   <textarea
                     id="mensaje"
@@ -230,7 +257,7 @@ const Contactanos = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    placeholder="Cuéntanos sobre tu proyecto o consulta..."
+                    placeholder="Ej: hoy llevamos los pedidos en Excel y se nos pierden entre correos..."
                     className="w-full rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3 text-sm text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200 resize-none"
                   />
                 </div>

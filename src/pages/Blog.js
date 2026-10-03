@@ -1,7 +1,122 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSEO } from '../hooks/useSEO';
 
+// Render inline de **negritas** y [enlaces](url) dentro de un párrafo
+function renderInline(text) {
+  const regex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
+  const parts = [];
+  let last = 0;
+  let match;
+  let key = 0;
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > last) parts.push(text.slice(last, match.index));
+    if (match[1] !== undefined) {
+      const [label, url] = [match[1], match[2]];
+      parts.push(
+        url.startsWith('/') ? (
+          <Link key={key++} to={url} className="font-semibold text-blue-600 hover:text-blue-700 underline underline-offset-2">{label}</Link>
+        ) : (
+          <a key={key++} href={url} target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 hover:text-blue-700 underline underline-offset-2">{label}</a>
+        )
+      );
+    } else {
+      parts.push(<strong key={key++} className="font-semibold text-slate-900 dark:text-white">{match[3]}</strong>);
+    }
+    last = regex.lastIndex;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
+}
+
 const BLOG_POSTS = [
+  {
+    id: 'cuanto-cuesta-pagina-web-coyhaique',
+    titulo: '¿Cuánto Cuesta una Página Web en Coyhaique?',
+    resumen: 'Respuesta honesta para empresas de Aysén: rangos reales, qué incluye cada nivel y cómo evitar pagar por cosas que no necesitas.',
+    contenido: `Es la pregunta que más nos hacen empresas de Coyhaique y la región de Aysén. Y la respuesta honesta es: depende de qué necesita tu negocio, no de cuántas páginas tenga el sitio.
+
+**Los tres niveles típicos:**
+
+**1. Sitio corporativo (desde ~$2.000 USD)**
+
+Para presentar tu empresa, tus servicios y recibir contactos. Incluye diseño responsive, formulario de contacto, integración con WhatsApp, SEO básico y analytics. Es el punto de partida correcto para la mayoría de las PYMEs.
+
+**2. Sitio con herramientas de negocio**
+
+Cuando además necesitas que la web trabaje: reservas online, catálogo con pedidos, menú digital, cotizador. Aquí el precio sube porque ya no es solo diseño — es software.
+
+**3. Sistema web propio**
+
+Si lo que necesitas es gestionar tu operación (clientes, inventario, órdenes de trabajo), ya no hablamos de una página web sino de un sistema. Es otra categoría de proyecto, con otro presupuesto.
+
+**¿Por qué varían tanto los precios en el mercado?**
+
+- Hay quien vende plantillas genéricas a precio de desarrollo a medida
+- Hay quien cobra mensualidades de por vida por algo que podrías tener propio
+- Hay proyectos donde el 80% del costo es diseño y el 20% funcionalidad — o al revés
+
+**Nuestra recomendación para empresas de Aysén:**
+
+1. Define primero qué problema debe resolver la web (¿generar contactos? ¿recibir reservas? ¿vender?)
+2. Pide que te expliquen qué incluye y qué no, en lenguaje simple
+3. Asegúrate de que el dominio y el contenido queden a tu nombre
+4. Desconfía de precios sin conversación previa: cotizar sin entender el negocio es adivinar
+
+En Sur Digital Labs la evaluación inicial es gratis y sin compromiso. Te decimos qué necesitas realmente — incluso si es menos de lo que pensabas comprar.
+
+**Conversemos:** [Cuéntanos tu caso](/contacto)`,
+    autor: 'Guillermo Cárcamo',
+    fecha: '2026-10-03',
+    categoria: 'Desarrollo Web',
+  },
+  {
+    id: 'digitalizar-empresa-aysen',
+    titulo: 'Cómo Digitalizar una Empresa en Aysén (Sin Morir en el Intento)',
+    resumen: 'Guía práctica para PYMEs de la región: por dónde partir, qué automatizar primero y qué errores evitar.',
+    contenido: `"Digitalizar" suena a proyecto gigante. En la práctica, para una PYME de Aysén casi siempre parte por algo muy concreto: dejar de hacer a mano una tarea que se repite todos los días.
+
+**Señales de que es el momento:**
+
+- La información del negocio vive en planillas que solo una persona entiende
+- Las reservas o pedidos llegan por WhatsApp, correo y teléfono, y se pierden
+- Los reportes se arman copiando y pegando entre archivos
+- Contratar más gente para "ordenar papeles" empieza a parecer la única salida
+
+**Por dónde partir (en orden):**
+
+**1. El proceso que más duele**
+
+No se digitaliza todo de una vez. Se elige el proceso que más tiempo pierde o más errores genera, y se parte por ahí. Un resultado visible en semanas genera confianza para lo que sigue.
+
+**2. Centralizar la información**
+
+Antes de pensar en sistemas sofisticados: que los datos del negocio estén en un solo lugar, actualizados y accesibles. Muchas veces esto solo ya cambia la operación.
+
+**3. Automatizar lo repetitivo**
+
+Reportes que se arman solos, notificaciones automáticas, información que fluye entre sistemas sin copiar y pegar. Es donde está el mayor retorno por peso invertido.
+
+**4. Medir**
+
+Con los datos ordenados, un dashboard simple responde la pregunta que todo dueño se hace: ¿cómo va realmente el negocio?
+
+**Errores comunes que vemos en la región:**
+
+- Comprar un software genérico "porque lo usa todo el mundo" y terminar adaptando el negocio a la herramienta
+- Partir por lo más grande y caro en vez de lo más urgente
+- No considerar quién va a usar el sistema día a día
+- Depender de un proveedor lejano que no entiende cómo opera una empresa en la Patagonia
+
+**La ventaja de hacerlo desde aquí:**
+
+Trabajar con un equipo de Aysén significa hablar directo con quien diseña y construye la solución, en el mismo huso horario, entendiendo el contexto regional — y con la misma tecnología que usan las grandes empresas.
+
+**¿Tu empresa está en este punto?** [Conversemos sobre tu caso](/contacto) — la evaluación inicial es gratis.`,
+    autor: 'Guillermo Cárcamo',
+    fecha: '2026-10-03',
+    categoria: 'Digitalización',
+  },
   {
     id: 'migracion-excel-sistema',
     titulo: 'Migrar de Excel a un Sistema Real en 30 Días',
@@ -37,8 +152,8 @@ Hemos migrado más de 15 empresas de Excel a sistemas personalizados. El ROI tí
     autor: 'Guillermo Cárcamo',
     fecha: '2026-06-01',
     categoria: 'Automatización',
-    video: 'https://www.youtube.com/watch?v=ejemplo1',
-    videoTitulo: 'Ver: Automatización de Flujos de Datos en Excel'
+    video: 'https://www.youtube.com/@guillermocarcamo8219',
+    videoTitulo: 'Ver más sobre automatización en mi canal'
   },
   {
     id: 'software-medida-vs-template',
@@ -234,16 +349,28 @@ export default function Blog() {
                   {/* Contenido */}
                   <div className="prose dark:prose-invert prose-sm sm:prose-base max-w-none mb-6">
                     {post.contenido.split('\n\n').map((parrafo, i) => {
-                      if (parrafo.startsWith('**') || parrafo.startsWith('#') || parrafo.startsWith('-')) {
-                        return parrafo.startsWith('-') ? (
+                      if (parrafo.startsWith('-')) {
+                        return (
                           <ul key={i} className="list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1">
                             {parrafo.split('\n').map((item, j) => (
-                              <li key={j} className="ml-2">{item.replace(/^-\s/, '')}</li>
+                              <li key={j} className="ml-2">{renderInline(item.replace(/^-\s/, ''))}</li>
                             ))}
                           </ul>
-                        ) : (
+                        );
+                      }
+                      if (/^\d+\.\s/.test(parrafo)) {
+                        return (
+                          <ol key={i} className="list-decimal list-inside text-slate-600 dark:text-slate-300 space-y-1">
+                            {parrafo.split('\n').map((item, j) => (
+                              <li key={j} className="ml-2">{renderInline(item.replace(/^\d+\.\s/, ''))}</li>
+                            ))}
+                          </ol>
+                        );
+                      }
+                      if (parrafo.startsWith('**') || parrafo.startsWith('#')) {
+                        return (
                           <p key={i} className="font-semibold text-slate-900 dark:text-white">
-                            {parrafo.replace(/\*\*/g, '')}
+                            {parrafo.replace(/\*\*/g, '').replace(/^#+\s/, '')}
                           </p>
                         );
                       }
@@ -255,7 +382,7 @@ export default function Blog() {
                           </pre>
                         );
                       }
-                      return <p key={i} className="text-slate-600 dark:text-slate-300 leading-relaxed">{parrafo}</p>;
+                      return <p key={i} className="text-slate-600 dark:text-slate-300 leading-relaxed">{renderInline(parrafo)}</p>;
                     })}
                   </div>
 

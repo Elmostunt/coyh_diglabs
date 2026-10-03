@@ -14,8 +14,8 @@ const BASE_URL = 'https://www.surdigitallabs.cl';
 // Metadatos por ruta — sincronizados con useSEO hook (src/hooks/useSEO.js)
 const pageMetadata = {
   '/': {
-    title: 'Software a Medida, Cloud y Datos | Sur Digital Labs Chile',
-    description: 'Software a medida, cloud (GCP/AWS) y datos para PYMEs en Chile. Arquitectura sólida, entrega en 7–14 días. Desde Coyhaique, Patagonia.',
+    title: 'Sur Digital Labs | Tecnología, Software y Datos en Aysén',
+    description: 'Consultora tecnológica en Coyhaique: software a medida, automatización y datos para empresas de Aysén y todo Chile. Conversemos sobre tu proyecto.',
     ogImage: '/og-home.jpg',
   },
   '/software': {

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import WhatsAppWidget from "./components/WhatsAppWidget";
 import Home from "./pages/Home";
 import Footer from "./pages/Footer";
 import ServiciosSoftware from "./pages/ServiciosSoftware";
@@ -53,6 +54,10 @@ const App = () => {
           </Routes>
         </main>
         <Footer />
+        <WhatsAppWidget
+          phone="56975204813"
+          message="Hola! Quiero conversar sobre un proyecto para mi empresa. ¿Me pueden ayudar?"
+        />
       </div>
     </BrowserRouter>
   );

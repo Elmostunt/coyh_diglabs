@@ -4,7 +4,6 @@ import { useSEO } from '../hooks/useSEO';
 import Testimonials from '../components/Testimonials';
 import CaseStudies from '../components/CaseStudies';
 import FAQ from '../components/FAQ';
-import WhatsAppWidget from '../components/WhatsAppWidget';
 
 const WA = (msg) => 'https://wa.me/56975204813?text=' + encodeURIComponent(msg);
 const CALENDLY = 'https://calendly.com/surdigitallabs/30min';
@@ -467,12 +466,6 @@ export default function ServiciosSoftware() {
           </div>
         </div>
       </section>
-
-      {/* ── WHATSAPP WIDGET ── */}
-      <WhatsAppWidget
-        phone="56975204813"
-        message="Hola! Quisiera consultar sobre desarrollo web y software a medida para mi empresa."
-      />
 
     </div>
   );

@@ -74,7 +74,7 @@ const Navbar = ({ isDark, toggleTheme }) => {
             to="/contacto"
             className="rounded-full bg-slate-950 dark:bg-white px-5 py-2 text-sm font-semibold text-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors duration-200"
           >
-            Hablemos
+            Conversemos
           </Link>
         </div>
 
@@ -126,7 +126,7 @@ const Navbar = ({ isDark, toggleTheme }) => {
                 className="block py-2.5 text-sm font-semibold text-blue-600"
                 onClick={() => setIsOpen(false)}
               >
-                Hablemos →
+                Conversemos →
               </Link>
             </div>
           </div>
