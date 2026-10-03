@@ -6,9 +6,23 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Schibsted Grotesk', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Fraunces', 'Georgia', 'serif'],
+        mono: ['Spline Sans Mono', 'Menlo', 'Consolas', 'monospace'],
       },
       colors: {
+        // Tokens editoriales (flip automático en dark via CSS vars)
+        paper: 'rgb(var(--c-paper) / <alpha-value>)',
+        paper2: 'rgb(var(--c-paper2) / <alpha-value>)',
+        ink: 'rgb(var(--c-ink) / <alpha-value>)',
+        petrol: 'rgb(var(--c-petrol) / <alpha-value>)',
+        laguna: 'rgb(var(--c-laguna) / <alpha-value>)',
+        aqua: 'rgb(var(--c-aqua) / <alpha-value>)',
+        ember: 'rgb(var(--c-ember) / <alpha-value>)',
+        // Fijos (no flipan): footer y superficies siempre oscuras
+        night: '#0a1923',
+        bone: '#f3ecdd',
+        // Paleta legada (páginas aún no rediseñadas)
         blancoHueso: "#f8fafc",
         blancoCremoso: "#f1f5f9",
         azulOscuro: "#0d3b66",

@@ -39,7 +39,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-950 dark:text-white">
+      <div className="min-h-screen flex flex-col bg-paper text-ink">
         <ScrollToTop />
         <Navbar isDark={isDark} toggleTheme={toggleTheme} />
         <main id="main-content" className="flex-1">

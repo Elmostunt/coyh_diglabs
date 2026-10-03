@@ -7,7 +7,6 @@ const NAV_LINKS = [
   { to: '/datos', label: 'Datos & IA' },
   { to: '/nosotros', label: 'Nosotros' },
   { to: '/blog', label: 'Blog' },
-  { to: '/contacto', label: 'Contacto' },
 ];
 
 const SunIcon = () => (
@@ -26,22 +25,27 @@ const Navbar = ({ isDark, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b border-slate-100 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <nav className="sticky top-0 z-40 w-full border-b border-ink/10 bg-paper/95 backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
 
-        {/* Brand */}
-        <Link to="/" className="flex items-center gap-2.5 shrink-0" onClick={() => setIsOpen(false)}>
+        {/* Marca */}
+        <Link to="/" className="flex items-center gap-3 shrink-0" onClick={() => setIsOpen(false)}>
           <img
             src="/logo_chico.jpg"
-            className="h-8 w-8 rounded-lg object-cover shrink-0"
+            className="h-8 w-8 rounded-sm object-cover shrink-0 border border-ink/15"
             alt="Sur Digital Labs"
           />
-          <span className="font-bold text-slate-900 dark:text-white text-sm tracking-tight">
-            Sur Digital Labs
+          <span className="leading-none">
+            <span className="block font-display font-semibold text-ink text-[15px] tracking-tight">
+              Sur Digital Labs
+            </span>
+            <span className="block mt-0.5 font-mono text-[9px] uppercase tracking-[0.22em] text-ink/50">
+              Patagonia · Chile
+            </span>
           </span>
         </Link>
 
-        {/* Desktop Nav */}
+        {/* Nav escritorio */}
         <div className="hidden md:flex items-center gap-7">
           {NAV_LINKS.map(({ to, label }) => (
             <NavLink
@@ -51,8 +55,8 @@ const Navbar = ({ isDark, toggleTheme }) => {
               className={({ isActive }) =>
                 `text-sm transition-colors duration-200 ${
                   isActive
-                    ? 'text-blue-600 font-semibold'
-                    : 'text-slate-600 dark:text-slate-300 font-medium hover:text-slate-900 dark:hover:text-white'
+                    ? 'font-display italic font-semibold text-petrol dark:text-aqua'
+                    : 'font-medium text-ink/70 hover:text-ink'
                 }`
               }
             >
@@ -61,35 +65,35 @@ const Navbar = ({ isDark, toggleTheme }) => {
           ))}
         </div>
 
-        {/* Desktop actions */}
+        {/* Acciones escritorio */}
         <div className="hidden md:flex items-center gap-3 shrink-0">
           <button
             onClick={toggleTheme}
-            className="h-9 w-9 grid place-items-center rounded-full border border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-200"
+            className="h-9 w-9 grid place-items-center rounded-full border border-ink/15 text-ink/60 hover:bg-paper2 hover:text-ink transition-colors duration-200"
             aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
           >
             {isDark ? <SunIcon /> : <MoonIcon />}
           </button>
           <Link
             to="/contacto"
-            className="rounded-full bg-slate-950 dark:bg-white px-5 py-2 text-sm font-semibold text-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors duration-200"
+            className="rounded-sm bg-ink px-5 py-2.5 text-sm font-semibold text-paper hover:bg-petrol dark:hover:bg-aqua dark:hover:text-night transition-colors duration-200"
           >
             Conversemos
           </Link>
         </div>
 
-        {/* Mobile toggle */}
+        {/* Toggle móvil */}
         <div className="md:hidden flex items-center gap-2">
           <button
             onClick={toggleTheme}
-            className="h-9 w-9 grid place-items-center rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+            className="h-9 w-9 grid place-items-center rounded-sm text-ink/60 hover:bg-paper2 transition"
             aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
           >
             {isDark ? <SunIcon /> : <MoonIcon />}
           </button>
           <button
             onClick={() => setIsOpen((v) => !v)}
-            className="h-9 w-9 grid place-items-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+            className="h-9 w-9 grid place-items-center rounded-sm text-ink/70 hover:bg-paper2 transition"
             aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={isOpen}
           >
@@ -106,29 +110,28 @@ const Navbar = ({ isDark, toggleTheme }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Menú móvil editorial */}
       {isOpen && (
-        <div className="md:hidden border-t border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-900">
-          <div className="px-4 py-4 space-y-0.5">
-            {NAV_LINKS.map(({ to, label }) => (
+        <div className="md:hidden border-t border-ink/10 bg-paper">
+          <div className="px-4 py-5">
+            {NAV_LINKS.map(({ to, label }, i) => (
               <Link
                 key={to}
                 to={to}
-                className="block py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition"
+                className="flex items-baseline justify-between border-b border-ink/10 py-3.5 group"
                 onClick={() => setIsOpen(false)}
               >
-                {label}
+                <span className="font-display text-2xl text-ink group-hover:italic">{label}</span>
+                <span className="font-mono text-[10px] text-ink/40">0{i + 1}</span>
               </Link>
             ))}
-            <div className="pt-3 border-t border-slate-100 dark:border-slate-700 mt-2">
-              <Link
-                to="/contacto"
-                className="block py-2.5 text-sm font-semibold text-blue-600"
-                onClick={() => setIsOpen(false)}
-              >
-                Conversemos →
-              </Link>
-            </div>
+            <Link
+              to="/contacto"
+              className="mt-5 flex items-center justify-center gap-2 rounded-sm bg-ink py-3.5 text-sm font-semibold text-paper"
+              onClick={() => setIsOpen(false)}
+            >
+              Conversemos sobre tu proyecto →
+            </Link>
           </div>
         </div>
       )}
