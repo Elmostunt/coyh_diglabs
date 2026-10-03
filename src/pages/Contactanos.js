@@ -1,67 +1,10 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
-import FAQ from '../components/FAQ';
 import { useSEO } from '../hooks/useSEO';
+import { useReveal } from '../hooks/useReveal';
+import { EditorialFAQ, waLink, CALENDLY_URL } from '../components/Editorial';
 
-const CALENDLY = "https://calendly.com/surdigitallabs/30min";
-const WA_GENERAL = "https://wa.me/56975204813?text=" + encodeURIComponent("Hola! Me gustaría cotizar un proyecto. ¿Pueden ayudarme?");
-
-const CONTACT_INFO = [
-  {
-    label: "Email",
-    value: "surdigitallabs@gmail.com",
-    href: "mailto:surdigitallabs@gmail.com",
-    icon: (
-      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
-  },
-  {
-    label: "Teléfono",
-    value: "+56 9 7520 4813",
-    href: "tel:+56975204813",
-    icon: (
-      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-      </svg>
-    ),
-  },
-  {
-    label: "Ubicación",
-    value: "Coyhaique, Aysén, Chile",
-    href: null,
-    icon: (
-      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
-    ),
-  },
-];
-
-const FAQ_CONTACTO = [
-  {
-    q: "¿Cuál es el primer paso para trabajar con ustedes?",
-    a: "Envía un mensaje con tu proyecto o consulta. Te respondemos en menos de 24 horas con una evaluación inicial. Sin compromiso.",
-  },
-  {
-    q: "¿Cuánto cuesta una consultoría inicial?",
-    a: "La evaluación inicial es completamente gratis. Nos encanta entender tu caso primero, sin presiones. Si hay mutual interés, definimos presupuesto y alcance juntos.",
-  },
-  {
-    q: "¿Puedo agendar una llamada directa?",
-    a: "Sí. Usa nuestro calendario (Calendly) para agendar 30 minutos de conversación. O usa WhatsApp si prefieres algo más rápido y directo.",
-  },
-  {
-    q: "¿Qué información necesitan para hacer un presupuesto?",
-    a: "El objetivo del proyecto, usuarios/equipo involucrado, timeline aproximado y presupuesto de referencia si lo tienes. Con eso hacemos una primera propuesta técnica.",
-  },
-  {
-    q: "¿Hacen proyectos muy pequeños o solo grandes?",
-    a: "Trabajamos desde landing pages hasta sistemas complejos. Lo importante es que el proyecto tenga claridad en su objetivo. No hay tamaño mínimo si el caso es interesante.",
-  },
-];
+const WA_GENERAL = waLink("Hola! Me gustaría conversar sobre un proyecto. ¿Pueden ayudarme?");
 
 const NECESIDADES = [
   "Una página web",
@@ -72,14 +15,25 @@ const NECESIDADES = [
   "Aún no lo tengo claro",
 ];
 
+const FAQ_CONTACTO = [
+  { q: "¿Cuál es el primer paso?", a: "Cuéntanos tu problema por el formulario, WhatsApp o una llamada. Te respondemos en menos de 24 horas con una evaluación inicial. Sin compromiso." },
+  { q: "¿Cuánto cuesta la primera conversación?", a: "Nada. La evaluación inicial es gratis: primero entendemos tu caso y, si tiene sentido trabajar juntos, definimos alcance y presupuesto." },
+  { q: "No sé qué tecnología necesito. ¿Igual puedo escribir?", a: "Claro. No necesitas saber de tecnología: descríbenos el problema del negocio y nosotros proponemos cómo resolverlo." },
+  { q: "¿Hacen proyectos pequeños?", a: "Sí. Trabajamos desde un sitio web o una automatización puntual hasta sistemas completos. Lo importante es que el objetivo esté claro." },
+];
+
+const inputCls = "w-full h-12 border-0 border-b border-ink/25 bg-transparent px-0 text-base text-ink placeholder:text-ink/35 focus:outline-none focus:border-ink focus:ring-0 transition-colors";
+const labelCls = "block font-mono text-[10px] uppercase tracking-[0.2em] text-ink/55";
+
 const Contactanos = () => {
+  useReveal();
   const [formData, setFormData] = useState({ nombre: "", empresa: "", email: "", necesidad: "", mensaje: "", website: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
   useSEO({
-    title: 'Contacta Sur Digital Labs | Consulta Gratis en 24h',
-    description: 'Escríbenos para consulta sin compromiso. Software, datos, cloud y automatización. Respuesta garantizada en menos de 24 horas.',
+    title: 'Conversemos sobre tu proyecto | Sur Digital Labs',
+    description: 'Cuéntanos el problema de tu empresa: software, datos, automatización o cloud. Respuesta en menos de 24 horas, sin compromiso. Coyhaique, Aysén.',
     path: '/contacto',
     ogImage: '/og-contacto.jpg',
     faqs: FAQ_CONTACTO,
@@ -118,244 +72,159 @@ const Contactanos = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-paper text-ink">
 
-      {/* ── HERO ── */}
-      <section className="bg-white dark:bg-slate-900 py-16 sm:py-20 border-b border-slate-100 dark:border-slate-700">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="mb-5 flex items-center gap-3">
-            <span className="h-px w-8 bg-blue-600 inline-block" />
-            <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Contacto</span>
+      {/* ── HERO + FORM ── */}
+      <section className="border-b border-ink/10">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 pt-8 sm:pt-12 pb-16 sm:pb-20">
+          <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-ink/50 border-b border-ink/10 pb-4">
+            <span>Contacto</span>
+            <span className="text-laguna">● Respuesta en menos de 24 h</span>
           </div>
-          <div className="max-w-xl">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-950 dark:text-white leading-tight tracking-tight">
-              Conversemos sobre tu proyecto.
-            </h1>
-            <p className="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-              Cuéntanos el problema — no necesitas saber qué tecnología se requiere. Evaluamos tu caso y te respondemos en menos de 24 h, sin compromiso.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      {/* ── FORM + INFO ── */}
-      <section className="bg-slate-50 dark:bg-slate-800 py-14 sm:py-16">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="mt-10 sm:mt-14 grid lg:grid-cols-12 gap-12 lg:gap-16">
 
-            {/* Formulario */}
-            <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 sm:p-8 shadow-sm">
-              <div className="flex items-start justify-between mb-6">
-                <h2 className="text-xl font-bold text-slate-950 dark:text-white">Escríbenos</h2>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1 rounded-full">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400" />
-                  Respuesta en 24h
-                </span>
+            {/* Columna izquierda: titular + canales */}
+            <div className="lg:col-span-5" data-reveal>
+              <h1 className="font-display font-medium text-[clamp(2.6rem,7vw,4.8rem)] leading-[1] tracking-tight">
+                Conversemos<span className="text-laguna">.</span>
+              </h1>
+              <p className="mt-6 text-base sm:text-lg text-ink/70 leading-relaxed">
+                Cuéntanos el problema — no necesitas saber qué tecnología se requiere. Evaluamos tu caso y te respondemos en menos de 24 horas, sin compromiso.
+              </p>
+
+              <div className="mt-10 border-t border-ink/15">
+                {[
+                  { label: "WhatsApp", value: "+56 9 7520 4813", href: WA_GENERAL, ext: true, note: "Lo más rápido" },
+                  { label: "Videollamada", value: "Agenda 30 minutos", href: CALENDLY_URL, ext: true, note: "Sin costo" },
+                  { label: "Email", value: "surdigitallabs@gmail.com", href: "mailto:surdigitallabs@gmail.com" },
+                  { label: "Teléfono", value: "+56 9 7520 4813", href: "tel:+56975204813" },
+                ].map((c) => (
+                  <a
+                    key={c.label}
+                    href={c.href}
+                    target={c.ext ? "_blank" : undefined}
+                    rel={c.ext ? "noopener noreferrer" : undefined}
+                    className="group flex items-center justify-between gap-4 border-b border-ink/10 py-4 hover:bg-paper2/70 px-2 -mx-2 transition-colors duration-200"
+                  >
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink/45">
+                        {c.label}{c.note && <span className="text-ember"> · {c.note}</span>}
+                      </p>
+                      <p className="mt-0.5 font-display text-lg text-ink">{c.value}</p>
+                    </div>
+                    <span className="text-ink/40 group-hover:text-ink transition-colors">{c.ext ? "↗" : "→"}</span>
+                  </a>
+                ))}
               </div>
 
-              {submitStatus === "success" && (
-                <div className="mb-6 rounded-xl bg-emerald-50 border border-emerald-100 p-4 flex items-start gap-3">
-                  <div className="h-5 w-5 rounded-full bg-emerald-100 text-emerald-600 grid place-items-center shrink-0 mt-0.5">
-                    <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <p className="text-sm font-medium text-emerald-800">¡Mensaje enviado! Te contactaremos pronto.</p>
-                </div>
-              )}
-
-              {submitStatus === "error" && (
-                <div className="mb-6 rounded-xl bg-red-50 border border-red-100 p-4 flex items-start gap-3" role="alert">
-                  <div className="h-5 w-5 rounded-full bg-red-100 text-red-600 grid place-items-center shrink-0 mt-0.5">
-                    <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </div>
-                  <p className="text-sm font-medium text-red-800">No pudimos enviar el mensaje. Intenta de nuevo.</p>
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Honeypot */}
-                <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
-                  <input type="text" name="website" value={formData.website} onChange={handleChange} tabIndex={-1} autoComplete="off" />
-                </div>
-
-                <div>
-                  <label htmlFor="nombre" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
-                    Nombre completo *
-                  </label>
-                  <input
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    value={formData.nombre}
-                    onChange={handleChange}
-                    required
-                    placeholder="Tu nombre"
-                    className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 text-sm text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="empresa" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
-                    Empresa u organización
-                  </label>
-                  <input
-                    type="text"
-                    id="empresa"
-                    name="empresa"
-                    value={formData.empresa}
-                    onChange={handleChange}
-                    placeholder="Nombre de tu empresa (opcional)"
-                    className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 text-sm text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="tu@email.com"
-                    className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 text-sm text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="necesidad" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
-                    ¿Qué necesitas?
-                  </label>
-                  <select
-                    id="necesidad"
-                    name="necesidad"
-                    value={formData.necesidad}
-                    onChange={handleChange}
-                    className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-3.5 text-sm text-slate-950 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200"
-                  >
-                    <option value="">Selecciona una opción (opcional)</option>
-                    {NECESIDADES.map((n) => (
-                      <option key={n} value={n}>{n}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="mensaje" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
-                    Cuéntanos brevemente el problema *
-                  </label>
-                  <textarea
-                    id="mensaje"
-                    name="mensaje"
-                    value={formData.mensaje}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    placeholder="Ej: hoy llevamos los pedidos en Excel y se nos pierden entre correos..."
-                    className="w-full rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3 text-sm text-slate-950 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors duration-200 resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full rounded-full bg-slate-950 py-3 text-sm font-semibold text-white hover:bg-slate-800 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? "Enviando..." : "Enviar mensaje"}
-                </button>
-              </form>
+              <div className="mt-8 font-mono text-[10px] uppercase tracking-[0.16em] text-ink/45 leading-relaxed">
+                Coyhaique, Región de Aysén<br />
+                Lun–Vie 9:00–18:00 · Sáb 10:00–14:00
+              </div>
             </div>
 
-            {/* Información + acciones */}
-            <div className="space-y-5">
+            {/* Columna derecha: formulario tipo carta */}
+            <div className="lg:col-span-7" data-reveal style={{ "--reveal-delay": "120ms" }}>
+              <div className="border border-ink/20 bg-paper p-6 sm:p-10 relative">
+                <span className="absolute -top-3 left-6 bg-paper px-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink/50">
+                  Formulario
+                </span>
 
-              {/* Datos de contacto */}
-              <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 sm:p-8 shadow-sm">
-                <h2 className="text-xl font-bold text-slate-950 dark:text-white mb-6">Información de contacto</h2>
-                <ul className="space-y-5">
-                  {CONTACT_INFO.map((item) => (
-                    <li key={item.label} className="flex items-center gap-4">
-                      <div className="h-9 w-9 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-100 dark:border-slate-600 text-slate-500 dark:text-slate-400 grid place-items-center shrink-0">
-                        {item.icon}
+                {submitStatus === "success" ? (
+                  <div className="py-10 text-center" role="status">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-laguna">Mensaje enviado</p>
+                    <p className="mt-4 font-display text-3xl sm:text-4xl text-ink leading-tight">Gracias. Te respondemos en menos de 24 horas.</p>
+                    <button
+                      type="button"
+                      onClick={() => setSubmitStatus(null)}
+                      className="mt-8 link-rule text-sm font-semibold text-ink/70"
+                    >
+                      Enviar otro mensaje
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-7">
+                    {/* Honeypot */}
+                    <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
+                      <input type="text" name="website" value={formData.website} onChange={handleChange} tabIndex={-1} autoComplete="off" />
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-7">
+                      <div>
+                        <label htmlFor="nombre" className={labelCls}>Tu nombre *</label>
+                        <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleChange} required autoComplete="name" placeholder="Nombre y apellido" className={inputCls} />
                       </div>
                       <div>
-                        <p className="text-xs text-slate-400 dark:text-slate-500 font-medium mb-0.5">{item.label}</p>
-                        {item.href ? (
-                          <a href={item.href} className="text-sm font-medium text-slate-950 dark:text-white hover:text-blue-600 transition-colors duration-200">
-                            {item.value}
-                          </a>
-                        ) : (
-                          <p className="text-sm font-medium text-slate-950 dark:text-white">{item.value}</p>
-                        )}
+                        <label htmlFor="empresa" className={labelCls}>Empresa</label>
+                        <input type="text" id="empresa" name="empresa" value={formData.empresa} onChange={handleChange} autoComplete="organization" placeholder="Opcional" className={inputCls} />
                       </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                    </div>
 
-              {/* Contacto directo */}
-              <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 shadow-sm">
-                <h3 className="text-base font-semibold text-slate-950 dark:text-white mb-4">Contacto directo</h3>
-                <div className="space-y-2.5">
-                  <a
-                    href={CALENDLY}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-slate-950 dark:hover:text-white transition-colors duration-200"
-                  >
-                    <span className="flex items-center gap-2.5">
-                      <svg className="h-4 w-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      Agenda una llamada de 30 min
-                    </span>
-                    <svg className="h-4 w-4 text-slate-400 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                  <a
-                    href={WA_GENERAL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-slate-950 dark:hover:text-white transition-colors duration-200"
-                  >
-                    <span className="flex items-center gap-2.5">
-                      <svg className="h-4 w-4 text-emerald-600" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                      </svg>
-                      WhatsApp — respuesta rápida
-                    </span>
-                    <svg className="h-4 w-4 text-slate-400 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
+                    <div>
+                      <label htmlFor="email" className={labelCls}>Email *</label>
+                      <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required autoComplete="email" placeholder="tu@empresa.cl" className={inputCls} />
+                    </div>
 
-              {/* Horario */}
-              <div className="bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 px-5 py-4">
-                <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
-                  Lun–Vie 9:00–18:00 · Sáb 10:00–14:00 · Respuesta en menos de 24 h
-                </p>
+                    <fieldset>
+                      <legend className={labelCls}>¿Qué necesitas?</legend>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {NECESIDADES.map((n) => {
+                          const active = formData.necesidad === n;
+                          return (
+                            <button
+                              key={n}
+                              type="button"
+                              aria-pressed={active}
+                              onClick={() => setFormData((prev) => ({ ...prev, necesidad: active ? "" : n }))}
+                              className={`rounded-sm border px-3 py-2 text-[13px] transition-colors duration-200 ${
+                                active ? "bg-ink text-paper border-ink" : "border-ink/20 text-ink/70 hover:border-ink/50"
+                              }`}
+                            >
+                              {n}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </fieldset>
+
+                    <div>
+                      <label htmlFor="mensaje" className={labelCls}>Cuéntanos brevemente el problema *</label>
+                      <textarea
+                        id="mensaje"
+                        name="mensaje"
+                        value={formData.mensaje}
+                        onChange={handleChange}
+                        required
+                        rows={5}
+                        placeholder="Ej: hoy llevamos los pedidos en Excel y se nos pierden entre correos…"
+                        className="mt-2 w-full border border-ink/20 bg-transparent p-4 text-base text-ink placeholder:text-ink/35 focus:outline-none focus:border-ink resize-none transition-colors"
+                      />
+                    </div>
+
+                    {submitStatus === "error" && (
+                      <p className="border border-ember/40 bg-ember/10 px-4 py-3 text-sm text-ember" role="alert">
+                        No pudimos enviar el mensaje. Intenta de nuevo o escríbenos por WhatsApp.
+                      </p>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-sm bg-ink px-8 py-4 text-sm font-semibold text-paper hover:bg-petrol dark:hover:bg-aqua dark:hover:text-night transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? "Enviando…" : "Enviar mensaje"}
+                      {!isSubmitting && <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>}
+                    </button>
+                  </form>
+                )}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── FAQ ── */}
-      <section className="bg-slate-50 dark:bg-slate-800 py-14 sm:py-16">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <FAQ items={FAQ_CONTACTO} title="Preguntas frecuentes" />
-        </div>
-      </section>
-
+      <EditorialFAQ num="02" items={FAQ_CONTACTO} />
     </div>
   );
 };

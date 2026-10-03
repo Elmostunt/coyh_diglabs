@@ -25,7 +25,7 @@ const WhatsAppWidget = ({
     >
       {/* Tooltip */}
       {isHovered && (
-        <div className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap">
+        <div className="bg-ink text-paper px-4 py-2 rounded-sm font-mono text-[11px] uppercase tracking-[0.14em] text-sm font-medium whitespace-nowrap">
           ¿Preguntas? Escríbenos
         </div>
       )}

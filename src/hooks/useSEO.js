@@ -63,5 +63,5 @@ export function useSEO({ title, description, path = '/', ogImage = '/og-home.jpg
         if (el) el.remove();
       });
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [title, description, path, ogImage]); // eslint-disable-line react-hooks/exhaustive-deps
 }

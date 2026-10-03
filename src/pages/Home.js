@@ -3,9 +3,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSEO } from '../hooks/useSEO';
 import { useReveal } from '../hooks/useReveal';
+import { Eyebrow, ClosingCta, waLink } from '../components/Editorial';
 
-const CALENDLY_URL = "https://calendly.com/surdigitallabs/30min";
-const WA_HOME = "https://wa.me/56975204813?text=" + encodeURIComponent("Hola! Tengo un problema en mi empresa que creo que se puede resolver con tecnología. ¿Conversamos?");
+const WA_MSG = "Hola! Tengo un problema en mi empresa que creo que se puede resolver con tecnología. ¿Conversamos?";
+const WA_HOME = waLink(WA_MSG);
 
 const STATS = [
   { kpi: "+8", unidad: "años", label: "en la industria del software" },
@@ -111,20 +112,6 @@ const DIFERENCIADORES = [
   { titulo: "De la idea a la implementación", desc: "Diseñamos la solución y también la construimos. Un solo interlocutor de principio a fin." },
   { titulo: "Datos como ventaja", desc: "No solo construimos software: te ayudamos a convertir tu información en decisiones." },
 ];
-
-const CONTACT_ROWS = [
-  { num: "01", label: "Escríbenos", desc: "Formulario simple, respuesta en menos de 24 h", href: "/contacto", interno: true },
-  { num: "02", label: "WhatsApp directo", desc: "Para algo rápido, sin vueltas", href: WA_HOME, interno: false },
-  { num: "03", label: "Agenda 30 minutos", desc: "Una llamada para entender tu caso, sin compromiso", href: CALENDLY_URL, interno: false },
-];
-
-const Eyebrow = ({ num, children }) => (
-  <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-ink/55">
-    <span className="text-ember">{num}</span>
-    <span className="h-px w-8 bg-ink/25 inline-block" />
-    <span>{children}</span>
-  </div>
-);
 
 export default function Home() {
   useReveal();
@@ -448,48 +435,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CONVERSEMOS (CTA final editorial) ── */}
-      <section>
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
-          <div data-reveal>
-            <Eyebrow num="06">Contacto</Eyebrow>
-            <h2 className="mt-5 font-display font-medium text-[clamp(3rem,10vw,6.5rem)] leading-none tracking-tight">
-              Conversemos<span className="text-laguna">.</span>
-            </h2>
-            <p className="mt-4 max-w-md text-sm text-ink/60 leading-relaxed">
-              Cuéntanos el problema — no necesitas saber qué tecnología se requiere.
-            </p>
-          </div>
-
-          <div className="mt-10 border-t border-ink/15" data-reveal>
-            {CONTACT_ROWS.map((row) =>
-              row.interno ? (
-                <Link key={row.num} to={row.href} className="group flex items-center justify-between gap-6 border-b border-ink/10 py-6 px-2 -mx-2 hover:bg-paper2/70 transition-colors duration-200">
-                  <div className="flex items-baseline gap-6">
-                    <span className="font-mono text-[11px] text-ink/40 w-7 shrink-0">{row.num}</span>
-                    <div>
-                      <span className="font-display text-2xl sm:text-3xl text-ink">{row.label}</span>
-                      <p className="mt-1 text-sm text-ink/55">{row.desc}</p>
-                    </div>
-                  </div>
-                  <span className="h-10 w-10 grid place-items-center border border-ink/20 rounded-full text-ink/60 group-hover:bg-ink group-hover:text-paper group-hover:border-ink transition-all duration-200 shrink-0">→</span>
-                </Link>
-              ) : (
-                <a key={row.num} href={row.href} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between gap-6 border-b border-ink/10 py-6 px-2 -mx-2 hover:bg-paper2/70 transition-colors duration-200">
-                  <div className="flex items-baseline gap-6">
-                    <span className="font-mono text-[11px] text-ink/40 w-7 shrink-0">{row.num}</span>
-                    <div>
-                      <span className="font-display text-2xl sm:text-3xl text-ink">{row.label}</span>
-                      <p className="mt-1 text-sm text-ink/55">{row.desc}</p>
-                    </div>
-                  </div>
-                  <span className="h-10 w-10 grid place-items-center border border-ink/20 rounded-full text-ink/60 group-hover:bg-ink group-hover:text-paper group-hover:border-ink transition-all duration-200 shrink-0">↗</span>
-                </a>
-              )
-            )}
-          </div>
-        </div>
-      </section>
+      <ClosingCta waMessage={WA_MSG} />
 
     </div>
   );

@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@google-cloud/datastore": "^9.2.1",
+    "@google-cloud/secret-manager": "^6.3.0",
     "@radix-ui/react-slot": "^1.1.1",
     "@testing-library/react": "^14.0.0",
     "axios": "^1.7.9",
@@ -45,8 +47,18 @@
   },
   "reactSnap": {
     "source": "build",
-    "include": ["/", "/software", "/datos", "/nosotros", "/contacto", "/blog", "/empleos"],
-    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+    "include": [
+      "/",
+      "/software",
+      "/datos",
+      "/nosotros",
+      "/contacto",
+      "/empleos"
+    ],
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
     "skipThirdPartyRequests": true,
     "crawl": false,
     "saveAs": "html",
@@ -64,5 +76,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:8080"
 }
